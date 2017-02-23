@@ -1,0 +1,15 @@
+<div class='twelve columns'>
+  <h1><%= @make.name %> <%= @model.name %></h1>
+  <h3><%= @post.subject %> in <%= @forum.name %> <%= @forum.category %></h3>
+
+  <div class='six columns offset-by-three'>
+    <h4><%= @post.subject %></h4>
+    <p><%= @post.body %></p>
+    <span><%= @post.user.username %> <%= @post.created_at %></span>
+  </div>
+  <% @replies.each do |reply| %>
+    <div class='six columns offset-by-three'>
+      <%= reply.created_at %> <%= reply.body %> <%= link_to reply.user.username, user_show_path(reply.user.username) %>
+    </div>
+  <% end %>
+</div>

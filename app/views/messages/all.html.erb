@@ -1,0 +1,4 @@
+<h1><%= @receipts.count %></h1>
+<% @receipts.each do |receipt| %>
+  <p><%= receipt.message.body %></p>
+<% end %>

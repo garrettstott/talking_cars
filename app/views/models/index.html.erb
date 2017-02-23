@@ -1,0 +1,11 @@
+<div class='twelve columns center'>
+  <h1 class='title'><%= @make.name %> Models</h1>
+
+  <div class='twelve columns'>
+    <% @models.each do |model| %>
+      <div class='four columns'>
+        <h4><%= link_to model.name, forums_path(@make.name, model.name) %></h4>
+      </div>
+    <% end %>
+  </div>
+</div>

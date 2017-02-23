@@ -1,0 +1,54 @@
+<div class='twelve columns'>
+  <h1 class='center'><%= @make.name %> <%= @model.name %> Forums</h1>
+
+  <div class='twelve columns margin-bottom-sm'>
+    <div class='six columns offset-by-three'>
+      <h3>General Forums</h3>
+    </div>
+    <% @general.each do |forum| %>
+      <div class='six columns offset-by-three'>
+        <span><%= link_to forum.name, posts_path(@make.name, @model.name, forum.name) %></span>
+        <span><%= forum.category %></span>
+        <span>Posts: <%= forum.number_of_posts %></span>
+        <span>Replies: <%= forum.number_of_replies %></span>
+        <span>Last Post: <%= forum.last_post.body %> <%= forum.last_post.user.username %></span>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='six columns offset-by-three'>
+    <hr/>
+  </div>
+
+  <div class='twelve columns margin-bottom-sm'>
+    <div class='six columns offset-by-three'>
+      <h3>Technical Forums</h3>
+    </div>
+    <% @technical.each do |forum| %>
+      <div class='six columns offset-by-three'>
+        <span><%= link_to forum.name, posts_path(@make.name, @model.name, forum.name) %></span>
+        <span><%= forum.category %></span>
+        <span>Posts: <%= forum.number_of_posts %></span>
+        <span>Replies: <%= forum.number_of_replies %></span>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='six columns offset-by-three'>
+    <hr/>
+  </div>
+
+  <div class='twelve columns margin-bottom-sm'>
+    <div class='six columns offset-by-three'>
+      <h3>Classified Forums</h3>
+    </div>
+    <% @classified.each do |forum| %>
+      <div class='six columns offset-by-three'>
+        <span><%= link_to forum.name, posts_path(@make.name, @model.name, forum.name) %></span>
+        <span><%= forum.category %></span>
+        <span>Posts: <%= forum.number_of_posts %></span>
+        <span>Replies: <%= forum.number_of_replies %></span>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,183 @@
+/*==============================================
+COLORS
+==============================================*/
+
+$GOLD: rgb(255, 191, 0);
+$BLACK: rgb(33, 33, 33);
+$WHITE: rgb(227, 227, 227);
+$GREY: rgb(56, 56, 56);
+$GREEN: rgb(51, 158, 83);
+$LIGHTGREY: lighten($GREY, 30%);
+$RED: rgb(255, 57, 57);
+
+/*==============================================
+CUSTOM
+==============================================*/
+
+body {
+  background: $BLACK;
+  color: $WHITE;
+}
+
+.center {
+  text-align: center;
+}
+
+.wrapper {
+  height: 100%;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #8f8f8f;
+}
+
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+     }
+.clearfix { display: inline-block; }
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+
+.margin-bottom-sm {
+  margin-bottom: 10px;
+}
+
+/*==============================================
+LINKS
+==============================================*/
+
+a {
+  text-decoration: none;
+  color: $GOLD;
+}
+
+/*==============================================
+NAVBAR
+==============================================*/
+
+.nav {
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 4px solid $GOLD;
+  background-color: $BLACK;
+  margin-bottom: 15px;
+}
+
+.nav-left {
+  margin-left: 10px;
+  display: inline-block;
+}
+
+.nav-right {
+  margin-right: 5px;
+  float: right;
+  display: inline-block;
+}
+
+.nav-brand {
+  margin: 0;
+}
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+}
+
+.nav-links li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+/*==============================================
+FLASH MESSAGES
+==============================================*/
+
+.flash {
+  border: 2px solid $WHITE;
+  margin: 0 auto 15px auto;
+  padding: 10px;
+  max-width: 50%;
+  width: 100%;
+  background-color: $BLACK;
+  border-radius: 5px;
+}
+
+.flash-message {
+  width: 95%;
+  display: inline-block;
+}
+
+.dismiss i {
+  color: $RED;
+  display: inline-block;
+  float: right;
+}
+
+.flash-container {
+  // position: absolute;
+}
+
+.alert-success {
+  border: 2px solid $GREEN;
+}
+
+.alert-error {
+  border: 2px solid $RED;
+}
+
+/*==============================================
+FORMS
+==============================================*/
+
+input[type='text'], input[type='email'], input[type='password'], textarea {
+  width: 100%;
+  color: $WHITE;
+  background-color: $GREY;
+}
+
+input[type='text']:focus, input[type='email']:focus, input[type='password']:focus, textarea:focus {
+  border: 1px solid $GOLD;
+}
+
+input[type='submit'] {
+  color: $WHITE;
+}
+
+input[type='submit']:hover {
+  color: white;
+  border: 1px solid white;
+}
+
+label {
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+/*==============================================
+BUTTONS
+==============================================*/
+
+.btn {
+  color: $WHITE;
+}
+
+/*==============================================
+DEBUGGER
+==============================================*/
+
+.debugger {
+  background-color: black;
+}
+
+.debug_dump {
+  margin: 0;
+  border-bottom: 1px solid $WHITE;
+}

@@ -1,0 +1,15 @@
+<% flash.each do |key, value| %>
+  <div class='twelve columns flash-container'>
+    <div class="flash flash-<%= key %>">
+      <span class='dismiss'><i class='fa fa-times'></i></span>
+      <h5><%= key.capitalize %>:</h5>
+      <% if value.kind_of?(Array) %>
+        <% value.each do |value| %>
+          <span class='flash-message'><%= value %></span>
+        <% end %>
+      <% else %>
+        <span class='flash-message'><%= value %></span>
+      <% end %>
+    </div>
+  </div>
+<% end %>

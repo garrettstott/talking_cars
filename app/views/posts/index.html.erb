@@ -1,0 +1,14 @@
+<div class='twelve columns'>
+  <h1 class='center'><%= @make.name %> <%= @model.name %></h1>
+  <h4 class='center'><%= @forum.name %></h4>
+
+  <div class='twelve columns'>
+    <% @posts.each do |post| %>
+      <div class='six columns offset-by-three'>
+        <p><%= link_to post.subject, replies_path(@make.name, @model.name, @forum.name, post.id) %></p>
+        <p><%= post.body %></p>
+        <p><%= post.user.username %></p>
+      </div>
+    <% end %>
+  </div>
+</div>

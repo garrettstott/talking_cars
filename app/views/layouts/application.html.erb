@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Talking Cars</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <% if Rails.env.development? %>
+      <div class='debugger'>
+        <%= debug(params) %>
+      </div>
+    <% end %>
+    <%= render 'layouts/navbar' %>
+    <div class='clearfix'></div>
+    <%= render 'layouts/flash_messages' %>
+    <div class='wrapper'>
+      <%= yield %>
+    </div>
+  </body>
+</html>
