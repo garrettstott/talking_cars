@@ -1,5 +1,3 @@
-
-
 <div class='twelve columns'>
   <div class='center'>
     <h1>
@@ -33,6 +31,11 @@
         <p><%= link_to post.subject, replies_path(@make, @model, @forum, post) %></p>
         <p><%= post.body %></p>
         <p><%= post.user.username %></p>
+        <% if last_reply = post.last_reply %>
+          <p>Last Reply: <%= last_reply.user.username %> <%= last_reply.body.truncate(15) %></p>
+        <% else %>
+          <p>No Replies</p>
+        <% end %>
       </div>
     <% end %>
   </div>
