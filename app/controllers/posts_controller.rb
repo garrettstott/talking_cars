@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :set_make, :set_model, :set_forum
 
   def index
-    @posts = @forum.posts.includes(:user).order(created_at: :desc)
+    @posts = @forum.posts.includes(:user).joins("JOIN replies ON replies.id = posts.id").order(created_at: :desc )
     @new_post = Post.new
   end
 

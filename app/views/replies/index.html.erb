@@ -14,7 +14,24 @@
   </div>
   <% @replies.each do |reply| %>
     <div class='six columns offset-by-three'>
-      <%= reply.created_at %> <%= reply.body %> <%= link_to reply.user.username, user_show_path(reply.user.username) %>
+      <%= time_ago_in_words(reply.created_at) %> ago <%= reply.body %> <%= link_to reply.user.username, user_show_path(reply.user.username) %>
     </div>
+  <% end %>
+</div>
+
+<div class='twelve columns center margin-top-sm'>
+  <% if signed_in? %>
+    <button id='new-reply-btn' class='btn'>Reply</button>
+  <% else %>
+    <%= link_to 'Log In To Reply', new_user_session_path(return_url: request.path), class: 'btn button' %>
+  <% end %>
+</div>
+
+<div class='six columns offset-by-three new-post-container'>
+  <%= form_for(@new_reply) do |f| %>
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+    <%= f.submit 'Submit' %>
+    <span id='cancel-new-reply' class='btn button btn-danger'>Cancel</span>
   <% end %>
 </div>

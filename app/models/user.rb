@@ -10,6 +10,7 @@ class User < ApplicationRecord
   acts_as_messageable
 
   has_many :posts
+  has_many :replies
 
   def name
     self.username

@@ -37,6 +37,10 @@ hr {
   margin-bottom: 10px;
 }
 
+.margin-top-sm {
+  margin-top: 10px;
+}
+
 .clearfix:after {
      visibility: hidden;
      display: block;
@@ -177,12 +181,12 @@ label {
   text-align: left;
 }
 
-#new_post {
+#new_post, #new_reply {
   display: none;
   margin: 40px 0;
 }
 
-#new_post textarea {
+#new_post textarea, #new_reply textarea {
   height: 400px;
 }
 

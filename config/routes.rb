@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   # POST ROUTES
   post '/:make_id/:model_id/:forum_id/posts', to: 'posts#create', as: 'post'
+  post '/:make_id/:model_id/:forum_id/posts/:post_id', to: 'replies#create', as: 'reply'
 
   # PUT ROUTES
 
