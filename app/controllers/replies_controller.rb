@@ -4,6 +4,9 @@ class RepliesController < ApplicationController
   def index
     @replies = @post.replies.order(created_at: :desc)
     @new_reply = Reply.new
+    if current_user
+      @favorite = current_user.favorites.where(post_id: @post.id).any?
+    end
   end
 
   def create

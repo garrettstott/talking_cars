@@ -6,6 +6,9 @@ class ForumsController < ApplicationController
     @general = forums.where(category: 'General')
     @technical = forums.where(category: 'Technical')
     @classified = forums.where(category: 'Classified')
+    if current_user
+      @favorite = current_user.favorites.where(model_id: @model.id).any?
+    end
   end
 
   private

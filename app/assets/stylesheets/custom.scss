@@ -27,6 +27,10 @@ body {
   height: 100%;
 }
 
+.red-text {
+  color: $RED;
+}
+
 hr {
   border: 0;
   height: 1px;
@@ -52,14 +56,6 @@ hr {
 .clearfix { display: inline-block; }
 * html .clearfix { height: 1%; }
 .clearfix { display: block; }
-
- // REMOVES YELLOW AUTOFILL GROSSNESS
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-    transition: background-color 5000s ease-in-out 0s;
-}
 
 /*==============================================
 LINKS
@@ -132,12 +128,14 @@ FLASH MESSAGES
 .flash-message {
   width: 95%;
   display: inline-block;
+  text-transform: capitalize;
 }
 
 .dismiss i {
   color: $RED;
   display: inline-block;
   float: right;
+  font-size: 1.5em;
 }
 
 .flash-container {
@@ -207,6 +205,14 @@ BUTTONS
 .btn-danger:hover {
   color: $RED;
   border: 1px solid darken($RED, 20%);
+}
+
+/*==============================================
+FAVORITES
+==============================================*/
+
+.fa-heart {
+  font-size: .7em;
 }
 
 /*==============================================

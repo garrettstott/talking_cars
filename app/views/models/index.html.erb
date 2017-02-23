@@ -1,5 +1,14 @@
 <div class='twelve columns center'>
-  <h1 class='title'><%= @make.name %> Models</h1>
+  <h1 class='title'>
+    <%= @make.name %>
+    <%= link_to favorite_make_path(@make), method: :post do %>
+      <% if @favorite %>
+        <i class='fa fa-heart red-text'></i>
+      <% else %>
+        <i class='fa fa-heart'></i>
+      <% end %>
+    <% end %>
+  </h1>
 
   <div class='twelve columns'>
     <% @models.each do |model| %>

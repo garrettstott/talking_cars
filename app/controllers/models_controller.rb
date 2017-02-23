@@ -4,6 +4,9 @@ class ModelsController < ApplicationController
 
   def index
     @models = @make.models.order(name: :asc)
+    if current_user
+      @favorite = current_user.favorites.where(make_id: @make.id).any?
+    end
   end
 
   private

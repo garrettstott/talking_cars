@@ -5,6 +5,9 @@ class PostsController < ApplicationController
   def index
     @posts = @forum.posts.includes(:user).order(updated_at: :desc)
     @new_post = Post.new
+    if current_user
+      @favorite = current_user.favorites.where(forum_id: @forum.id).any?
+    end
   end
 
   def show

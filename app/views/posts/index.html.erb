@@ -4,7 +4,16 @@
       <%= link_to @make.name, models_path(@make), class: 'normalize-link' %>
       <%= link_to @model.name, forums_path(@make, @model), class: 'normalize-link' %>
     </h1>
-    <h4><%= @forum.name %></h4>
+    <h4>
+      <%= @forum.name %>
+      <%= link_to favorite_forum_path(@forum), method: :post do %>
+        <% if @favorite %>
+          <i class='fa fa-heart red-text'></i>
+        <% else %>
+          <i class='fa fa-heart'></i>
+        <% end %>
+      <% end %>
+    </h4>
     <% if signed_in? %>
       <button id='new-post-btn' class='btn'>New Post</button>
     <% else %>

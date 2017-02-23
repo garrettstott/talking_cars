@@ -4,7 +4,17 @@
       <%= link_to @make.name, models_path(@make), class: 'normalize-link' %>
       <%= link_to @model.name, forums_path(@make, @model), class: 'normalize-link' %>
     </h1>
-    <h3><%= @post.subject %> in <%= @forum.name %> <%= @forum.category %></h3>
+    <h3>
+      <%= @forum.category %><span> - </span>
+      <%= @forum.name %>
+      <%= link_to favorite_post_path(@post), method: :post do %>
+        <% if @favorite %>
+          <i class='fa fa-heart red-text'></i>
+        <% else %>
+          <i class='fa fa-heart'></i>
+        <% end %>
+      <% end %>
+    </h3>
   </div>
 
   <div class='six columns offset-by-three'>

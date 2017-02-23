@@ -5,9 +5,12 @@ Rails.application.routes.draw do
 
   #DEVISE ROUTES
   devise_for :users, controllers: {
-        sessions: 'users/sessions',
+        confirmations: 'users/confirmations',
+        # omniauth_callbacks: 'users/omniauth_callbacks',
+        passwords: 'users/passwords',
         registrations: 'users/registrations',
-        passwords: 'users/passwords'
+        sessions: 'users/sessions',
+        unlocks: 'users/unlocks'
       }
 
   # GET ROUTES
@@ -22,6 +25,10 @@ Rails.application.routes.draw do
   # POST ROUTES
   post '/:make_id/:model_id/:forum_id/posts', to: 'posts#create', as: 'post'
   post '/:make_id/:model_id/:forum_id/posts/:post_id', to: 'replies#create', as: 'reply'
+  post '/make/favorite/:id', to: 'favorites#make', as: 'favorite_make'
+  post '/model/favorite/:id', to: 'favorites#model', as: 'favorite_model'
+  post '/forum/favorite/:id', to: 'favorites#forum', as: 'favorite_forum'
+  post '/post/favotite/:id', to: 'favorites#post', as: 'favorite_post'
 
   # PUT ROUTES
 
