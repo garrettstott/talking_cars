@@ -33,6 +33,10 @@ hr {
   background: #8f8f8f;
 }
 
+.margin-bottom-sm {
+  margin-bottom: 10px;
+}
+
 .clearfix:after {
      visibility: hidden;
      display: block;
@@ -45,8 +49,12 @@ hr {
 * html .clearfix { height: 1%; }
 .clearfix { display: block; }
 
-.margin-bottom-sm {
-  margin-bottom: 10px;
+ // REMOVES YELLOW AUTOFILL GROSSNESS
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
 }
 
 /*==============================================
@@ -55,6 +63,14 @@ LINKS
 
 a {
   text-decoration: none;
+  color: $GOLD;
+}
+
+.normalize-link {
+  color: $WHITE;
+}
+
+.normalize-link:hover {
   color: $GOLD;
 }
 
@@ -139,7 +155,8 @@ FORMS
 input[type='text'], input[type='email'], input[type='password'], textarea {
   width: 100%;
   color: $WHITE;
-  background-color: $GREY;
+  line-height: 20px;
+  background-color: transparent;
 }
 
 input[type='text']:focus, input[type='email']:focus, input[type='password']:focus, textarea:focus {
@@ -151,8 +168,7 @@ input[type='submit'] {
 }
 
 input[type='submit']:hover {
-  color: white;
-  border: 1px solid white;
+  color: $WHITE;
 }
 
 label {
@@ -161,12 +177,32 @@ label {
   text-align: left;
 }
 
+#new_post {
+  display: none;
+  margin: 40px 0;
+}
+
+#new_post textarea {
+  height: 400px;
+}
+
 /*==============================================
 BUTTONS
 ==============================================*/
 
-.btn {
+.btn, .btn:hover, .btn:active, .btn:target, .btn:focus {
   color: $WHITE;
+}
+
+.btn-danger {
+  color: $RED;
+  border: 1px solid $RED;
+  float: right;
+}
+
+.btn-danger:hover {
+  color: $RED;
+  border: 1px solid darken($RED, 20%);
 }
 
 /*==============================================

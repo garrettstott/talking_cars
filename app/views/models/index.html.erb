@@ -4,7 +4,7 @@
   <div class='twelve columns'>
     <% @models.each do |model| %>
       <div class='four columns'>
-        <h4><%= link_to model.name, forums_path(@make.name, model.name) %></h4>
+        <h4><%= link_to model.name, forums_path(@make, model) %></h4>
       </div>
     <% end %>
   </div>

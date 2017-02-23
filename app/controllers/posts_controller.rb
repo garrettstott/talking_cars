@@ -1,24 +1,42 @@
 class PostsController < ApplicationController
 
   before_action :set_make, :set_model, :set_forum
+
   def index
-    @posts = @forum.posts.includes(:user)
+    @posts = @forum.posts.includes(:user).order(created_at: :desc)
+    @new_post = Post.new
   end
 
   def show
   end
 
+  def create
+    @post = current_user.posts.new(post_params)
+    @post.forum_id = @forum.id
+    if @post.save
+      flash[:success] = "Your post was submitted successfully!"
+      redirect_to replies_path(@make, @model, @forum, @post)
+    else
+      flash[:error] = "There were errors saving your post. #{@post.errors.full_messages.to_sentence}"
+      redirect_to :back
+    end
+  end
+
   private
 
+  def post_params
+    params.require(:post).permit(:subject, :body)
+  end
+
   def set_make
-    @make = Make.find_by_name(params[:make_name])
+    @make = Make.find(params[:make_id])
   end
 
   def set_model
-    @model = @make.models.find_by_name(params[:model_name])
+    @model = @make.models.find(params[:model_id])
   end
 
   def set_forum
-    @forum = @model.forums.find_by_name(params[:forum_name])
+    @forum = @model.forums.find(params[:forum_id])
   end
 end

@@ -20,6 +20,7 @@ gem 'mailboxer'
 gem 'rspec'
 gem 'font-awesome-rails'
 gem 'httparty'
+gem 'tinymce-rails'
 
 group :development, :test do
   gem 'awesome_print'

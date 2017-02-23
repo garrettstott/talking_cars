@@ -1,5 +1,5 @@
 <div class='twelve columns'>
-  <h1 class='center'><%= @make.name %> <%= @model.name %> Forums</h1>
+  <h1 class='center'><%= link_to @make.name, models_path(@make), class: 'normalize-link' %> <%= @model.name %> Forums</h1>
 
   <div class='twelve columns margin-bottom-sm'>
     <div class='six columns offset-by-three'>
@@ -7,7 +7,7 @@
     </div>
     <% @general.each do |forum| %>
       <div class='six columns offset-by-three'>
-        <span><%= link_to forum.name, posts_path(@make.name, @model.name, forum.name) %></span>
+        <span><%= link_to forum.name, posts_path(@make, @model, forum) %></span>
         <span><%= forum.category %></span>
         <span>Posts: <%= forum.number_of_posts %></span>
         <span>Replies: <%= forum.number_of_replies %></span>
@@ -26,7 +26,7 @@
     </div>
     <% @technical.each do |forum| %>
       <div class='six columns offset-by-three'>
-        <span><%= link_to forum.name, posts_path(@make.name, @model.name, forum.name) %></span>
+        <span><%= link_to forum.name, posts_path(@make, @model, forum) %></span>
         <span><%= forum.category %></span>
         <span>Posts: <%= forum.number_of_posts %></span>
         <span>Replies: <%= forum.number_of_replies %></span>
@@ -44,7 +44,7 @@
     </div>
     <% @classified.each do |forum| %>
       <div class='six columns offset-by-three'>
-        <span><%= link_to forum.name, posts_path(@make.name, @model.name, forum.name) %></span>
+        <span><%= link_to forum.name, posts_path(@make, @model, forum) %></span>
         <span><%= forum.category %></span>
         <span>Posts: <%= forum.number_of_posts %></span>
         <span>Replies: <%= forum.number_of_replies %></span>
