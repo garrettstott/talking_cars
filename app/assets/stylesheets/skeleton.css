@@ -49,10 +49,10 @@
 }
 
 /* For devices larger than 550px */
-@media (min-width: 550px) {
+@media (min-width: 850px) {
   .container {
     width: 80%; }
-  .column,
+  .column,  
   .columns {
     margin-left: 2%; }
   .column:first-child,
