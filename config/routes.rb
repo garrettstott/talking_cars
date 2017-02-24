@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   post '/forum/favorite/:id', to: 'favorites#forum', as: 'favorite_forum'
   post '/post/favotite/:id', to: 'favorites#post', as: 'favorite_post'
   post '/users/vehicles/', to: 'vehicles#create', as: 'vehicles'
+  post '/users/:username', to: 'users#posts'
 
   # PATCH ROUTES
   patch '/users/vehicles/edit/:id', to: 'vehicles#update', as: 'vehicle'

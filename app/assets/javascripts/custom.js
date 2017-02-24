@@ -37,15 +37,14 @@ $(document).ready(function(){
   });
 
   $('.edit-vehicle-btn').click(function() {
-    var form = $(this).parent().find('.edit_vehicle')
-    var editButton = $(this)
-    $(editButton).hide()
-    $(form).show()
+    var form = $(this).parent().find('.edit_vehicle');
+    var editButton = $(this);
+    $(editButton).hide();
+    $(form).show();
     $(this).parent().find('.cancel-edit-vehicle').click(function() {
-      $(form).hide()
-      $(editButton).show()
-    })
-
-  })
+      $(form).hide();
+      $(editButton).show();
+    });
+  });
 
 });

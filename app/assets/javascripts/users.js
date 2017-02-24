@@ -1,2 +1,42 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
+$(document).ready(function() {
+
+  var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+  };
+
+  setPosts = function(url) {
+    console.log(url)
+    $.ajax({
+      url: url,
+      type: 'POST'
+    }).done(function(data) {
+      $('#posts').html(data);
+      window.history.pushState(null, null, url);
+    }).fail(function(error) {
+      console.log(error);
+    });
+  };
+
+  if (window.location.href.indexOf("/users/") > 0) {
+    url = window.location.href
+    setPosts(url)
+  }
+
+  $("#posts").on("click", ".pagination a", function(e){
+    e.preventDefault();
+    url = $(e.target).attr('href')
+    setPosts(url)
+  });
+
+});

@@ -23,7 +23,8 @@ gem 'httparty'
 gem 'tinymce-rails'
 gem 'sweetalert-rails'
 gem 'sweet-alert-confirm'
-
+# gem 'kaminari'
+gem 'will_paginate'
 
 group :development, :test do
   gem 'awesome_print'

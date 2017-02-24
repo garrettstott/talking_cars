@@ -86,7 +86,7 @@
   <div class='eight columns favorites'>
     <div class='six columns'>
       <h3>Favorite Makes</h3>
-      <% @makes.each do |fav| %>
+      <% @fav_makes.each do |fav| %>
         <%= link_to fav.favoritable.name, models_path(fav.favoritable.id) %>
         <br><br>
       <% end %>
@@ -94,7 +94,7 @@
 
     <div class='six columns'>
       <h3>Favorite Models</h3>
-      <% @models.each do |fav| %>
+      <% @fav_models.each do |fav| %>
         <%= fav.favoritable.make.name %><br>
         <%= link_to fav.favoritable.name, forums_path(fav.favoritable.make_id, fav.favoritable.id) %>
         <br><br>
@@ -103,7 +103,7 @@
 
     <div class='six columns'>
       <h3>Favorite Forums</h3>
-      <% @forums.each do |fav| %>
+      <% @fav_forums.each do |fav| %>
         <%= fav.favoritable.model.make.name %> | <%= fav.favoritable.model.name %><br>
         <%= link_to fav.favoritable.name, posts_path(fav.favoritable.model.make_id, fav.favoritable.model_id, fav.favoritable) %>
         <br><br>
@@ -112,13 +112,19 @@
 
     <div class='six columns'>
       <h3>Favorite Posts</h3>
-      <% @posts.each do |fav| %>
+      <% @fav_posts.each do |fav| %>
         <%= fav.favoritable.forum.model.make.name %> | <%= fav.favoritable.forum.model.name %> | <%= fav.favoritable.forum.name %><br>
         <%= link_to fav.favoritable.subject, replies_path(fav.favoritable.forum.model.make_id, fav.favoritable.forum.model_id, fav.favoritable.forum_id, fav.favoritable) %>
         <br><br>
       <% end %>
     </div>
 
+  </div>
+
+  <div class='twelve columns'>
+    <div class='ten columns'>
+      <div id='posts'></div>
+    </div>
   </div>
 
 </div>
