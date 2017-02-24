@@ -1,55 +1,87 @@
 <div class='twelve columns'>
   <h1 class='center'><%= @user.username %></h1>
 
-  <div class='two columns'>
+  <div class='six columns'>
     <% if signed_in? %>
       <% if @user == current_user %>
+        <h3>My Messages</h3>
         <%= link_to 'Messages', all_messages_path(current_user.username), class: 'btn button' %>
       <% else %>
         <p>Send Message</p>
       <% end %>
     <% end %>
-  </div>
-</div>
 
-<div class='six columns'>
-  <h3>Vehicles</h3>
-</div>
-
-<div class='six columns'>
-  <div class='twelve columns'>
-    <h3>Favorite Makes</h3>
-    <% @makes.each do |fav| %>
-      <%= link_to fav.make.name, models_path(fav.make_id) %>
-      <br><br>
+    <h3>Vehicles</h3>
+    <% if signed_in? && current_user.id == @user.id %>
+      <div class='twelve columns'>
+        <span id='new-vehicle-btn' class='btn button'>Add Vehicle</span>
+      </div>
+      <div class='twelve columns'>
+        <div class='six columns margin-left-none'>
+          <h5>Add Vehicle</h5>
+          <%= form_for(@new_vehicle) do |f| %>
+            <%= f.text_field :year, placeholder: 'Year', required: true %>
+            <%= f.text_field :make, placeholder: 'Make', required: true %>
+            <%= f.text_field :model, placeholder: 'Model' %>
+            <%= f.text_field :trim, placeholder: 'Trim' %>
+            <%= f.text_field :transmission, placeholder: 'Transmission' %>
+            <%= f.text_field :engine, placeholder: 'Engine' %>
+            <%= f.text_field :exterior_color, placeholder: 'Exterior Color' %>
+            <%= f.text_field :interior_color ,placeholder: 'Interior Color' %>
+            <%= f.text_area :comments, placeholder: 'Comments' %>
+            <%= f.submit 'Save Vehicle'%>
+            <span class='btn btn-danger button' id='cancel-new-vehicle'>Cancel</span>
+          <% end %>
+        </div>
+      </div>
+      <% @vehicles.each do |vehicle| %>
+        <p><%= vehicle.year %> <%= vehicle.make %> <%= vehicle.model %></p>
+        <p><%= vehicle.trim %></p>
+        <p><%= vehicle.transmission %></p>
+        <p><%= vehicle.engine %></p>
+        <p><%= vehicle.exterior_color %></p>
+        <p><%= vehicle.interior_color %></p>
+        <p><%= vehicle.comments %></p>
+      <% end %>
     <% end %>
   </div>
 
-  <div class='twelve columns'>
-    <h3>Favorite Models</h3>
-    <% @models.each do |fav| %>
-      <%= fav.model.make.name %><br>
-      <%= link_to fav.model.name, forums_path(fav.model.make_id, fav.model_id) %>
-      <br><br>
-    <% end %>
-  </div>
+  <div class='six columns'>
+    <div class='twelve columns'>
+      <h3>Favorite Makes</h3>
+      <% @makes.each do |fav| %>
+        <%= link_to fav.make.name, models_path(fav.make_id) %>
+        <br><br>
+      <% end %>
+    </div>
 
-  <div class='twelve columns'>
-    <h3>Favorite Forums</h3>
-    <% @forums.each do |fav| %>
-      <%= fav.forum.model.make.name %> | <%= fav.forum.model.name %><br>
-      <%= link_to fav.forum.name, posts_path(fav.forum.model.make_id, fav.forum.model_id, fav.forum) %>
-      <br><br>
-    <% end %>
-  </div>
+    <div class='twelve columns'>
+      <h3>Favorite Models</h3>
+      <% @models.each do |fav| %>
+        <%= fav.model.make.name %><br>
+        <%= link_to fav.model.name, forums_path(fav.model.make_id, fav.model_id) %>
+        <br><br>
+      <% end %>
+    </div>
 
-  <div class='twelve columns'>
-    <h3>Favorite Posts</h3>
-    <% @posts.each do |fav| %>
-      <%= fav.post.forum.model.make.name %> | <%= fav.post.forum.model.name %> | <%= fav.post.forum.name %><br>
-      <%= link_to fav.post.subject, replies_path(fav.post.forum.model.make_id, fav.post.forum.model_id, fav.post.forum_id, fav.post) %>
-      <br><br>
-    <% end %>
+    <div class='twelve columns'>
+      <h3>Favorite Forums</h3>
+      <% @forums.each do |fav| %>
+        <%= fav.forum.model.make.name %> | <%= fav.forum.model.name %><br>
+        <%= link_to fav.forum.name, posts_path(fav.forum.model.make_id, fav.forum.model_id, fav.forum) %>
+        <br><br>
+      <% end %>
+    </div>
+
+    <div class='twelve columns'>
+      <h3>Favorite Posts</h3>
+      <% @posts.each do |fav| %>
+        <%= fav.post.forum.model.make.name %> | <%= fav.post.forum.model.name %> | <%= fav.post.forum.name %><br>
+        <%= link_to fav.post.subject, replies_path(fav.post.forum.model.make_id, fav.post.forum.model_id, fav.post.forum_id, fav.post) %>
+        <br><br>
+      <% end %>
+    </div>
+
   </div>
 
 </div>

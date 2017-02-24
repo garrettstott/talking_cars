@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   post '/model/favorite/:id', to: 'favorites#model', as: 'favorite_model'
   post '/forum/favorite/:id', to: 'favorites#forum', as: 'favorite_forum'
   post '/post/favotite/:id', to: 'favorites#post', as: 'favorite_post'
+  post '/users/:username/vehicle/', to: 'vehicles#create', as: 'vehicles'
 
   # PUT ROUTES
 

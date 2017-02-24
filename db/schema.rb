@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223212556) do
+ActiveRecord::Schema.define(version: 20170224010003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,22 @@ ActiveRecord::Schema.define(version: 20170223212556) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "vehicles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "make"
+    t.string   "model"
+    t.string   "year"
+    t.string   "trim"
+    t.string   "transmission"
+    t.string   "engine"
+    t.string   "exterior_color"
+    t.string   "interior_color"
+    t.string   "comments"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["user_id"], name: "index_vehicles_on_user_id", using: :btree
+  end
+
   add_foreign_key "favorites", "users"
   add_foreign_key "forums", "models"
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
@@ -152,4 +168,5 @@ ActiveRecord::Schema.define(version: 20170223212556) do
   add_foreign_key "posts", "users"
   add_foreign_key "replies", "posts"
   add_foreign_key "replies", "users"
+  add_foreign_key "vehicles", "users"
 end

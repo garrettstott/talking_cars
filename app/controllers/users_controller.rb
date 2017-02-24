@@ -5,5 +5,9 @@ class UsersController < ApplicationController
     @models = @user.favorites.where.not(model_id: nil).includes(:model)
     @forums = @user.favorites.where.not(forum_id: nil).includes(:forum)
     @posts = @user.favorites.where.not(post_id: nil).includes(:post)
+    @vehicles = @user.vehicles
+    if current_user
+      @new_vehicle = Vehicle.new
+    end
   end
 end
