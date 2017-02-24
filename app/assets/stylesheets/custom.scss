@@ -14,9 +14,10 @@ $RED: rgb(255, 57, 57);
 CUSTOM
 ==============================================*/
 
-body {
+body, html {
   background: $BLACK;
   color: $WHITE;
+  height: 100%;
 }
 
 .center {
@@ -24,7 +25,15 @@ body {
 }
 
 .wrapper {
-  height: 100%;
+  height: auto;
+  min-height: 100%;
+  margin: 0 auto -80px;
+  padding: 0 0 80px 0;
+  box-sizing: border-box;
+  overflow: auto;
+  @media(max-width: 580px) {
+    padding: 0 5px 80px 5px;
+  }
 }
 
 .red-text {
@@ -39,6 +48,10 @@ hr {
 
 .margin-bottom-sm {
   margin-bottom: 10px;
+}
+
+.margin-bottom-md {
+  margin-bottom: 30px;
 }
 
 .margin-bottom-lg {
@@ -298,4 +311,19 @@ PAGINATION
 
 .pagination {
   font-family: monospace;
+}
+
+/*==============================================
+FOOTER
+==============================================*/
+
+.footer {
+  border-top: 4px solid $GOLD;
+  height: 60px;
+  padding-top: 20px;
+  display: block;
+  margin-top: 40px;
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
 }

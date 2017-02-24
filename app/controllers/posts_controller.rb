@@ -10,9 +10,6 @@ class PostsController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def create
     @post = current_user.posts.new(post_params)
     @post.forum_id = @forum.id
