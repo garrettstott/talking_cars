@@ -69,7 +69,6 @@ hr {
   cursor: pointer;
 }
 
-
 .clearfix:after {
      visibility: hidden;
      display: block;
@@ -259,4 +258,36 @@ DEBUGGER
 .debug_dump {
   margin: 0;
   border-bottom: 1px solid $WHITE;
+}
+
+/*==============================================
+SWEETALERT
+==============================================*/
+
+.sweet-alert button {
+  height: 100%;
+}
+
+.sweet-alert button.cancel {
+  background-color: transparent;
+  color: $RED;
+  border: 1px solid $RED;
+}
+
+.sweet-alert button.cancel:hover {
+  background-color: transparent;
+  border: 1px solid darken($RED, 20%);
+  color: darken($RED, 20%);
+}
+
+.sweet-alert button.confirm {
+  background-color: transparent !important;
+  color: lighten($BLACK, 30%);
+  border: 1px solid lighten($BLACK, 30%);
+}
+
+.sweet-alert button.confirm:hover {
+  background-color: transparent !important;
+  color: $BLACK;
+  border: 1px solid $BLACK;
 }

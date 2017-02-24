@@ -54,7 +54,9 @@
         <div class='twelve columns'>
           <div class='six columns margin-left-none'>
             <% if signed_in? && current_user.id = @user.id %>
-              <%= link_to 'Delete', delete_vehicle_path(@user, vehicle), method: :delete, class: 'red-text' %>
+              <%= link_to 'Delete', delete_vehicle_path(vehicle), class: 'red-text', method: :delete,
+                  confirm: "Are you sure you want to delete #{vehicle.year} #{vehicle.make} #{vehicle.model}?"
+              %>
               <span class='edit-vehicle-btn pointer margin-left-sm'>Edit</span>
             <% end %>
             <%= form_for(vehicle) do |f| %>

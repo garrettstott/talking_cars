@@ -21,6 +21,9 @@ gem 'rspec'
 gem 'font-awesome-rails'
 gem 'httparty'
 gem 'tinymce-rails'
+gem 'sweetalert-rails'
+gem 'sweet-alert-confirm'
+
 
 group :development, :test do
   gem 'awesome_print'

@@ -13,4 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require tinymce-jquery
+//= require sweetalert
+//= require sweet-alert-confirm
 //= require_tree .
