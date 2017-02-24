@@ -1,11 +1,55 @@
-<div class='four columns offset-by-four'>
+<div class='twelve columns'>
   <h1 class='center'><%= @user.username %></h1>
 
-  <% if signed_in? %>
-    <% if @user == current_user %>
-      <%= link_to 'Messages', all_messages_path(current_user.username) %>
-    <% else %>
-      <p>Send Message</p>
+  <div class='two columns'>
+    <% if signed_in? %>
+      <% if @user == current_user %>
+        <%= link_to 'Messages', all_messages_path(current_user.username), class: 'btn button' %>
+      <% else %>
+        <p>Send Message</p>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
+</div>
+
+<div class='six columns'>
+  <h3>Vehicles</h3>
+</div>
+
+<div class='six columns'>
+  <div class='twelve columns'>
+    <h3>Favorite Makes</h3>
+    <% @makes.each do |fav| %>
+      <%= link_to fav.make.name, models_path(fav.make_id) %>
+      <br><br>
+    <% end %>
+  </div>
+
+  <div class='twelve columns'>
+    <h3>Favorite Models</h3>
+    <% @models.each do |fav| %>
+      <%= fav.model.make.name %><br>
+      <%= link_to fav.model.name, forums_path(fav.model.make_id, fav.model_id) %>
+      <br><br>
+    <% end %>
+  </div>
+
+  <div class='twelve columns'>
+    <h3>Favorite Forums</h3>
+    <% @forums.each do |fav| %>
+      <%= fav.forum.model.make.name %> | <%= fav.forum.model.name %><br>
+      <%= link_to fav.forum.name, posts_path(fav.forum.model.make_id, fav.forum.model_id, fav.forum) %>
+      <br><br>
+    <% end %>
+  </div>
+
+  <div class='twelve columns'>
+    <h3>Favorite Posts</h3>
+    <% @posts.each do |fav| %>
+      <%= fav.post.forum.model.make.name %> | <%= fav.post.forum.model.name %> | <%= fav.post.forum.name %><br>
+      <%= link_to fav.post.subject, replies_path(fav.post.forum.model.make_id, fav.post.forum.model_id, fav.post.forum_id, fav.post) %>
+      <br><br>
+    <% end %>
+  </div>
+
 </div>
