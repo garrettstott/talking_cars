@@ -82,6 +82,14 @@ hr {
   cursor: pointer;
 }
 
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
 .clearfix:after {
      visibility: hidden;
      display: block;
@@ -221,7 +229,7 @@ label {
   margin: 40px 0;
 }
 
-#new_post textarea, #new_reply textarea {
+#new_post textarea, #new_reply textarea, .large-textarea {
   height: 400px;
 }
 

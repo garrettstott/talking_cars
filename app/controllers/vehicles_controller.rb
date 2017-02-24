@@ -6,10 +6,10 @@ class VehiclesController < ApplicationController
     @vehicle = current_user.vehicles.new(vehicle_params)
     if @vehicle.save
       flash[:success] = "#{@vehicle.year} #{@vehicle.make} #{@vehicle.model} Saved"
-      redirect_to :back
+      redirect_back(fallback_location: user_show_path(current_user))
     else
       flash[:error] = "There were errors saving your vehicle. #{@vehicle.errors.full_messages.to_sentence}"
-      redirect_to :back
+      redirect_back(fallback_location: user_show_path(current_user))
     end
   end
 
@@ -18,10 +18,10 @@ class VehiclesController < ApplicationController
     name = "#{@vehicle.year} #{@vehicle.make} #{@vehicle.model}"
     if @vehicle.update(vehicle_params)
       flash[:success] = "#{name} was updated successfully"
-      redirect_to :back
+      redirect_back(fallback_location: user_show_path(current_user))
     else
       flash[:error] = "There were errors updating #{name} #{@vehicle.errors.full_messages.to_sentence}"
-      redirect_to :back
+      redirect_back(fallback_location: user_show_path(current_user))
     end
   end
 
@@ -30,10 +30,10 @@ class VehiclesController < ApplicationController
     name = "#{@vehicle.year} #{@vehicle.make} #{@vehicle.model}"
     if @vehicle.destroy
       flash[:success] = "#{name} was deleted successfully"
-      redirect_to :back
+      redirect_back(fallback_location: user_show_path(current_user))
     else
       flash[:error] = "There were errors deleting #{name} #{@vehicle.errors.full_messages.to_sentence}"
-      redirect_to :back
+      redirect_back(fallback_location: user_show_path(current_user))
     end
   end
 

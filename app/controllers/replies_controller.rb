@@ -14,10 +14,10 @@ class RepliesController < ApplicationController
     @reply.post_id = @post.id
     if @reply.save
       flash[:success] = "Your Reply was submitted successfully!"
-      redirect_to :back
+      redirect_back(fallback_location: replies_path(@make, @model, @forum, @post))
     else
       flash[:error] = "There were errors saving your reply. #{@reply.errors.full_messages.to_sentence}"
-      redirect_to :back
+      redirect_back(fallback_location: replies_path(@make, @model, @forum, @post))
     end
   end
 

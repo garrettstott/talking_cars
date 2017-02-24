@@ -18,7 +18,7 @@ class PostsController < ApplicationController
       redirect_to replies_path(@make, @model, @forum, @post)
     else
       flash[:error] = "There were errors saving your post. #{@post.errors.full_messages.to_sentence}"
-      redirect_to :back
+      redirect_back(fallback_location: replies_path(@make, @model, @forum, @post))
     end
   end
 
