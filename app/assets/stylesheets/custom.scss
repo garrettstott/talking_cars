@@ -41,8 +41,16 @@ hr {
   margin-bottom: 10px;
 }
 
+.margin-bottom-lg {
+  margin-bottom: 60px;
+}
+
 .margin-top-sm {
   margin-top: 10px;
+}
+
+.margin-top-lg {
+  margin-top: 60px;
 }
 
 .margin-left-none {
@@ -100,7 +108,7 @@ NAVBAR
   line-height: 50px;
   border-bottom: 4px solid $GOLD;
   background-color: $BLACK;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .nav-left {

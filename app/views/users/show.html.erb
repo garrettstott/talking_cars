@@ -1,5 +1,10 @@
 <div class='twelve columns'>
-  <h1 class='center'><%= @user.username %></h1>
+
+  <div class='twelve columns margin-bottom-lg'>
+    <div class='ten columns'>
+      <h1><%= @user.username %></h1>
+    </div>
+  </div>
 
   <div class='six columns'>
     <% if signed_in? %>
