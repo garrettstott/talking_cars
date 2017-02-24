@@ -13,6 +13,30 @@ class VehiclesController < ApplicationController
     end
   end
 
+  def update
+    @vehicle = Vehicle.find(params[:id])
+    name = "#{@vehicle.year} #{@vehicle.make} #{@vehicle.model}"
+    if @vehicle.update(vehicle_params)
+      flash[:success] = "#{name} was updated successfully"
+      redirect_to :back
+    else
+      flash[:error] = "There were errors updating #{name} #{@vehicle.errors.full_messages.to_sentence}"
+      redirect_to :back
+    end
+  end
+
+  def destroy
+    @vehicle = Vehicle.find(params[:id])
+    name = "#{@vehicle.year} #{@vehicle.make} #{@vehicle.model}"
+    if @vehicle.destroy
+      flash[:success] = "#{name} was deleted successfully"
+      redirect_to :back
+    else
+      flash[:error] = "There were errors deleting #{name} #{@vehicle.errors.full_messages.to_sentence}"
+      redirect_to :back
+    end
+  end
+
   private
 
   def vehicle_params

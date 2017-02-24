@@ -35,13 +35,43 @@
         </div>
       </div>
       <% @vehicles.each do |vehicle| %>
-        <p><%= vehicle.year %> <%= vehicle.make %> <%= vehicle.model %></p>
-        <p><%= vehicle.trim %></p>
-        <p><%= vehicle.transmission %></p>
-        <p><%= vehicle.engine %></p>
-        <p><%= vehicle.exterior_color %></p>
-        <p><%= vehicle.interior_color %></p>
-        <p><%= vehicle.comments %></p>
+        <div class='twelve columns'>
+          <div class='three columns margin-left-none'>
+            <h5><strong><%= vehicle.year %> <%= vehicle.make %> <%= vehicle.model %></strong></h5>
+            <p><%= "Trim: #{vehicle.trim}" if vehicle.trim.present? %></p>
+            <p><%= "Transmission: #{vehicle.transmission}" if vehicle.trim.present? %></p>
+            <p><%= "Engine: #{vehicle.engine}" if vehicle.engine.present? %></p>
+            <p><%= "Exterior: #{vehicle.exterior_color}" if vehicle.exterior_color.present? %></p>
+            <p><%= "Interior: #{vehicle.interior_color}" if vehicle.interior_color.present? %></p>
+            <p class='breaks'><%= "Comments: \n #{vehicle.comments}" if vehicle.comments.present? %></p>
+          </div>
+        </div>
+        <div class='twelve columns'>
+          <div class='six columns margin-left-none'>
+            <% if signed_in? && current_user.id = @user.id %>
+              <%= link_to 'Delete', delete_vehicle_path(@user, vehicle), method: :delete, class: 'red-text' %>
+              <span class='edit-vehicle-btn pointer margin-left-sm'>Edit</span>
+            <% end %>
+            <%= form_for(vehicle) do |f| %>
+              <%= f.text_field :year %>
+              <%= f.text_field :make %>
+              <%= f.text_field :model %>
+              <%= f.text_field :trim %>
+              <%= f.text_field :transmission %>
+              <%= f.text_field :engine %>
+              <%= f.text_field :exterior_color %>
+              <%= f.text_field :interior_color %>
+              <%= f.text_area :comments %>
+              <%= f.submit 'Save' %>
+              <span class='cancel-edit-vehicle button btn btn-danger'>Cancel</span>
+            <% end %>
+          </div>
+          <div class='twelve columns'>
+            <div class='three columns margin-left-none'>
+              <hr>
+            </div>
+          </div>
+        </div>
       <% end %>
     <% end %>
   </div>

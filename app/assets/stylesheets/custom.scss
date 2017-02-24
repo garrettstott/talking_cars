@@ -49,6 +49,19 @@ hr {
   margin-left: 0;
 }
 
+.margin-left-sm {
+  margin-left: 10px;
+}
+
+.breaks {
+  white-space: pre-line;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+
 .clearfix:after {
      visibility: hidden;
      display: block;
@@ -194,6 +207,10 @@ label {
 
 #new_vehicle textarea {
   height: 200px;
+}
+
+.edit_vehicle {
+  display: none;
 }
 
 /*==============================================

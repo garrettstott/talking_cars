@@ -29,10 +29,12 @@ Rails.application.routes.draw do
   post '/model/favorite/:id', to: 'favorites#model', as: 'favorite_model'
   post '/forum/favorite/:id', to: 'favorites#forum', as: 'favorite_forum'
   post '/post/favotite/:id', to: 'favorites#post', as: 'favorite_post'
-  post '/users/:username/vehicle/', to: 'vehicles#create', as: 'vehicles'
+  post '/users/vehicles/', to: 'vehicles#create', as: 'vehicles'
 
-  # PUT ROUTES
+  # PATCH ROUTES
+  patch '/users/vehicles/edit/:id', to: 'vehicles#update', as: 'vehicle'
 
   # DELETE ROUTES
+  delete '/users/vehicles/:id', to: 'vehicles#destroy', as: 'delete_vehicle'
 
 end

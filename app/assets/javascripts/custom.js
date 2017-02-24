@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  
+
   $('.dismiss').click(function(){
     $('.flash').hide();
   });
@@ -35,5 +35,17 @@ $(document).ready(function(){
     $('#new_vehicle').hide();
     $('#new-vehicle-btn').show();
   });
+
+  $('.edit-vehicle-btn').click(function() {
+    var form = $(this).parent().find('.edit_vehicle')
+    var editButton = $(this)
+    $(editButton).hide()
+    $(form).show()
+    $(this).parent().find('.cancel-edit-vehicle').click(function() {
+      $(form).hide()
+      $(editButton).show()
+    })
+
+  })
 
 });
