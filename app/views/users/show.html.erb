@@ -41,7 +41,7 @@
       </div>
       <% @vehicles.each do |vehicle| %>
         <div class='twelve columns'>
-          <div class='three columns margin-left-none'>
+          <div class='eight columns margin-left-none'>
             <h5><strong><%= vehicle.year %> <%= vehicle.make %> <%= vehicle.model %></strong></h5>
             <p><%= "Trim: #{vehicle.trim}" if vehicle.trim.present? %></p>
             <p><%= "Transmission: #{vehicle.transmission}" if vehicle.trim.present? %></p>
