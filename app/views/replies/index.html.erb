@@ -41,7 +41,7 @@
   <%= form_for(@new_reply) do |f| %>
     <%= f.label :body %>
     <%= f.text_area :body %>
-    <%= f.submit 'Submit' %>
+    <%= f.submit 'Submit', data: {disable_with: 'Saving...'} %>
     <span id='cancel-new-reply' class='btn button btn-danger'>Cancel</span>
   <% end %>
 </div>

@@ -34,7 +34,7 @@
             <%= f.text_field :exterior_color, placeholder: 'Exterior Color' %>
             <%= f.text_field :interior_color ,placeholder: 'Interior Color' %>
             <%= f.text_area :comments, placeholder: 'Comments' %>
-            <%= f.submit 'Save Vehicle'%>
+            <%= f.submit 'Save Vehicle', data: {disable_with: 'Saving...'} %>
             <span class='btn btn-danger button' id='cancel-new-vehicle'>Cancel</span>
           <% end %>
         </div>
@@ -69,7 +69,7 @@
               <%= f.text_field :exterior_color %>
               <%= f.text_field :interior_color %>
               <%= f.text_area :comments %>
-              <%= f.submit 'Save' %>
+              <%= f.submit 'Save', data: {disable_with: 'Saving...'} %>
               <span class='cancel-edit-vehicle button btn btn-danger'>Cancel</span>
             <% end %>
           </div>
