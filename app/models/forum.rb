@@ -1,6 +1,7 @@
 class Forum < ApplicationRecord
   belongs_to :model
   has_many :posts
+  has_many :favorites, as: :favoritable
 
   def number_of_posts
     self.posts.count

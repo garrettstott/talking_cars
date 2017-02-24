@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   def show
     @user = User.find_by_username(params[:username])
-    @makes = @user.favorites.where.not(make_id: nil).includes(:make)
-    @models = @user.favorites.where.not(model_id: nil).includes(:model)
-    @forums = @user.favorites.where.not(forum_id: nil).includes(:forum)
-    @posts = @user.favorites.where.not(post_id: nil).includes(:post)
+    @makes = @user.favorites.where(favoritable_type: 'Make')
+    @models = @user.favorites.where(favoritable_type: 'Model')
+    @forums = @user.favorites.where(favoritable_type: 'Forum')
+    @posts = @user.favorites.where(favoritable_type: 'Post')
     @vehicles = @user.vehicles
     if current_user
       @new_vehicle = Vehicle.new

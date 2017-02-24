@@ -6,7 +6,7 @@ class PostsController < ApplicationController
     @posts = @forum.posts.includes(:user).order(updated_at: :desc)
     @new_post = Post.new
     if current_user
-      @favorite = current_user.favorites.where(forum_id: @forum.id).any?
+      @favorite = current_user.favorites.where(favoritable_type: 'Forum', favoritable_id: @forum.id).any?
     end
   end
 

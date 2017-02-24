@@ -5,11 +5,11 @@ class FavoritesController < ApplicationController
   def make
     make = Make.find(params[:id])
     favorites = current_user.favorites
-    if favorite = favorites.where(make_id: make.id).last
+    if favorite = favorites.where(favoritable_type: 'Make', favoritable_id: make.id).last
       favorite.destroy
       flash[:success] = "Removed Make #{make.name} from favorites"
     else
-      current_user.favorites.create(make_id: make.id)
+      make.favorites.create(user_id: current_user.id)
       flash[:success] = "Added Make #{make.name} to favorites"
     end
     redirect_to :back
@@ -18,11 +18,11 @@ class FavoritesController < ApplicationController
   def model
     model = Model.find(params[:id])
     favorites = current_user.favorites
-    if favorite = favorites.where(model_id: model.id).last
+    if favorite = favorites.where(favoritable_type: 'Model', favoritable_id: model.id).last
       favorite.destroy
       flash[:success] = "Removed Model #{model.name} from favorites"
     else
-      current_user.favorites.create(model_id: model.id)
+      model.favorites.create(user_id: current_user.id)
       flash[:success] = "Added Model #{model.name} to favorites"
     end
     redirect_to :back
@@ -31,11 +31,11 @@ class FavoritesController < ApplicationController
   def forum
     forum = Forum.find(params[:id])
     favorites = current_user.favorites
-    if favorite = favorites.where(forum_id: forum.id).last
+    if favorite = favorites.where(favoritable_type: 'Forum', favoritable_id: forum.id).last
       favorite.destroy
       flash[:success] = "Removed Forum #{forum.name} from favorites"
     else
-      current_user.favorites.create(forum_id: forum.id)
+      forum.favorites.create(user_id: current_user.id)
       flash[:success] = "Added Forum #{forum.name} to favorites"
     end
     redirect_to :back
@@ -44,12 +44,12 @@ class FavoritesController < ApplicationController
   def post
     post = Post.find(params[:id])
     favorites = current_user.favorites
-    if favorite = favorites.where(post_id: post.id).last
+    if favorite = favorites.where(favoritable_type: 'Post', favoritable_id: post.id).last
       favorite.destroy
-      flash[:success] = "Removed Post #{post.subject.truncate(20)} from favorites"
+      flash[:success] = "Removed Post #{post.subject} from favorites"
     else
-      current_user.favorites.create(post_id: post.id)
-      flash[:success] = "Added Post #{post.subject.truncate(20)} to favorites"
+      post.favorites.create(user_id: current_user.id)
+      flash[:success] = "Added Post #{post.subject} to favorites"
     end
     redirect_to :back
   end

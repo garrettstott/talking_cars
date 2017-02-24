@@ -5,7 +5,7 @@ class ModelsController < ApplicationController
   def index
     @models = @make.models.order(name: :asc)
     if current_user
-      @favorite = current_user.favorites.where(make_id: @make.id).any?
+      @favorite = current_user.favorites.where(favoritable_type: 'Make', favoritable_id: @make.id).any?
     end
   end
 
