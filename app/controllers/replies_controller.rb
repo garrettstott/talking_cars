@@ -29,11 +29,11 @@ class RepliesController < ApplicationController
   end
 
   def set_make
-    @make = Make.find(params[:make_id])
+    @make = Make.fine_by_name(params[:make_name])
   end
 
   def set_model
-    @model = @make.models.find(params[:model_id])
+    @model = @make.models.fine_by_name(params[:model_name])
   end
 
   def set_forum
