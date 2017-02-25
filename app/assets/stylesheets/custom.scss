@@ -25,7 +25,7 @@ body, html {
 }
 
 .wrapper {
-  min-height: calc(100vh - 100px);
+  min-height: 100%;
   @media(max-width: 580px) {
     padding: 0 5px 80px 5px;
   }
@@ -186,12 +186,12 @@ FLASH MESSAGES
   // position: absolute;
 }
 
-.alert-success {
-  border: 2px solid $GREEN;
+.flash-success {
+  // border: 2px solid rgba($GREEN, 0.5);
 }
 
-.alert-error {
-  border: 2px solid $RED;
+.flash-error {
+  border: 2px solid rgba($RED, 0.5);
 }
 
 /*==============================================
