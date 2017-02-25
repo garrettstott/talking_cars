@@ -28,7 +28,7 @@ $(document).ready(function() {
   };
 
   var href = window.location.href;
-  if (href.includes('/users/') && href.match(/(sign_in|sign_up|password)/).length <= 0) {
+  if (href.includes('/users/') && href.match(/(sign_in|sign_up|password)/) == null) {
     url = window.location.href
     setPosts(url)
   }

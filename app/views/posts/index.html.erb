@@ -1,8 +1,8 @@
 <div class='twelve columns'>
   <div class='center margin-bottom-lg'>
     <h1>
-      <%= link_to @make.name, models_path(@make), class: 'normalize-link' %>
-      <%= link_to @model.name, forums_path(@make, @model), class: 'normalize-link' %>
+      <%= link_to @make.name, models_path(@make.name), class: 'normalize-link' %>
+      <%= link_to @model.name, forums_path(@make.name, @model.name), class: 'normalize-link' %>
     </h1>
     <h4>
       <%= @forum.name %>
@@ -35,7 +35,7 @@
   <div class='twelve columns'>
     <% @posts.each do |post| %>
       <div class='six columns offset-by-three'>
-        <p><%= link_to post.subject, replies_path(@make, @model, @forum, post) %></p>
+        <p><%= link_to post.subject, replies_path(@make.name, @model.name, @forum, post) %></p>
         <p><%= post.body %></p>
         <p><%= post.user.username %></p>
         <% if last_reply = post.last_reply %>

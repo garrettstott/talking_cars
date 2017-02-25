@@ -1,6 +1,6 @@
 <div class='twelve columns'>
   <div class='center'>
-    <h1><%= link_to @make.name, models_path(@make), class: 'normalize-link' %></h1>
+    <h1><%= link_to @make.name, models_path(@make.name), class: 'normalize-link' %></h1>
     <h3>
       <%= @model.name %>
       <%= link_to favorite_model_path(@model), method: :post do %>
@@ -18,7 +18,7 @@
     </div>
     <% @general.each do |forum| %>
       <div class='ten columns offset-by-one'>
-        <span><%= link_to forum.name, posts_path(@make, @model, forum) %></span>
+        <span><%= link_to forum.name, posts_path(@make.name, @model.name, forum) %></span>
         <span><%= forum.category %></span>
         <span>Posts: <%= forum.number_of_posts %></span>
         <span>Replies: <%= forum.number_of_replies %></span>
