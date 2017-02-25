@@ -14,19 +14,93 @@
   </div>
   <div class='twelve columns margin-bottom-sm'>
     <div class='ten columns offset-by-one'>
-      <h3>General Forums</h3>
+      <h3 class='margin-bottom-md'>General Forums</h3>
     </div>
     <% @general.each do |forum| %>
       <div class='ten columns offset-by-one'>
-        <span><%= link_to forum.name, posts_path(@make.name, @model.name, forum) %></span>
-        <span><%= forum.category %></span>
-        <span>Posts: <%= forum.number_of_posts %></span>
-        <span>Replies: <%= forum.number_of_replies %></span>
-        <% if last_post = forum.last_post %>
-          <span>Last Post: <%= last_post.body %> <%= last_post.user.username %></span>
-        <% else %>
-          <span>No Posts</span>
-        <% end %>
+        <div class='eight columns'>
+          <h5><%= link_to forum.name, posts_path(@make.name, @model.name, forum) %></h5>
+          <h6><%= forum.description %></h6>
+        </div>
+        <div class='four columns'>
+          <span>Posts: <%= forum.number_of_posts %></span>
+          <br>
+          <span>Replies: <%= forum.number_of_replies %></span>
+          <br>
+          <% if last_post = forum.last_post %>
+            <span>Last Post: <br>
+              <%= link_to last_post.body, replies_path(last_post.forum.model.make.name, last_post.forum.model.name, last_post.forum.id, last_post.id) %>
+              <br>
+              by: <%= link_to last_post.user.username, user_show_path(last_post.user.username) %></span>
+          <% else %>
+            <span>No Posts</span>
+          <% end %>
+        </div>
+        <div class='twelve columns'>
+          <hr>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='twelve columns margin-bottom-sm'>
+    <div class='ten columns offset-by-one'>
+      <h3 class='margin-bottom-md'>Technical Forums</h3>
+    </div>
+    <% @technical.each do |forum| %>
+      <div class='ten columns offset-by-one'>
+        <div class='eight columns'>
+          <h5><%= link_to forum.name, posts_path(@make.name, @model.name, forum) %></h5>
+          <h6><%= forum.description %></h6>
+        </div>
+        <div class='four columns'>
+          <span>Posts: <%= forum.number_of_posts %></span>
+          <br>
+          <span>Replies: <%= forum.number_of_replies %></span>
+          <br>
+          <% if last_post = forum.last_post %>
+            <span>Last Post: <br>
+              <%= link_to last_post.body, replies_path(last_post.forum.model.make.name, last_post.forum.model.name, last_post.forum.id, last_post.id) %>
+              <br>
+              by: <%= link_to last_post.user.username, user_show_path(last_post.user.username) %></span>
+          <% else %>
+            <span>No Posts</span>
+          <% end %>
+        </div>
+        <div class='twelve columns'>
+          <hr>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='twelve columns margin-bottom-sm'>
+    <div class='ten columns offset-by-one'>
+      <h3 class='margin-bottom-md'>Classified Forums</h3>
+    </div>
+    <% @classified.each do |forum| %>
+      <div class='ten columns offset-by-one'>
+        <div class='eight columns'>
+          <h5><%= link_to forum.name, posts_path(@make.name, @model.name, forum) %></h5>
+          <h6><%= forum.description %></h6>
+        </div>
+        <div class='four columns'>
+          <span>Posts: <%= forum.number_of_posts %></span>
+          <br>
+          <span>Replies: <%= forum.number_of_replies %></span>
+          <br>
+          <% if last_post = forum.last_post %>
+            <span>Last Post: <br>
+              <%= link_to last_post.body, replies_path(last_post.forum.model.make.name, last_post.forum.model.name, last_post.forum.id, last_post.id) %>
+              <br>
+              by: <%= link_to last_post.user.username, user_show_path(last_post.user.username) %></span>
+          <% else %>
+            <span>No Posts</span>
+          <% end %>
+        </div>
+        <div class='twelve columns'>
+          <hr>
+        </div>
       </div>
     <% end %>
   </div>

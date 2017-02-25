@@ -44,9 +44,15 @@ namespace :populate do
     end
 
 
-    forums = [ {name: 'Test Forum 1', description: 'This is the description', category: 'General'},
-               {name: 'Test Forum 2', description: 'This is the description', category: 'General'},
-               {name: 'Test Forum 3', description: 'This is the description', category: 'General'}
+    forums = [ {name: 'Test Forum General 1', description: 'This is the description', category: 'General'},
+               {name: 'Test Forum General 2', description: 'This is the description', category: 'General'},
+               {name: 'Test Forum General 3', description: 'This is the description', category: 'General'},
+               {name: 'Test Forum Technical 1', description: 'This is the description', category: 'Technical'},
+               {name: 'Test Forum Technical 2', description: 'This is the description', category: 'Technical'},
+               {name: 'Test Forum Technical 3', description: 'This is the description', category: 'Technical'},
+               {name: 'Test Forum Classified 1', description: 'This is the description', category: 'Classified'},
+               {name: 'Test Forum Classified 2', description: 'This is the description', category: 'Classified'},
+               {name: 'Test Forum Classified 3', description: 'This is the description', category: 'Classified'}
              ]
 
     posts = [ {subject: 'Test subject 1', body: 'This is test subject 1 body'},

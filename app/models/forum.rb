@@ -3,6 +3,9 @@ class Forum < ApplicationRecord
   has_many :posts
   has_many :favorites, as: :favoritable
 
+  validates_presence_of :category, in: ['General', 'Technical', 'Classifed']
+  validates_presence_of :name 
+
   def number_of_posts
     self.posts.count
   end
