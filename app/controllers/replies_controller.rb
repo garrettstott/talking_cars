@@ -2,7 +2,7 @@ class RepliesController < ApplicationController
   before_action :set_make, :set_model, :set_forum, :set_post
 
   def index
-    @replies = @post.replies.order(created_at: :desc)
+    @replies = @post.replies.order(created_at: :asc)
     @new_reply = Reply.new
     if current_user
       @favorite = current_user.favorites.where(favoritable_type: 'Post', favoritable_id: @post.id).any?

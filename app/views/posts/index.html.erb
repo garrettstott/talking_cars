@@ -5,7 +5,7 @@
       <%= link_to @model.name, forums_path(@make.name, @model.name), class: 'normalize-link' %>
     </h1>
     <h4>
-      <%= @forum.name %>
+      <%= @forum.category %> : <%= @forum.name %>
       <%= link_to favorite_forum_path(@forum), method: :post do %>
         <% if @favorite %>
           <i class='fa fa-heart red-text'></i>
@@ -16,33 +16,51 @@
     </h4>
     <% if signed_in? %>
       <button id='new-post-btn' class='btn'>New Post</button>
+      <div class='six columns offset-by-three new-post-container'>
+        <%= form_for(@new_post) do |f| %>
+          <%= f.text_field :subject, placeholder: 'Subject' %>
+          <%= f.text_area :body, placeholder: 'Message' %>
+          <%= f.submit 'Submit', data: {disable_with: 'Saving...'} %>
+          <span id='cancel-new-post' class='btn button btn-danger'>Cancel</span>
+        <% end %>
+      </div>
     <% else %>
       <%= link_to 'Log In To Post', new_user_session_path(return_url: request.path), class: 'btn button' %>
     <% end %>
   </div>
 
 
-  <div class='six columns offset-by-three new-post-container'>
-    <%= form_for(@new_post) do |f| %>
-      <%= f.text_field :subject, placeholder: 'Subject' %>
-      <%= f.text_area :body, placeholder: 'Message' %>
-      <%= f.submit 'Submit', data: {disable_with: 'Saving...'} %>
-      <span id='cancel-new-post' class='btn button btn-danger'>Cancel</span>
-    <% end %>
-  </div>
+
 
 
   <div class='twelve columns'>
+    <div class='ten columns offset-by-one'>
+      <h3 class='margin-bottom-md'>Posts</h3>
+    </div>
     <% @posts.each do |post| %>
-      <div class='six columns offset-by-three'>
-        <p><%= link_to post.subject, replies_path(@make.name, @model.name, @forum, post) %></p>
-        <p><%= post.body %></p>
-        <p><%= post.user.username %></p>
-        <% if last_reply = post.last_reply %>
-          <p>Last Reply: <%= last_reply.user.username %> <%= last_reply.body.truncate(15) %></p>
-        <% else %>
-          <p>No Replies</p>
-        <% end %>
+      <div class='ten columns offset-by-one'>
+        <div class='eight columns'>
+          <h5><%= link_to post.subject, replies_path(@make.name, @model.name, @forum, post) %></h5>
+          <h6><%= post.body.truncate(50) %></h6>
+          by: <%= link_to post.user.username, user_show_path(post.user.username) %>
+        </div>
+        <div class='four columns'>
+          <span>Replies: <%= post.number_of_replies %></span>
+          <br>
+          <% if last_reply = post.last_reply %>
+            <span>Last Post:
+              <%= link_to last_reply.body.truncate(25), replies_path(last_reply.post.forum.model.make.name, last_reply.post.forum.model.name, last_reply.post.forum.id, last_reply.id) %>
+              <br>
+              <%= time_ago_in_words(last_reply.created_at) %> ago
+              <br>
+              by: <%= link_to last_reply.user.username, user_show_path(last_reply.user.username) %></span>
+          <% else %>
+            <span>No Posts</span>
+          <% end %>
+        </div>
+        <div class='twelve columns'>
+          <hr>
+        </div>
       </div>
     <% end %>
   </div>

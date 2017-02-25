@@ -17,30 +17,43 @@
     <span><%= @forum.category %> Forums</span>
   </div>
 
-  <div class='six columns offset-by-three'>
-    <h4><%= @post.subject %></h4>
-    <p><%= @post.body %></p>
-    <span><%= @post.user.username %> <%= @post.created_at %></span>
-  </div>
-  <% @replies.each do |reply| %>
-    <div class='six columns offset-by-three'>
-      <%= time_ago_in_words(reply.created_at) %> ago <%= reply.body %> <%= link_to reply.user.username, user_show_path(reply.user.username) %>
+  <div class='twelve columns'>
+    <div class='ten columns offset-by-one'>
+      <h3><%= @post.subject %></h4>
+      <p><%= @post.body %></p>
+      <%= link_to @post.user.username, user_show_path(@post.user.username) %><span class='right'><%= time_ago_in_words(@post.created_at) %></span>
+      <hr>
     </div>
-  <% end %>
-</div>
 
-<div class='twelve columns center margin-top-lg'>
-  <% if signed_in? %>
-    <button id='new-reply-btn' class='btn'>Reply</button>
-  <% else %>
-    <%= link_to 'Log In To Reply', new_user_session_path(return_url: request.path), class: 'btn button' %>
-  <% end %>
-</div>
+  <div class='twelve columns'>
+    <% @replies.each do |reply| %>
+      <div class='eight columns offset-by-two'>
+        <div class='twelve columns'>
+          <h6><%= reply.body %></h6>
+          by: <%= link_to reply.user.username, user_show_path(reply.user.username) %>
+          <span class='right'><%= time_ago_in_words(reply.created_at) %> ago</span>
+        </div>
+        <div class='twelve columns'>
+          <hr>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
-<div class='six columns offset-by-three new-post-container'>
-  <%= form_for(@new_reply) do |f| %>
-    <%= f.text_area :body, placeholder: 'Message' %>
-    <%= f.submit 'Submit', data: {disable_with: 'Saving...'} %>
-    <span id='cancel-new-reply' class='btn button btn-danger'>Cancel</span>
-  <% end %>
+  <div class='twelve columns center margin-top-lg'>
+    <% if signed_in? %>
+      <button id='new-reply-btn' class='btn'>Reply</button>
+    <% else %>
+      <%= link_to 'Log In To Reply', new_user_session_path(return_url: request.path), class: 'btn button' %>
+    <% end %>
+  </div>
+
+  <div class='six columns offset-by-three new-post-container'>
+    <%= form_for(@new_reply) do |f| %>
+      <h3 class='center'>Reply</h3>
+      <%= f.text_area :body, placeholder: 'Message' %>
+      <%= f.submit 'Submit', data: {disable_with: 'Saving...'} %>
+      <span id='cancel-new-reply' class='btn button btn-danger'>Cancel</span>
+    <% end %>
+  </div>
 </div>

@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   # POST ROUTES
   post '/:make_name/:model_name/:forum_id/posts', to: 'posts#create', as: 'post'
-  post '/:make_name/:model_name/:forum_id/posts/:post_id', to: 'replies#create', as: 'reply'
+  post '/:make_name/:model_name/:forum_id/:post_id', to: 'replies#create', as: 'reply'
   post '/make/favorite/:id', to: 'favorites#make', as: 'favorite_make'
   post '/model/favorite/:id', to: 'favorites#model', as: 'favorite_model'
   post '/forum/favorite/:id', to: 'favorites#forum', as: 'favorite_forum'

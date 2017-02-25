@@ -44,24 +44,24 @@ namespace :populate do
     end
 
 
-    forums = [ {name: 'Test Forum General 1', description: 'This is the description', category: 'General'},
-               {name: 'Test Forum General 2', description: 'This is the description', category: 'General'},
-               {name: 'Test Forum General 3', description: 'This is the description', category: 'General'},
-               {name: 'Test Forum Technical 1', description: 'This is the description', category: 'Technical'},
-               {name: 'Test Forum Technical 2', description: 'This is the description', category: 'Technical'},
-               {name: 'Test Forum Technical 3', description: 'This is the description', category: 'Technical'},
-               {name: 'Test Forum Classified 1', description: 'This is the description', category: 'Classified'},
-               {name: 'Test Forum Classified 2', description: 'This is the description', category: 'Classified'},
-               {name: 'Test Forum Classified 3', description: 'This is the description', category: 'Classified'}
+    forums = [ {name: 'Test Forum General 1', description: 'This is testing the description of a forum. This is going to be long so I can see if there is an issue with long ass descriptions.', category: 'General'},
+               {name: 'Test Forum General 2', description: 'This is testing the description of a forum. This is going to be long so I can see if there is an issue with long ass descriptions.', category: 'General'},
+               {name: 'Test Forum General 3', description: 'This is testing the description of a forum. This is going to be long so I can see if there is an issue with long ass descriptions.', category: 'General'},
+               {name: 'Test Forum Technical 1', description: 'This is testing the description of a forum. This is going to be long so I can see if there is an issue with long ass descriptions.', category: 'Technical'},
+               {name: 'Test Forum Technical 2', description: 'This is testing the description of a forum. This is going to be long so I can see if there is an issue with long ass descriptions.', category: 'Technical'},
+               {name: 'Test Forum Technical 3', description: 'This is testing the description of a forum. This is going to be long so I can see if there is an issue with long ass descriptions.', category: 'Technical'},
+               {name: 'Test Forum Classified 1', description: 'This is testing the description of a forum. This is going to be long so I can see if there is an issue with long ass descriptions.', category: 'Classified'},
+               {name: 'Test Forum Classified 2', description: 'This is testing the description of a forum. This is going to be long so I can see if there is an issue with long ass descriptions.', category: 'Classified'},
+               {name: 'Test Forum Classified 3', description: 'This is testing the description of a forum. This is going to be long so I can see if there is an issue with long ass descriptions.', category: 'Classified'}
              ]
 
-    posts = [ {subject: 'Test subject 1', body: 'This is test subject 1 body'},
-              {subject: 'Test subject 2', body: 'This is test subject 2 body'},
-              {subject: 'Test subject 3', body: 'This is test subject 3 body'}
+    posts = [ {subject: 'Test subject 1', body: 'This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on posts. This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on posts. This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on posts.'},
+              {subject: 'Test subject 2', body: 'This is test subject 2 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on posts. This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on posts. This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on posts.'},
+              {subject: 'Test subject 3', body: 'This is test subject 3 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on posts. This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on posts. This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on posts.'}
             ]
 
-    replies = [ { body: 'This is testing a reply 1' },
-                { body: 'This is testing a reply 2' }
+    replies = [ { body: 'This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on replies. This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on replies. This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on replies.' },
+                { body: 'This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on replies. This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on replies. This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on posts.' }
               ]
 
     users = User.all
