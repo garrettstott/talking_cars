@@ -1,5 +1,6 @@
 <h3>Posts</h3>
 <% posts.each do |post| %>
-  <p><%= link_to post.subject.truncate(25), replies_path(post.forum.model.make, post.forum.model, post.forum, post) %></p>
+  <span><%= post.forum.model.make.name %> | <%= post.forum.model.name %> | <%= post.forum.name %></span>
+  <p><%= link_to post.subject.truncate(25), replies_path(post.forum.model.make.name, post.forum.model.name, post.forum, post) %></p>
 <% end %>
 <%= will_paginate @posts %>

@@ -1,26 +1,23 @@
 <div class='twelve columns'>
-
   <div class='twelve columns margin-bottom-lg'>
-    <div class='ten columns'>
+    <div class='eight columns'>
       <h1><%= @user.username %></h1>
+    </div>
+    <div class='four columns'>
+      <% if signed_in? && @user.id == current_user.id %>
+          <h3>My Messages</h3>
+          <%= link_to 'Messages', all_messages_path(current_user.username), class: 'btn button' %>
+      <% else %>
+        <span class='btn button'>Send Message</span>
+      <% end %>
     </div>
   </div>
 
   <div class='four columns'>
-    <% if signed_in? %>
-      <div class='margin-bottom-md'>
-        <% if @user == current_user %>
-          <h3>My Messages</h3>
-          <%= link_to 'Messages', all_messages_path(current_user.username), class: 'btn button' %>
-        <% else %>
-          <p>Send Message</p>
-        <% end %>
-      </div>
-    <% end %>
 
-    <div class='margin-bottom-md'>
+    <div class='margin-bottom-lg'>
       <h3>Vehicles</h3>
-      <% if signed_in? && current_user.id == @user.id %>
+      <% if @vehicles.any? %>
         <% @vehicles.each do |vehicle| %>
           <div class='twelve columns'>
             <div class='eight columns margin-left-none'>
@@ -33,103 +30,122 @@
               <p class='breaks'><%= "Comments: \n #{vehicle.comments}" if vehicle.comments.present? %></p>
             </div>
           </div>
+
+          <% if signed_in? && current_user.id = @user.id %>
+            <div class='twelve columns'>
+              <div class='twelve columns margin-left-none'>
+                <%= link_to 'Delete', delete_vehicle_path(vehicle), class: 'red-text', method: :delete,
+                                        confirm: "Are you sure you want to delete #{vehicle.year} #{vehicle.make} #{vehicle.model}?" %>
+                <span class='edit-vehicle-btn pointer margin-left-sm'>Edit</span>
+
+                <%= form_for(vehicle) do |f| %>
+                  <%= f.text_field :year, placeholder: 'Year', required: true %>
+                  <%= f.text_field :make, placeholder: 'Make', required: true %>
+                  <%= f.text_field :model, placeholder: 'Model', required: true %>
+                  <%= f.text_field :trim, placeholder: 'Trim' %>
+                  <%= f.text_field :transmission, placeholder: 'Transmission' %>
+                  <%= f.text_field :engine, placeholder: 'Engine' %>
+                  <%= f.text_field :exterior_color, placeholder: 'Exterior Color' %>
+                  <%= f.text_field :interior_color ,placeholder: 'Interior Color' %>
+                  <%= f.text_area :comments, placeholder: 'Comments' %>
+                  <%= f.submit 'Save', data: {disable_with: 'Saving...'} %>
+                  <span class='cancel-edit-vehicle button btn btn-danger'>Cancel</span>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% else %>
+        <p>No Vehicles Added</p>
+      <% end %>
+
+      <% if signed_in? && @user.id == current_user.id %>
+        <div class='twelve columns margin-bottom-md margin-top-md'>
+          <span id='new-vehicle-btn' class='btn button'>Add Vehicle</span>
         </div>
         <div class='twelve columns'>
-          <div class='six columns margin-left-none'>
-            <% if signed_in? && current_user.id = @user.id %>
-              <%= link_to 'Delete', delete_vehicle_path(vehicle), class: 'red-text', method: :delete,
-                  confirm: "Are you sure you want to delete #{vehicle.year} #{vehicle.make} #{vehicle.model}?"
-              %>
-              <span class='edit-vehicle-btn pointer margin-left-sm'>Edit</span>
-            <% end %>
-            <%= form_for(vehicle) do |f| %>
+          <div class='twelve columns margin-left-none'>
+            <%= form_for(@new_vehicle) do |f| %>
+              <h5>Add Vehicle</h5>
               <%= f.text_field :year, placeholder: 'Year', required: true %>
               <%= f.text_field :make, placeholder: 'Make', required: true %>
-              <%= f.text_field :model, placeholder: 'Model' %>
+              <%= f.text_field :model, placeholder: 'Model', required: true %>
               <%= f.text_field :trim, placeholder: 'Trim' %>
               <%= f.text_field :transmission, placeholder: 'Transmission' %>
               <%= f.text_field :engine, placeholder: 'Engine' %>
               <%= f.text_field :exterior_color, placeholder: 'Exterior Color' %>
               <%= f.text_field :interior_color ,placeholder: 'Interior Color' %>
               <%= f.text_area :comments, placeholder: 'Comments' %>
-              <%= f.submit 'Save', data: {disable_with: 'Saving...'} %>
-              <span class='cancel-edit-vehicle button btn btn-danger'>Cancel</span>
+              <%= f.submit 'Save Vehicle', data: {disable_with: 'Saving...'} %>
+              <span class='btn btn-danger button' id='cancel-new-vehicle'>Cancel</span>
             <% end %>
           </div>
-          <div class='twelve columns'>
-            <div class='three columns margin-left-none'>
-              <hr>
-            </div>
-          </div>
         </div>
       <% end %>
+    </div>
 
-      <div class='twelve columns margin-bottom-md'>
-        <span id='new-vehicle-btn' class='btn button'>Add Vehicle</span>
+    <div class='twelve columns'>
+      <div class='ten columns'>
+        <div id='posts'></div>
       </div>
-      <div class='twelve columns'>
-        <div class='six columns margin-left-none'>
-          <%= form_for(@new_vehicle) do |f| %>
-            <h5>Add Vehicle</h5>
-            <%= f.text_field :year, placeholder: 'Year', required: true %>
-            <%= f.text_field :make, placeholder: 'Make', required: true %>
-            <%= f.text_field :model, placeholder: 'Model' %>
-            <%= f.text_field :trim, placeholder: 'Trim' %>
-            <%= f.text_field :transmission, placeholder: 'Transmission' %>
-            <%= f.text_field :engine, placeholder: 'Engine' %>
-            <%= f.text_field :exterior_color, placeholder: 'Exterior Color' %>
-            <%= f.text_field :interior_color ,placeholder: 'Interior Color' %>
-            <%= f.text_area :comments, placeholder: 'Comments' %>
-            <%= f.submit 'Save Vehicle', data: {disable_with: 'Saving...'} %>
-            <span class='btn btn-danger button' id='cancel-new-vehicle'>Cancel</span>
+    </div>
+
+  </div>
+
+  <div class='eight columns favorites margin-bottom-lg'>
+    <div class='twelve columns'>
+      <div class='six columns'>
+        <h3>Favorite Makes</h3>
+        <% if @fav_makes.any? %>
+          <% @fav_makes.each do |fav| %>
+            <%= link_to fav.favoritable.name, models_path(fav.favoritable.id) %>
+            <br><br>
           <% end %>
-        </div>
+        <% else %>
+          <p>No Favorite Makes</p>
+        <% end %>
       </div>
 
-    <% end %>
-  </div>
-
-  <div class='eight columns favorites'>
-    <div class='six columns'>
-      <h3>Favorite Makes</h3>
-      <% @fav_makes.each do |fav| %>
-        <%= link_to fav.favoritable.name, models_path(fav.favoritable.id) %>
-        <br><br>
-      <% end %>
+      <div class='six columns'>
+        <h3>Favorite Models</h3>
+        <% if @fav_models.any? %>
+          <% @fav_models.each do |fav| %>
+            <%= fav.favoritable.make.name %><br>
+            <%= link_to fav.favoritable.name, forums_path(fav.favoritable.make_id, fav.favoritable.id) %>
+            <br><br>
+          <% end %>
+        <% else %>
+          <p>No Favorite Models</p>
+        <% end %>
+      </div>
     </div>
 
-    <div class='six columns'>
-      <h3>Favorite Models</h3>
-      <% @fav_models.each do |fav| %>
-        <%= fav.favoritable.make.name %><br>
-        <%= link_to fav.favoritable.name, forums_path(fav.favoritable.make_id, fav.favoritable.id) %>
-        <br><br>
-      <% end %>
-    </div>
+    <div class='twelve columns'>
+      <div class='six columns'>
+        <h3>Favorite Forums</h3>
+        <% if @fav_forums.any? %>
+          <% @fav_forums.each do |fav| %>
+            <%= fav.favoritable.model.make.name %> | <%= fav.favoritable.model.name %><br>
+            <%= link_to fav.favoritable.name, posts_path(fav.favoritable.model.make_id, fav.favoritable.model_id, fav.favoritable) %>
+            <br><br>
+          <% end %>
+        <% else %>
+          <p>No Favorite Forums</p>
+        <% end %>
+      </div>
 
-    <div class='six columns'>
-      <h3>Favorite Forums</h3>
-      <% @fav_forums.each do |fav| %>
-        <%= fav.favoritable.model.make.name %> | <%= fav.favoritable.model.name %><br>
-        <%= link_to fav.favoritable.name, posts_path(fav.favoritable.model.make_id, fav.favoritable.model_id, fav.favoritable) %>
-        <br><br>
-      <% end %>
-    </div>
-
-    <div class='six columns'>
-      <h3>Favorite Posts</h3>
-      <% @fav_posts.each do |fav| %>
-        <%= fav.favoritable.forum.model.make.name %> | <%= fav.favoritable.forum.model.name %> | <%= fav.favoritable.forum.name %><br>
-        <%= link_to fav.favoritable.subject, replies_path(fav.favoritable.forum.model.make_id, fav.favoritable.forum.model_id, fav.favoritable.forum_id, fav.favoritable) %>
-        <br><br>
-      <% end %>
-    </div>
-
-  </div>
-
-  <div class='twelve columns'>
-    <div class='ten columns'>
-      <div id='posts'></div>
+      <div class='six columns'>
+        <h3>Favorite Posts</h3>
+        <% if @fav_posts.any? %>
+          <% @fav_posts.each do |fav| %>
+            <%= fav.favoritable.forum.model.make.name %> | <%= fav.favoritable.forum.model.name %> | <%= fav.favoritable.forum.name %><br>
+            <%= link_to fav.favoritable.subject, replies_path(fav.favoritable.forum.model.make_id, fav.favoritable.forum.model_id, fav.favoritable.forum_id, fav.favoritable) %>
+            <br><br>
+          <% end %>
+        <% else %>
+          <p>No Favorite Posts</p>
+        <% end %>
+      </div>
     </div>
   </div>
 

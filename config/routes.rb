@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get '/:make_name/models', to: 'models#index', as: 'models'
   get '/:make_name/:model_name/forums', to: 'forums#index', as: 'forums'
   get '/:make_name/:model_name/:forum_id/posts', to: 'posts#index', as: 'posts'
-  get '/:make_name/:model_name/:forum_id/posts/:post_id', to: 'replies#index', as: 'replies'
+  get '/:make_name/:model_name/:forum_id/:post_id', to: 'replies#index', as: 'replies'
   get '/contact_us', to: 'shared#contact_us', as: 'contact_us'
 
   # POST ROUTES

@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def posts
     @user = User.find_by_username(params[:username])
-    @posts = @user.posts.order(created_at: :desc).paginate(page: params[:page] || 1, per_page: 10 )
-    render partial: 'posts', locals: {posts: @posts}
+    @posts = @user.posts.order(created_at: :desc).paginate(page: params[:page] || 1, per_page: 5 )
+    render partial: 'posts', locals: {posts: @posts, user: @user}
   end
 end
