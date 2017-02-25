@@ -8,9 +8,7 @@ namespace :populate do
     puts "Creating Users"
 
     users = [ {username: 'garrettstott', email: 'garrettstott@gmail.com', password: 'password'},
-              {username: 'joe', email: 'joe@example.com', password: 'password'},
-              {username: 'frank', email: 'frank@example.com', password: 'password'},
-              {username: 'bill', email: 'bill@example.com', password: 'password'}
+              {username: 'joe', email: 'joe@example.com', password: 'password'}
             ]
 
     users.each do |user|
@@ -23,7 +21,7 @@ namespace :populate do
     end
 
     makes = %w(Subaru)
-    models = %w(model_1 model_2 model_3 model_4 model_5 model_6 model_7 model_8)
+    models = %w(BRZ)
 
     puts "Creating Makes..."
 
@@ -47,15 +45,17 @@ namespace :populate do
 
 
     forums = [ {name: 'Test Forum 1', description: 'This is the description', category: 'General'},
-               {name: 'Test Forum 2', description: 'This is the description', category: 'Technical'},
-               {name: 'Test Forum 3', description: 'This is the description', category: 'Classified'}
+               {name: 'Test Forum 2', description: 'This is the description', category: 'General'},
+               {name: 'Test Forum 3', description: 'This is the description', category: 'General'}
              ]
+
     posts = [ {subject: 'Test subject 1', body: 'This is test subject 1 body'},
               {subject: 'Test subject 2', body: 'This is test subject 2 body'},
               {subject: 'Test subject 3', body: 'This is test subject 3 body'}
             ]
+
     replies = [ { body: 'This is testing a reply 1' },
-                { body: 'This is testing a reply 1' }
+                { body: 'This is testing a reply 2' }
               ]
 
     users = User.all
@@ -101,32 +101,33 @@ namespace :populate do
     puts "**************************************"
   end
 
-  desc "TODO"
+  desc "Creates Makes, Models, Forums for Production"
   task production: :environment do
+    # puts "Edmunds API"
+    #
+    # edmunds = HTTParty.get('http://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key=jstqruuvgg5bhzrk9v393svu')
+    # makes = edmunds['makes']
+    #
+    # makes.each do |make_i|
+    #   make = Make.new(name: make_i['name'].gsub(/-/, ' ').titleize)
+    #   if make.save
+    # puts "Created Make #{make.name}"
+    # puts "Creating Modles for #{make.name}"
+    # models = make_i['models']
+    # models.each do |model|
+    # model = Model.new(name: model['name'], make_id: make.id)
+    # if model.save
+    # puts "Created Model #{model.name}"
+    # else
+    # puts "Error creating Model #{model.name} #{model.errors.full_messages}"
+    # end
+    # end
+    # else
+    # puts "Error creating Make #{make.name} #{make.errors.full_messages}"
+    # end
+    # end
+    # end
 
-    puts "Edmunds API"
-
-    edmunds = HTTParty.get('http://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key=jstqruuvgg5bhzrk9v393svu')
-    makes = edmunds['makes']
-
-    makes.each do |make_i|
-      make = Make.new(name: make_i['name'].gsub(/-/, ' ').titleize)
-      if make.save
-        puts "Created Make #{make.name}"
-        puts "Creating Modles for #{make.name}"
-        models = make_i['models']
-        models.each do |model|
-          model = Model.new(name: model['name'], make_id: make.id)
-          if model.save
-            puts "Created Model #{model.name}"
-          else
-            puts "Error creating Model #{model.name} #{model.errors.full_messages}"
-          end
-        end
-      else
-        puts "Error creating Make #{make.name} #{make.errors.full_messages}"
-      end
-    end
   end
 
 end
