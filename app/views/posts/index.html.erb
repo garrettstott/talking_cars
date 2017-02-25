@@ -10,14 +10,18 @@
         <% if @favorite %>
           <i class='fa fa-heart red-text'></i>
         <% else %>
-          <i class='fa fa-heart'></i>
+          <i class='fa fa-heart normalize-link'></i>
         <% end %>
       <% end %>
     </h4>
+  </div>
     <% if signed_in? %>
-      <button id='new-post-btn' class='btn'>New Post</button>
-      <div class='six columns offset-by-three new-post-container'>
+      <div class='center'>
+        <button id='new-post-btn' class='btn'>New Post</button>
+      </div>
+      <div class='six columns offset-by-three'>
         <%= form_for(@new_post) do |f| %>
+          <h3 class='center'>Post</h3>
           <%= f.text_field :subject, placeholder: 'Subject' %>
           <%= f.text_area :body, placeholder: 'Message' %>
           <%= f.submit 'Submit', data: {disable_with: 'Saving...'} %>
@@ -27,10 +31,6 @@
     <% else %>
       <%= link_to 'Log In To Post', new_user_session_path(return_url: request.path), class: 'btn button' %>
     <% end %>
-  </div>
-
-
-
 
 
   <div class='twelve columns'>

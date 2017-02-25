@@ -5,7 +5,7 @@
       <%= link_to @model.name, forums_path(@make.name, @model.name), class: 'normalize-link' %>
     </h1>
     <h3>
-      <%= link_to @forum.name, posts_path(@make.name, @model.name, @forum.name), class: 'normalize-link' %>
+      <%= link_to @forum.name, posts_path(@make.name, @model.name, @forum), class: 'normalize-link' %>
       <%= link_to favorite_post_path(@post), method: :post do %>
         <% if @favorite %>
           <i class='fa fa-heart red-text'></i>
