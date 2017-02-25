@@ -24,11 +24,11 @@ $(document).ready(function() {
       $('#posts').html(data);
       window.history.pushState(null, null, url);
     }).fail(function(error) {
-      console.log(error);
     });
   };
 
-  if (window.location.href.indexOf("/users/") > 0) {
+  var href = window.location.href;
+  if (href.includes('/users/') && href.match(/(sign_in|sign_up|password)/).length <= 0) {
     url = window.location.href
     setPosts(url)
   }

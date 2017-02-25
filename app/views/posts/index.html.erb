@@ -24,10 +24,8 @@
 
   <div class='six columns offset-by-three new-post-container'>
     <%= form_for(@new_post) do |f| %>
-      <%= f.label :subject %>
-      <%= f.text_field :subject %>
-      <%= f.label :body %>
-      <%= f.text_area :body %>
+      <%= f.text_field :subject, placeholder: 'Subject' %>
+      <%= f.text_area :body, placeholder: 'Message' %>
       <%= f.submit 'Submit', data: {disable_with: 'Saving...'} %>
       <span id='cancel-new-post' class='btn button btn-danger'>Cancel</span>
     <% end %>

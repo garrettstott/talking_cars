@@ -218,10 +218,8 @@ input[type='submit']:hover {
   color: $WHITE;
 }
 
-label {
-  padding: 0;
-  margin: 0;
-  text-align: left;
+input[type='checkbox'], label {
+  display: inline-block;
 }
 
 #new_post, #new_reply, #new_vehicle {
@@ -328,10 +326,38 @@ FOOTER
 .footer {
   border-top: 4px solid $GOLD;
   height: 60px;
-  padding-top: 20px;
+  padding: 20px 5px 0 5px;
   display: block;
   margin-top: 40px;
   box-sizing: border-box;
   position: relative;
   width: 100%;
+}
+
+.footer * {
+  display: inline-block;
+}
+
+/*==============================================
+FANCY
+==============================================*/
+
+.fancy {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    text-align: center;
+}
+.fancy:before, .fancy:after {
+    position: absolute;
+    top: 51%;
+    overflow: hidden;
+    width: 50%;
+    height: 1px;
+    content: '\a0';
+    background-color: $WHITE;
+}
+.fancy:before {
+    margin-left: -50%;
+    text-align: right;
 }

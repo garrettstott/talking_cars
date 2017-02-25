@@ -39,8 +39,7 @@
 
 <div class='six columns offset-by-three new-post-container'>
   <%= form_for(@new_reply) do |f| %>
-    <%= f.label :body %>
-    <%= f.text_area :body %>
+    <%= f.text_area :body, placeholder: 'Message' %>
     <%= f.submit 'Submit', data: {disable_with: 'Saving...'} %>
     <span id='cancel-new-reply' class='btn button btn-danger'>Cancel</span>
   <% end %>
