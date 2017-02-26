@@ -1,5 +1,6 @@
 class RepliesController < ApplicationController
   before_action :set_make, :set_model, :set_forum, :set_post
+  before_action :set_title
 
   def index
     @replies = @post.replies.order(created_at: :asc)
@@ -42,5 +43,9 @@ class RepliesController < ApplicationController
 
   def set_post
     @post = Post.find(params[:post_id])
+  end
+
+  def set_title
+    @title = "Talking Cars | #{@make.name} | #{@model.name} | #{@forum.name} | #{@post.subject}"
   end
 end

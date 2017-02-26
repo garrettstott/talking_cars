@@ -1,5 +1,6 @@
 class ForumsController < ApplicationController
   before_action :set_make, :set_model
+  before_action :set_title
 
   def index
     forums = @model.forums
@@ -19,5 +20,9 @@ class ForumsController < ApplicationController
 
   def set_model
     @model = @make.models.find_by_name(params[:model_name])
+  end
+
+  def set_title
+    @title = "Talking Cars | #{@make.name} | #{@model.name} | Forums"
   end
 end

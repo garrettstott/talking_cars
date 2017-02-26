@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
+
+  before_action :set_user
+  before_action :set_title
+
   def show
-    @user = User.find_by_username(params[:username])
     @fav_makes = @user.favorites.where(favoritable_type: 'Make')
     @fav_models = @user.favorites.where(favoritable_type: 'Model')
     @fav_forums = @user.favorites.where(favoritable_type: 'Forum')
@@ -12,8 +15,17 @@ class UsersController < ApplicationController
   end
 
   def posts
-    @user = User.find_by_username(params[:username])
     @posts = @user.posts.order(created_at: :desc).paginate(page: params[:page] || 1, per_page: 5 )
     render partial: 'posts', locals: {posts: @posts, user: @user}
+  end
+
+  private
+
+  def set_user
+    @user = User.find_by_username(params[:username])
+  end
+
+  def set_title
+    @title = "Talking Cars | #{@user.username}"
   end
 end

@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
   before_action :set_make, :set_model, :set_forum
+  before_action :set_title
 
   def index
     @posts = @forum.posts.includes(:user).order(updated_at: :desc)
@@ -38,5 +39,9 @@ class PostsController < ApplicationController
 
   def set_forum
     @forum = @model.forums.find(params[:forum_id])
+  end
+
+  def set_title
+    @title = "Talking Cars | #{@make.name} | #{@model.name} | #{@forum.name}"
   end
 end

@@ -1,6 +1,7 @@
 class ModelsController < ApplicationController
 
   before_action :set_make
+  before_action :set_title
 
   def index
     @models = @make.models.order(name: :asc)
@@ -13,5 +14,9 @@ class ModelsController < ApplicationController
 
   def set_make
     @make = Make.find_by_name(params[:make_name])
+  end
+
+  def set_title
+    @title = "Talking Cars | #{@make.name} | Models"
   end
 end
