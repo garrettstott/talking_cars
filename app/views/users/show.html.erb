@@ -2,6 +2,7 @@
   <div class='twelve columns margin-bottom-lg'>
     <div class='eight columns'>
       <h1><%= @user.username %></h1>
+      <span>Posts: <%= link_to @user.posts.length, user_posts_path(@user.username) %></span>
     </div>
     <div class='four columns'>
       <% if signed_in? && @user.id == current_user.id %>
@@ -82,12 +83,6 @@
           </div>
         </div>
       <% end %>
-    </div>
-
-    <div class='twelve columns'>
-      <div class='ten columns'>
-        <div id='posts'></div>
-      </div>
     </div>
 
   </div>

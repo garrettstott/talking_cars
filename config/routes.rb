@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get '/:make_name/:model_name/:forum_id/posts', to: 'posts#index', as: 'posts'
   get '/:make_name/:model_name/:forum_id/:post_id', to: 'replies#index', as: 'replies'
   get '/contact_us', to: 'shared#contact_us', as: 'contact_us'
+  get '/users/:username/posts', to: 'users#posts', as: 'user_posts'
 
   # POST ROUTES
   post '/:make_name/:model_name/:forum_id/posts', to: 'posts#create', as: 'post'
@@ -30,8 +31,8 @@ Rails.application.routes.draw do
   post '/model/favorite/:id', to: 'favorites#model', as: 'favorite_model'
   post '/forum/favorite/:id', to: 'favorites#forum', as: 'favorite_forum'
   post '/post/favotite/:id', to: 'favorites#post', as: 'favorite_post'
-  post '/users/vehicles/', to: 'vehicles#create', as: 'vehicles'
-  post '/users/:username', to: 'users#posts'
+  post '/users/vehicles', to: 'vehicles#create', as: 'vehicles'
+  post '/users/:username/posts', to: 'users#get_posts'
   post '/mailers/contact_us', to: 'mailers#contact_us', as: 'contact_us_mailer'
 
   # PATCH ROUTES

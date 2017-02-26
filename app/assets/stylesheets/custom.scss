@@ -73,6 +73,15 @@ hr {
   margin-left: 10px;
 }
 
+.padding-sm {
+  padding: 10px;
+}
+
+.hr-fill-padding {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
 .breaks {
   white-space: pre-line;
 }

@@ -19,23 +19,31 @@
 
   <div class='twelve columns'>
     <div class='ten columns offset-by-one'>
-      <h3><%= @post.subject %></h4>
-      <p><%= @post.body %></p>
-      <%= link_to @post.user.username, user_show_path(@post.user.username) %><span class='right'><%= time_ago_in_words(@post.created_at) %></span>
-      <hr>
+      <div class='ten columns offset-by-one padding-sm'>
+        <h3><%= @post.subject %></h4>
+        <p><%= @post.body %></p>
+        <%= link_to @post.user.username, user_show_path(@post.user.username) %><span class='right'><%= time_ago_in_words(@post.created_at) %></span>
+        <div class='twelve columns'>
+          Posts: <%= link_to @post.user.posts.length, user_posts_path(@post.user.username) %>
+          <br>
+          Replies: <%= @post.user.replies.count %>
+        </div>
+        <div class='twelve columns'>
+          <hr class='hr-fill-padding'>
+        </div>
+      </div>
     </div>
 
-  <div class='twelve columns'>
     <% @replies.each do |reply| %>
-      <div class='eight columns offset-by-two'>
-        <div class='twelve columns'>
+      <div class='eight columns offset-by-two padding-sm'>
+
           <h6><%= reply.body %></h6>
           by: <%= link_to reply.user.username, user_show_path(reply.user.username) %>
           <span class='right'><%= time_ago_in_words(reply.created_at) %> ago</span>
-        </div>
-        <div class='twelve columns'>
-          <hr>
-        </div>
+          <div class='twelve columns'>
+            <hr class='hr-fill-padding'>
+          </div>
+
       </div>
     <% end %>
   </div>

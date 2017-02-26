@@ -15,6 +15,9 @@ class UsersController < ApplicationController
   end
 
   def posts
+  end
+
+  def get_posts
     @posts = @user.posts.order(created_at: :desc).paginate(page: params[:page] || 1, per_page: 5 )
     render partial: 'posts', locals: {posts: @posts, user: @user}
   end
