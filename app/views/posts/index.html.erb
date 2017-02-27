@@ -5,7 +5,7 @@
       <%= link_to @model.name, forums_path(@make.name, @model.name), class: 'normalize-link' %>
     </h1>
     <h4>
-      <%= @forum.category %> : <%= @forum.name %>
+      <%= @forum.name %>
       <%= link_to favorite_forum_path(@forum), method: :post do %>
         <% if @favorite %>
           <i class='fa fa-heart red-text'></i>
@@ -14,6 +14,7 @@
         <% end %>
       <% end %>
     </h4>
+    <span><%= @forum.category %> Forums</span>
   </div>
     <% if signed_in? %>
       <div class='center'>

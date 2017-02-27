@@ -14,15 +14,15 @@ $(document).ready(function(){
     $('#new_post').hide();
   });
 
-  $('#new-reply-btn').click(function() {
-    $('#new-reply-btn').hide();
+  $('.new-reply-btn').click(function() {
+    $('.new-reply-btn').hide();
     $('#new_reply').show();
     $("html, body").animate({ scrollTop: $(document).height() }, "slow");
       return false;
   });
 
   $('#cancel-new-reply').click(function() {
-    $('#new-reply-btn').show();
+    $('.new-reply-btn').show();
     $('#new_reply').hide();
   });
 

@@ -4,7 +4,7 @@
       <%= link_to @make.name, models_path(@make.name), class: 'normalize-link' %>
       <%= link_to @model.name, forums_path(@make.name, @model.name), class: 'normalize-link' %>
     </h1>
-    <h3>
+    <h4>
       <%= link_to @forum.name, posts_path(@make.name, @model.name, @forum), class: 'normalize-link' %>
       <%= link_to favorite_post_path(@post), method: :post do %>
         <% if @favorite %>
@@ -13,8 +13,15 @@
           <i class='fa fa-heart'></i>
         <% end %>
       <% end %>
-    </h3>
+    </h4>
     <span><%= @forum.category %> Forums</span>
+    <div class='twelve columns center margin-top-lg'>
+      <% if signed_in? %>
+        <button id='' class='btn new-reply-btn'>Reply</button>
+      <% else %>
+        <%= link_to 'Log In To Reply', new_user_session_path(return_url: request.path), class: 'btn button' %>
+      <% end %>
+    </div>
   </div>
 
   <div class='twelve columns'>
@@ -50,7 +57,7 @@
 
   <div class='twelve columns center margin-top-lg'>
     <% if signed_in? %>
-      <button id='new-reply-btn' class='btn'>Reply</button>
+      <button id='' class='btn new-reply-btn'>Reply</button>
     <% else %>
       <%= link_to 'Log In To Reply', new_user_session_path(return_url: request.path), class: 'btn button' %>
     <% end %>

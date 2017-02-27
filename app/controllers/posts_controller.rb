@@ -16,10 +16,10 @@ class PostsController < ApplicationController
     @post.forum_id = @forum.id
     if @post.save
       flash[:success] = "Your post was submitted successfully!"
-      redirect_to replies_path(@make, @model, @forum, @post)
+      redirect_to replies_path(@make.name, @model.name, @forum, @post)
     else
       flash[:error] = "There were errors saving your post. #{@post.errors.full_messages.to_sentence}"
-      redirect_back(fallback_location: replies_path(@make, @model, @forum, @post))
+      redirect_back(fallback_location: replies_path(@make.name, @model.name, @forum, @post))
     end
   end
 

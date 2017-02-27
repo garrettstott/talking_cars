@@ -26,7 +26,7 @@
   </head>
 
   <body>
-    <% if Rails.env.development? %>
+    <% if Rails.env.production? %>
       <div class='debugger'>
         <%= debug(params) %>
       </div>

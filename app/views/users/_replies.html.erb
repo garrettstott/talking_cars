@@ -1,0 +1,26 @@
+<h3 class='center'><%= link_to "#{@user.username}'s", user_show_path(@user.username), class: 'normalize-link' %> replies</h3>
+<div class='center'>
+  <%= will_paginate @replies %>
+</div>
+<br>
+<% replies.each do |reply| %>
+  <%
+    make = reply.post.forum.model.make
+    model = reply.post.forum.model
+    forum = reply.post.forum
+    post = reply.post
+  %>
+  <h5>
+    <%= link_to make.name, models_path(make.name), class: 'normalize-link' %> |
+    <%= link_to model.name, forums_path(make.name, model.name), class: 'normalize-link' %> |
+    <%= link_to forum.name, posts_path(make.name, model.name, forum), class: 'normalize-link' %> |
+    <%= link_to post.subject, replies_path(make.name, model.name, forum, post), class: 'normalize-link' %> |
+    <%= reply.post.forum.category %>
+  </h5>
+  <p><%= reply.body %></p>
+  <span><%= time_ago_in_words(reply.created_at) %> ago</span>
+  <hr>
+<% end %>
+<div class='center'>
+  <%= will_paginate @replies %>
+</div>

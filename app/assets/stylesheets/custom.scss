@@ -77,6 +77,10 @@ hr {
   padding: 10px;
 }
 
+.padding-bottom-25 {
+  padding-bottom: 25px;
+}
+
 .hr-fill-padding {
   margin-left: -10px;
   margin-right: -10px;
@@ -120,7 +124,7 @@ a {
 }
 
 .normalize-link {
-  color: $WHITE;
+  // color: $WHITE;
 }
 
 .normalize-link:hover {

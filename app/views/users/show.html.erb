@@ -3,6 +3,8 @@
     <div class='eight columns'>
       <h1><%= @user.username %></h1>
       <span>Posts: <%= link_to @user.posts.length, user_posts_path(@user.username) %></span>
+      <br>
+      <span>Replies: <%= link_to @user.replies.length, user_replies_path(@user.username) %></span>
     </div>
     <div class='four columns'>
       <% if signed_in? && @user.id == current_user.id %>
@@ -93,7 +95,7 @@
         <h3>Favorite Makes</h3>
         <% if @fav_makes.any? %>
           <% @fav_makes.each do |fav| %>
-            <%= link_to fav.favoritable.name, models_path(fav.favoritable.id) %>
+            <%= link_to fav.favoritable.name, models_path(fav.favoritable.name) %>
             <br><br>
           <% end %>
         <% else %>
@@ -106,7 +108,7 @@
         <% if @fav_models.any? %>
           <% @fav_models.each do |fav| %>
             <%= fav.favoritable.make.name %><br>
-            <%= link_to fav.favoritable.name, forums_path(fav.favoritable.make_id, fav.favoritable.id) %>
+            <%= link_to fav.favoritable.name, forums_path(fav.favoritable.make.name, fav.favoritable.name) %>
             <br><br>
           <% end %>
         <% else %>
@@ -121,7 +123,7 @@
         <% if @fav_forums.any? %>
           <% @fav_forums.each do |fav| %>
             <%= fav.favoritable.model.make.name %> | <%= fav.favoritable.model.name %><br>
-            <%= link_to fav.favoritable.name, posts_path(fav.favoritable.model.make_id, fav.favoritable.model_id, fav.favoritable) %>
+            <%= link_to fav.favoritable.name, posts_path(fav.favoritable.model.make.name, fav.favoritable.model.name, fav.favoritable) %>
             <br><br>
           <% end %>
         <% else %>
@@ -134,7 +136,7 @@
         <% if @fav_posts.any? %>
           <% @fav_posts.each do |fav| %>
             <%= fav.favoritable.forum.model.make.name %> | <%= fav.favoritable.forum.model.name %> | <%= fav.favoritable.forum.name %><br>
-            <%= link_to fav.favoritable.subject, replies_path(fav.favoritable.forum.model.make_id, fav.favoritable.forum.model_id, fav.favoritable.forum_id, fav.favoritable) %>
+            <%= link_to fav.favoritable.subject, replies_path(fav.favoritable.forum.model.make.name, fav.favoritable.forum.model.name, fav.favoritable.forum_id, fav.favoritable) %>
             <br><br>
           <% end %>
         <% else %>

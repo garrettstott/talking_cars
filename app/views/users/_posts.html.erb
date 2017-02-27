@@ -1,6 +1,25 @@
-<h3 class='center'><%= @user.username %>'s posts</h3>
+<h3 class='center'><%= link_to "#{@user.username}'s", user_show_path(@user.username), class: 'normalize-link' %> posts</h3>
+<div class='center'>
+  <%= will_paginate @posts %>
+</div>
+<br>
 <% posts.each do |post| %>
-  <span><%= post.forum.model.make.name %> | <%= post.forum.model.name %> | <%= post.forum.name %> | <%= post.forum.category %></span>
-  <p><%= link_to post.subject.truncate(25), replies_path(post.forum.model.make.name, post.forum.model.name, post.forum, post) %></p>
+  <%
+    make = post.forum.model.make
+    model = post.forum.model
+    forum = post.forum
+  %>
+  <h5>
+    <%= link_to make.name, models_path(make.name), class: 'normalize-link' %> |
+    <%= link_to model.name, forums_path(make.name, model.name), class: 'normalize-link' %> |
+    <%= link_to forum.name, posts_path(make.name, model.name, forum), class: 'normalize-link' %> |
+    <%= post.forum.category %>
+  </h5>
+  <%= link_to post.subject, replies_path(make.name, model.name, forum, post) %>
+  <p><%= post.body %></p>
+  <span><%= time_ago_in_words(post.created_at) %> ago</span>
+  <hr>
 <% end %>
-<%= will_paginate @posts %>
+<div class='center'>
+  <%= will_paginate @posts %>
+</div>
