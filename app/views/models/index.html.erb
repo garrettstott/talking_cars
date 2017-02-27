@@ -1,11 +1,11 @@
 <div class='twelve columns center'>
   <h1 class='title'>
     <%= @make.name %>
-    <%= link_to favorite_make_path(@make), method: :post do %>
+    <%= link_to favorite_make_path(@make), method: :post, title: "Favorite #{@make.name}" do %>
       <% if @favorite %>
-        <i class='fa fa-heart red-text'></i>
+        <i class='fa fa-star red-link'></i>
       <% else %>
-        <i class='fa fa-heart'></i>
+        <i class='fa fa-star empty-star'></i>
       <% end %>
     <% end %>
   </h1>

@@ -3,11 +3,11 @@
     <h1><%= link_to @make.name, models_path(@make.name), class: 'normalize-link' %></h1>
     <h3>
       <%= @model.name %>
-      <%= link_to favorite_model_path(@model), method: :post do %>
+      <%= link_to favorite_model_path(@model), method: :post, title: "Favorite #{@model.name}" do %>
         <% if @favorite %>
-          <i class='fa fa-heart red-text'></i>
+          <i class='fa fa-star red-link'></i>
         <% else %>
-          <i class='fa fa-heart'></i>
+          <i class='fa fa-star empty-star'></i>
         <% end %>
       <% end %>
     </h3>

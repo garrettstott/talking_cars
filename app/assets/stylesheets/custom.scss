@@ -4,20 +4,22 @@ COLORS
 
 $GOLD: rgb(255, 191, 0);
 $BLACK: rgb(33, 33, 33);
-$WHITE: rgb(227, 227, 227);
+$WHITE: rgb(245, 245, 245);
 $GREY: rgb(56, 56, 56);
-$GREEN: rgb(51, 158, 83);
+$GREEN: rgb(0, 196, 144);
 $LIGHTGREY: lighten($GREY, 30%);
 $RED: rgb(255, 57, 57);
+$BLUE: rgb(0, 64, 255);
 
 /*==============================================
 CUSTOM
 ==============================================*/
 
 body, html {
-  background: $BLACK;
-  color: $WHITE;
+  background: $WHITE;
+  color: $BLACK;
   height: 100%;
+  font-weight: 500;
 }
 
 *,
@@ -32,6 +34,14 @@ body, html {
 
 .red-text {
   color: $RED;
+}
+
+.red-link {
+  color: $RED;
+}
+
+.red-link:hover {
+  color: darken($RED, 20%);
 }
 
 hr {
@@ -117,9 +127,13 @@ hr {
 LINKS
 ==============================================*/
 
-a {
+a, a:visited, a:target, a:focus {
   text-decoration: none;
-  color: $GOLD;
+  color: $BLUE;
+}
+
+a:hover {
+  color: darken($BLUE, 20%);
 }
 
 .normalize-link {
@@ -127,7 +141,7 @@ a {
 }
 
 .normalize-link:hover {
-  color: $GOLD;
+  // color: $GOLD;
 }
 
 /*==============================================
@@ -140,6 +154,14 @@ NAVBAR
   border-bottom: 4px solid $GOLD;
   background-color: $BLACK;
   margin-bottom: 20px;
+}
+
+.nav * {
+  color: $GOLD !important;
+}
+
+.nav *:hover {
+  color: lighten($GOLD, 25%) !important;
 }
 
 .nav-left {
@@ -168,16 +190,51 @@ NAVBAR
 }
 
 /*==============================================
+WRAPPER
+==============================================*/
+
+.wrapper {
+  height: 100%;
+  min-height: 100%;
+  margin-bottom: -50px;
+  @media(max-width: 850px) {
+    padding: 0 5px 50px 5px;
+  }
+}
+
+/*==============================================
+FOOTER
+==============================================*/
+
+.footer {
+  margin-top: 50px;
+  border-top: 4px solid $GOLD;
+  height: 50px;
+  padding: 25px 10px 0 10px;
+  clear: both;
+  background: $BLACK;
+}
+
+.footer * {
+  color: $GOLD;
+  display: inline-block;
+}
+
+.footer *:hover {
+  color: lighten($GOLD, 25%);
+}
+
+/*==============================================
 FLASH MESSAGES
 ==============================================*/
 
 .flash {
-  border: 2px solid $WHITE;
+  border: 2px solid $BLACK;
   margin: 0 auto 15px auto;
   padding: 10px;
   max-width: 50%;
   width: 100%;
-  background-color: $BLACK;
+  background-color: transparent;
   border-radius: 5px;
 }
 
@@ -212,25 +269,30 @@ FORMS
 
 input[type='text'], input[type='email'], input[type='password'], textarea {
   width: 100%;
-  color: $WHITE;
+  color: $BLACK;
   line-height: 20px;
   background-color: transparent;
+  border: 1px solid $BLACK;
 }
 
 input[type='text']:focus, input[type='email']:focus, input[type='password']:focus, textarea:focus {
-  border: 1px solid $GOLD;
+  border: 1px solid $BLUE;
 }
 
 input[type='submit'] {
-  color: $WHITE;
+  color: $BLACK;
 }
 
 input[type='submit']:hover {
-  color: $WHITE;
+  color: $BLACK;
 }
 
 input[type='checkbox'], label {
   display: inline-block;
+}
+
+.btn {
+  color: $BLACK !important;
 }
 
 #new_post, #new_reply, #new_vehicle {
@@ -259,22 +321,33 @@ BUTTONS
 }
 
 .btn-danger {
-  color: $RED;
-  border: 1px solid $RED;
+  color: $RED !important;
+  border: 1px solid $RED !important;
   float: right;
 }
 
 .btn-danger:hover {
-  color: $RED;
-  border: 1px solid darken($RED, 20%);
+  color: $RED !important;
+  border: 1px solid darken($RED, 20%) !important;
 }
 
 /*==============================================
 FAVORITES
 ==============================================*/
 
-.fa-heart {
-  font-size: .7em;
+.fa-star {
+  font-size: .6em;
+  padding-left: 10px;
+}
+
+.empty-star {
+  color: transparent;
+  -webkit-text-stroke: 1px $BLACK;
+}
+
+.empty-star:hover {
+  color: $RED;
+  -webkit-text-stroke: 1px $RED;
 }
 
 /*==============================================
@@ -331,35 +404,6 @@ PAGINATION
 }
 
 /*==============================================
-WRAPPER
-==============================================*/
-
-.wrapper {
-  height: 100%;
-  min-height: 100%;
-  margin-bottom: -50px;
-  @media(max-width: 850px) {
-    padding: 0 5px 50px 5px;
-  }
-}
-
-/*==============================================
-FOOTER
-==============================================*/
-
-.footer {
-  margin-top: 50px;
-  border-top: 4px solid $GOLD;
-  height: 50px;
-  padding: 25px 10px 0 10px;
-  clear: both;
-}
-
-.footer * {
-  display: inline-block;
-}
-
-/*==============================================
 FANCY
 ==============================================*/
 
@@ -376,7 +420,7 @@ FANCY
     width: 50%;
     height: 1px;
     content: '\a0';
-    background-color: $WHITE;
+    background-color: $BLACK;
 }
 .fancy:before {
     margin-left: -50%;
