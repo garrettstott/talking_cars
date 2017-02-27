@@ -1,7 +1,15 @@
 <div class='twelve columns nav'>
+
   <div class='nav-left'>
-    <h5 class='nav-brand'><%= link_to 'Talking Cars', root_path %></h5>
+    <%= link_to root_path, class: 'nav-brand' do %>
+      <%= image_tag('gearhead-gold-64x64.png') %>
+    <% end %>
   </div>
+
+  <%= link_to root_path, class: 'nav-brand center' do %>
+    <h5>Talking Cars</h5>
+  <% end %>
+
 
   <div class='nav-right'>
     <ul class='nav-links'>

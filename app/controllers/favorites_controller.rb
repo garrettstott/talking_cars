@@ -1,5 +1,5 @@
 class FavoritesController < ApplicationController
-
+  before_action :store_location
   before_action :authenticate_user!
 
   def make
@@ -52,6 +52,12 @@ class FavoritesController < ApplicationController
       flash[:success] = "Added Post #{post.subject} to favorites"
     end
     redirect_back(fallback_location: replies_path(post.forum.model.make.id, post.forum.model.id, post.forum.id, post.id))
+  end
+
+  private
+
+  def store_location
+    session[:return_url] = request.referrer
   end
 
 end

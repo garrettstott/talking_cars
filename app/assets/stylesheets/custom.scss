@@ -191,16 +191,29 @@ NAVBAR
 .nav-left {
   margin-left: 10px;
   display: inline-block;
+  float: left;
+}
+
+.nav-brand {
+  height: 50px;
+}
+
+.nav-brand h5 {
+  margin: 0 0 0 10px;
+  padding: 0;
+  display: inline-block;
+}
+
+.nav-brand img {
+  margin-top: 2px;
+  height: 42px;
+  display: inline-block;
 }
 
 .nav-right {
   margin-right: 5px;
   float: right;
   display: inline-block;
-}
-
-.nav-brand {
-  margin: 0;
 }
 
 .nav-links {

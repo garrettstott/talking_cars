@@ -3,7 +3,9 @@ class Users::SessionsController < Devise::SessionsController
 
   # GET /resource/sign_in
   def new
-    session[:return_url] = params[:return_url]
+    if params[:return_url]
+      session[:return_url] = params[:return_url]
+    end 
     super
   end
 
