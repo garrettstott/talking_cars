@@ -1,6 +1,6 @@
 <h3 class='center'><%= link_to "#{@user.username}'s", user_show_path(@user.username), class: 'normalize-link' %> replies</h3>
 <div class='center'>
-  <%= will_paginate @replies %>
+  <%= will_paginate @replies, previous_label: "<i class='fa fa-arrow-left'></i>", next_label: "<i class='fa fa-arrow-right'></i>" %>
 </div>
 <br>
 <% replies.each do |reply| %>
@@ -22,5 +22,5 @@
   <hr>
 <% end %>
 <div class='center'>
-  <%= will_paginate @replies %>
+  <%= will_paginate @replies, previous_label: "<i class='fa fa-arrow-left'></i>", next_label: "<i class='fa fa-arrow-right'></i>" %>
 </div>

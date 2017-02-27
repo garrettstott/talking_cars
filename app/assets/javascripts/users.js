@@ -36,8 +36,9 @@ $(document).ready(function() {
 
     $("#posts").on("click", ".pagination a", function(e){
       e.preventDefault();
-      url = $(e.target).attr('href')
+      url = $(e.target).parent().attr('href')
       setPosts(url)
+      $('html, body').animate({ scrollTop: 0 }, 'slow');
     });
   }
 
@@ -63,10 +64,10 @@ $(document).ready(function() {
     setReplies(url)
 
     $('#replies').on("click", ".pagination a", function(e){
-      console.log('click')
       e.preventDefault();
-      url = $(e.target).attr('href')
+      url = $(e.target).parent().attr('href')
       setReplies(url)
+      $('html, body').animate({ scrollTop: 0 }, 'slow');
     });
   };
 
