@@ -55,7 +55,7 @@
     <% end %>
   </div>
 
-  <div class='twelve columns center margin-top-lg'>
+  <div class='twelve columns center'>
     <% if signed_in? %>
       <button id='' class='btn new-reply-btn'>Reply</button>
     <% else %>
@@ -66,7 +66,7 @@
   <div class='six columns offset-by-three new-post-container'>
     <%= form_for(@new_reply) do |f| %>
       <h3 class='center'>Reply</h3>
-      <%= f.text_area :body, placeholder: 'Message' %>
+      <%= f.text_area :body, placeholder: 'Message', required: true %>
       <%= f.submit 'Submit', data: {disable_with: 'Saving...'} %>
       <span id='cancel-new-reply' class='btn button btn-danger'>Cancel</span>
     <% end %>

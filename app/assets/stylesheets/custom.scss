@@ -20,15 +20,14 @@ body, html {
   height: 100%;
 }
 
-.center {
-  text-align: center;
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 
-.wrapper {
-  min-height: 100%;
-  @media(max-width: 850px) {
-    padding: 0 5px 80px 5px;
-  }
+.center {
+  text-align: center;
 }
 
 .red-text {
@@ -332,18 +331,28 @@ PAGINATION
 }
 
 /*==============================================
+WRAPPER
+==============================================*/
+
+.wrapper {
+  height: 100%;
+  min-height: 100%;
+  margin-bottom: -50px;
+  @media(max-width: 850px) {
+    padding: 0 5px 50px 5px;
+  }
+}
+
+/*==============================================
 FOOTER
 ==============================================*/
 
 .footer {
+  margin-top: 50px;
   border-top: 4px solid $GOLD;
   height: 50px;
   padding: 20px 5px 0 5px;
-  display: block;
-  margin-top: 40px;
-  box-sizing: border-box;
-  position: relative;
-  width: 100%;
+  clear: both;
 }
 
 .footer * {
