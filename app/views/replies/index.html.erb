@@ -43,14 +43,12 @@
 
     <% @replies.each do |reply| %>
       <div class='eight columns offset-by-two padding-sm'>
-
-          <h6><%= reply.body %></h6>
-          by: <%= link_to reply.user.username, user_show_path(reply.user.username) %>
-          <span class='right'><%= time_ago_in_words(reply.created_at) %> ago</span>
-          <div class='twelve columns'>
-            <hr class='hr-fill-padding'>
-          </div>
-
+        <h6><%= reply.body %></h6>
+        <%= link_to reply.user.username, user_show_path(reply.user.username) %>
+        <span class='right'><%= time_ago_in_words(reply.created_at) %> ago</span>
+        <div class='twelve columns'>
+          <hr class='hr-fill-padding'>
+        </div>
       </div>
     <% end %>
   </div>
