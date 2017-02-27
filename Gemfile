@@ -29,6 +29,7 @@ group :development, :test do
   gem 'awesome_print'
   gem 'pry'
   gem 'better_errors'
+  gem 'dotenv-rails'
 end
 
 group :development do

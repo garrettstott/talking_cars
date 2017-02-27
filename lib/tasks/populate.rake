@@ -111,7 +111,7 @@ namespace :populate do
   task production: :environment do
     # puts "Edmunds API"
     #
-    # edmunds = HTTParty.get('http://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key=jstqruuvgg5bhzrk9v393svu')
+    # edmunds = HTTParty.get("http://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key=#{ENV['EDMUNDS_KEY']}")
     # makes = edmunds['makes']
     #
     # makes.each do |make_i|
