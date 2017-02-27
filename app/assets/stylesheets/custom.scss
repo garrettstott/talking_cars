@@ -44,10 +44,48 @@ body, html {
   color: darken($RED, 20%);
 }
 
-hr {
-  border: 0;
-  height: 1px;
-  background: #8f8f8f;
+.sans-serif {
+  font-family: sans-serif;
+}
+
+.breaks {
+  white-space: pre-line;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+/*==============================================
+CLEARFIX
+==============================================*/
+
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+     }
+.clearfix { display: inline-block; }
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+
+/*==============================================
+MARGIN
+==============================================*/
+
+.margin-bottom-none {
+  margin-bottom: 0;
 }
 
 .margin-bottom-sm {
@@ -82,6 +120,10 @@ hr {
   margin-left: 10px;
 }
 
+/*==============================================
+PADDING
+==============================================*/
+
 .padding-sm {
   padding: 10px;
 }
@@ -90,38 +132,20 @@ hr {
   padding-bottom: 25px;
 }
 
+/*==============================================
+HR
+==============================================*/
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #8f8f8f;
+}
+
 .hr-fill-padding {
   margin-left: -10px;
   margin-right: -10px;
 }
-
-.breaks {
-  white-space: pre-line;
-}
-
-.pointer {
-  cursor: pointer;
-}
-
-.right {
-  float: right;
-}
-
-.left {
-  float: left;
-}
-
-.clearfix:after {
-     visibility: hidden;
-     display: block;
-     font-size: 0;
-     content: " ";
-     clear: both;
-     height: 0;
-     }
-.clearfix { display: inline-block; }
-* html .clearfix { height: 1%; }
-.clearfix { display: block; }
 
 /*==============================================
 LINKS

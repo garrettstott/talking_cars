@@ -29,11 +29,12 @@
       <div class='ten columns offset-by-one padding-sm'>
         <h3><%= @post.subject %></h4>
         <p><%= @post.body %></p>
-        <%= link_to @post.user.username, user_show_path(@post.user.username) %><span class='right'><%= time_ago_in_words(@post.created_at) %></span>
+        <%= link_to @post.user.username, user_show_path(@post.user.username) %>
+        <span class='right sans-serif'><%= friendly_time(@post.created_at) %></span>
         <div class='twelve columns'>
           Posts: <%= link_to @post.user.posts.length, user_posts_path(@post.user.username) %>
           <br>
-          Replies: <%= @post.user.replies.count %>
+          Replies: <%= link_to @post.user.replies.count, user_replies_path(@post.user.username) %>
         </div>
         <div class='twelve columns'>
           <hr class='hr-fill-padding'>
@@ -45,7 +46,12 @@
       <div class='eight columns offset-by-two padding-sm'>
         <p><%= reply.body %></p>
         <%= link_to reply.user.username, user_show_path(reply.user.username) %>
-        <span class='right'><%= time_ago_in_words(reply.created_at) %> ago</span>
+        <span class='right sans-serif'><%= friendly_time(reply.created_at) %></span>
+        <div class='twelve columns'>
+          Posts: <%= link_to reply.user.posts.length, user_posts_path(reply.user.username) %>
+          <br>
+          Replies: <%= link_to reply.user.replies.count, user_replies_path(reply.user.username) %>
+        </div>
         <div class='twelve columns'>
           <hr class='hr-fill-padding'>
         </div>

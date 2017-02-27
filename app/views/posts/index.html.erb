@@ -25,7 +25,7 @@
           <h3 class='center'>Post</h3>
           <%= f.text_field :subject, placeholder: 'Subject' %>
           <%= f.text_area :body, placeholder: 'Message' %>
-          <%= f.submit 'Submit', data: {disable_with: 'Saving...'} %>
+          <%= f.submit 'Submit', class: 'left', data: {disable_with: 'Saving...'} %>
           <span id='cancel-new-post' class='btn button btn-danger'>Cancel</span>
         <% end %>
       </div>
@@ -44,7 +44,7 @@
         <div class='eight columns'>
           <h5><%= link_to post.subject, replies_path(@make.name, @model.name, @forum, post) %></h5>
           <h6><%= post.body.truncate(50) %></h6>
-          by: <%= link_to post.user.username, user_show_path(post.user.username) %>
+          <%= link_to post.user.username, user_show_path(post.user.username) %>
         </div>
         <div class='four columns'>
           <span>Replies: <%= post.number_of_replies %></span>
@@ -55,7 +55,7 @@
               <br>
               <%= time_ago_in_words(last_reply.created_at) %> ago
               <br>
-              by: <%= link_to last_reply.user.username, user_show_path(last_reply.user.username) %></span>
+              <%= link_to last_reply.user.username, user_show_path(last_reply.user.username) %></span>
           <% else %>
             <span>No Posts</span>
           <% end %>

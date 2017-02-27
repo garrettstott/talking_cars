@@ -33,7 +33,7 @@
               <br>
               <%= time_ago_in_words(last_post.created_at) %> ago
               <br>
-              by: <%= link_to last_post.user.username, user_show_path(last_post.user.username) %></span>
+              <%= link_to last_post.user.username, user_show_path(last_post.user.username) %></span>
           <% else %>
             <span>No Posts</span>
           <% end %>
@@ -66,7 +66,7 @@
               <br>
               <%= time_ago_in_words(last_post.created_at) %> ago
               <br>
-              by: <%= link_to last_post.user.username, user_show_path(last_post.user.username) %></span>
+              <%= link_to last_post.user.username, user_show_path(last_post.user.username) %></span>
           <% else %>
             <span>No Posts</span>
           <% end %>
@@ -98,7 +98,7 @@
               <%= link_to last_post.body.truncate(25), replies_path(last_post.forum.model.make.name, last_post.forum.model.name, last_post.forum.id, last_post.id) %>
               <%= time_ago_in_words(last_post.created_at) %> ago
               <br>
-              by: <%= link_to last_post.user.username, user_show_path(last_post.user.username) %></span>
+              <%= link_to last_post.user.username, user_show_path(last_post.user.username) %></span>
           <% else %>
             <span>No Posts</span>
           <% end %>

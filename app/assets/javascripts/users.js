@@ -24,7 +24,7 @@ $(document).ready(function() {
       type: 'POST'
     }).done(function(data) {
       $('#posts').html(data);
-      window.history.pushState(null, null, url);
+      window.history.replaceState(null, null, url);
     }).fail(function(error) {
     });
   };
@@ -53,7 +53,7 @@ $(document).ready(function() {
       type: 'POST'
     }).done(function(data) {
       $('#replies').html(data);
-      window.history.pushState(null, null, url);
+      window.history.replaceState(null, null, url);
     }).fail(function(error) {
     });
   };
