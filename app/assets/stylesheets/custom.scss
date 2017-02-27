@@ -6,7 +6,7 @@ $GOLD: rgb(255, 191, 0);
 $BLACK: rgb(33, 33, 33);
 $WHITE: rgb(245, 245, 245);
 $GREY: rgb(56, 56, 56);
-$GREEN: rgb(0, 196, 144);
+$GREEN: rgb(0, 204, 51);
 $LIGHTGREY: lighten($GREY, 30%);
 $RED: rgb(255, 57, 57);
 $BLUE: rgb(0, 64, 255);
@@ -279,12 +279,12 @@ FLASH MESSAGES
   // position: absolute;
 }
 
-.flash-success {
-  // border: 2px solid rgba($GREEN, 0.5);
+.flash-success, .flash-notice {
+  // border: 2px solid $GREEN;
 }
 
-.flash-error {
-  border: 2px solid rgba($RED, 0.5);
+.flash-alert, .flash-error {
+  border: 2px solid $RED;
 }
 
 /*==============================================
