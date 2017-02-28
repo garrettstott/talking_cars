@@ -109,31 +109,28 @@ namespace :populate do
 
   desc "Creates Makes, Models, Forums for Production"
   task production: :environment do
-    # puts "Edmunds API"
-    #
-    # edmunds = HTTParty.get("http://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key=#{ENV['EDMUNDS_KEY']}")
-    # makes = edmunds['makes']
-    #
-    # makes.each do |make_i|
-    #   make = Make.new(name: make_i['name'].gsub(/-/, ' ').titleize)
-    #   if make.save
-    # puts "Created Make #{make.name}"
-    # puts "Creating Modles for #{make.name}"
-    # models = make_i['models']
-    # models.each do |model|
-    # model = Model.new(name: model['name'], make_id: make.id)
-    # if model.save
-    # puts "Created Model #{model.name}"
-    # else
-    # puts "Error creating Model #{model.name} #{model.errors.full_messages}"
-    # end
-    # end
-    # else
-    # puts "Error creating Make #{make.name} #{make.errors.full_messages}"
-    # end
-    # end
-    # end
+    puts "Edmunds API"
 
+    edmunds = HTTParty.get("http://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key=#{ENV['EDMUNDS_KEY']}")
+    makes = edmunds['makes']
+
+    makes.each do |make_i|
+      make = Make.new(name: make_i['name'].gsub(/-/, ' ').titleize)
+      if make.save
+        puts "Created Make #{make.name}"
+        puts "Creating Modles for #{make.name}"
+        models = make_i['models']
+        models.each do |model|
+          model = Model.new(name: model['name'], make_id: make.id)
+          if model.save
+            puts "Created Model #{model.name}"
+          else
+            puts "Error creating Model #{model.name} #{model.errors.full_messages}"
+          end
+        end
+      else
+        puts "Error creating Make #{make.name} #{make.errors.full_messages}"
+      end
+    end
   end
-
 end
