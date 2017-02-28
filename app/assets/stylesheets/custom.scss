@@ -283,12 +283,12 @@ FOOTER
   background: $GREY;
 }
 
-.footer * {
+.footer a {
   color: $GOLD;
   display: inline-block;
 }
 
-.footer *:hover {
+.footer a:hover {
   color: lighten($GOLD, 25%);
 }
 
