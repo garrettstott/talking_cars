@@ -5,19 +5,19 @@
     <% devise_error_messages! %>
 
     <div class="field">
-      <%= f.text_field :username, autofocus: true, placeholder: 'username' %>
+      <%= f.text_field :username, autofocus: true, placeholder: 'username', required: true %>
     </div>
 
     <div class="field">
-      <%= f.email_field :email, placeholder: 'Email' %>
+      <%= f.email_field :email, placeholder: 'Email', required: true %>
     </div>
 
     <div class="field">
-      <%= f.password_field :password, autocomplete: "off", placeholder: 'Password (6 character minimum)' %>
+      <%= f.password_field :password, autocomplete: "off", placeholder: 'Password (6 character minimum)', required: true %>
     </div>
 
     <div class="field">
-      <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Password Confirmation' %>
+      <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Password Confirmation', required: true %>
     </div>
 
     <div class="actions">
