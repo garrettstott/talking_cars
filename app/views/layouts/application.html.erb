@@ -26,18 +26,18 @@
   </head>
 
   <body>
-    <% if Rails.env.production? %>
+    <%= render 'shared/navbar' %>
+    <%= render 'shared/flash_messages' %>
+    <div class='wrapper'>
+      <%= render 'shared/side_menu' %>
+      <%= yield %>
+    </div>
+    <div class='clearfix'></div>
+    <%= render 'shared/footer' %>
+    <% if Rails.env.development? %>
       <div class='debugger'>
         <%= debug(params) %>
       </div>
     <% end %>
-    <%= render 'layouts/navbar' %>
-    <%= render 'layouts/flash_messages' %>
-    <div class='wrapper'>
-      <%= render 'layouts/side_menu' %>
-      <%= yield %>
-    </div>
-    <div class='clearfix'></div>
-    <%= render 'layouts/footer' %>
   </body>
 </html>

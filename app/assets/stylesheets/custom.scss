@@ -445,7 +445,8 @@ DEBUGGER
 ==============================================*/
 
 .debugger {
-  background-color: black;
+  background-color: $BLACK;
+  color: $WHITE;
 }
 
 .debug_dump {
