@@ -23,7 +23,7 @@
       <% if @vehicles.any? %>
         <% @vehicles.each do |vehicle| %>
           <div class='twelve columns'>
-            <div class='eight columns margin-left-none'>
+            <div class='eleven columns margin-left-none'>
               <h5 class='margin-bottom-none'><strong><%= vehicle.year %> <%= vehicle.make %> <%= vehicle.model %></strong></h5>
               <span class='breaks'><%= "Trim: #{vehicle.trim} \n" if vehicle.trim.present? %></span>
               <span class='breaks'><%= "Transmission: #{vehicle.transmission} \n" if vehicle.trim.present? %></span>
