@@ -238,7 +238,7 @@ SIDE MENU
   top: 50px;
   display: none;
   @media(max-width: 550px) {
-    width: 75vw;
+    width: 100vw;
   }
 }
 
@@ -248,8 +248,13 @@ SIDE MENU
   list-style: none;
 }
 
+.side-menu-links .username {
+  font-size: 2em;
+}
+
 .side-menu-links a {
   color: $GOLD;
+  font-size: 1.5em;
 }
 
 /*==============================================
