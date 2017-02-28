@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get '/:make_name/:model_name/forums', to: 'forums#index', as: 'forums'
   get '/:make_name/:model_name/:forum_id/posts', to: 'posts#index', as: 'posts'
   get '/:make_name/:model_name/:forum_id/:post_id', to: 'replies#index', as: 'replies'
-  get '/contact_us', to: 'shared#contact_us', as: 'contact_us'
+  get '/contact_us', to: 'static#contact_us', as: 'contact_us'
   get '/users/:username/posts', to: 'users#posts', as: 'user_posts'
   get '/users/:username/replies', to: 'users#replies', as: 'user_replies'
 

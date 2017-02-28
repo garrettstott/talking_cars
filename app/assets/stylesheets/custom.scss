@@ -401,7 +401,7 @@ BUTTONS
 ==============================================*/
 
 .btn, .btn:hover, .btn:active, .btn:target, .btn:focus {
-  color: $BLACK;
+  color: $BLACK !important;
   border: 1px solid $BLACK;
 }
 
