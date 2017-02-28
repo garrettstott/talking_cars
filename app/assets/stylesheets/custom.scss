@@ -176,8 +176,8 @@ NAVBAR
   height: 50px;
   line-height: 50px;
   border-bottom: 4px solid $GOLD;
-  background-color: $BLACK;
-  margin-bottom: 20px;
+  background-color: $GREY;
+  clear:both;
 }
 
 .nav * {
@@ -216,14 +216,33 @@ NAVBAR
   display: inline-block;
 }
 
-.nav-links {
-  list-style: none;
-  margin: 0;
+.nav-menu i {
+  font-size: 2em;
+  margin-top: 7px;
 }
 
-.nav-links li {
-  display: inline-block;
-  margin: 0 5px;
+/*==============================================
+SIDE MENU
+==============================================*/
+
+.side-menu {
+  background: $GREY;
+  width: 400px;
+  height: 100%;
+  position: fixed;
+  right: 0;
+  top: 50px;
+  display: none;
+}
+
+.side-menu-links {
+  margin: 15px;
+  color: $WHITE;
+  list-style: none;
+}
+
+.side-menu-links a {
+  color: $GOLD;
 }
 
 /*==============================================
@@ -234,8 +253,9 @@ WRAPPER
   height: 100%;
   min-height: 100%;
   margin-bottom: -50px;
+  padding-top: 70px;
   @media(max-width: 850px) {
-    padding: 0 5px 50px 5px;
+    padding: 70px 5px 50px 5px;
   }
 }
 
@@ -249,7 +269,7 @@ FOOTER
   height: 50px;
   padding: 25px 10px 0 10px;
   clear: both;
-  background: $BLACK;
+  background: $GREY;
 }
 
 .footer * {
@@ -269,6 +289,7 @@ FLASH MESSAGES
   border: 2px solid $BLACK;
   margin: 0 auto 15px auto;
   padding: 10px;
+  margin-top: 15px;
   max-width: 50%;
   width: 100%;
   background-color: transparent;
