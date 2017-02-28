@@ -12,26 +12,6 @@
 
 
   <div class='nav-right'>
-    <div class='nav-menu'>
-      <i id='nav-menu' class="fa fa-bars" aria-hidden="true"></i>
-    </div>
+    <i id='nav-menu' class='fa fa-bars fa-2x'></i>
   </div>
 </div>
-
-
-<script>
-  $('#nav-menu').click(function() {
-    $('.side-menu').fadeToggle('slow')
-  })
-
-  $(document).click(function(e) {
-    if($(".side-menu").is(":visible")) {
-      if(!$(".side-menu").is(e.target)) {
-        if(!$(".side-menu").find('*').is(e.target)) {
-          if(!$("#nav-menu").is(e.target))
-          $('.side-menu').fadeToggle('slow')
-        }
-      }
-    }
-  });
-</script>
