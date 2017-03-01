@@ -105,7 +105,7 @@ namespace :populate do
     rescue
       puts edmunds.errors.full_messages
     end
-    if endmunds
+    if edmunds
       makes = edmunds['makes']
     end
 
