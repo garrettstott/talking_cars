@@ -29,15 +29,15 @@
     <%= render 'shared/navbar' %>
     <%= render 'shared/flash_messages' %>
     <div class='wrapper'>
+      <% if Rails.env.development? %>
+        <div class='debugger'>
+          <%= debug(params) %>
+        </div>
+      <% end %>
       <%= render 'shared/side_menu' %>
       <%= yield %>
     </div>
     <div class='clearfix'></div>
     <%= render 'shared/footer' %>
-    <% if Rails.env.development? %>
-      <div class='debugger'>
-        <%= debug(params) %>
-      </div>
-    <% end %>
   </body>
 </html>
