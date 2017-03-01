@@ -117,17 +117,22 @@ namespace :populate do
     end
 
     if makes
-      puts "Creating Makes..."
       makes.each do |make_i|
         make = Make.new(name: make_i['name'].gsub(/-/, ' ').titleize)
         if make.save
-          puts "Created Make #{make.name}"
-          puts "Creating Modles for #{make.name}"
           models = make_i['models']
           models.each do |model|
             model = Model.new(name: model['name'], make_id: make.id)
             if model.save
-              puts "Created Model #{model.name}"
+              forums = set_forums(model)
+              forums.each do |forum|
+                forum = Forum.new(name: forum[:name], description: forum[:description], category: forum[:category], model_id: model.id)
+                if forum.save
+                  puts "Created Forum #{forum.name}"
+                else
+                  puts "Error creating Forum #{forum.name} #{forum.errors.full_messages}"
+                end
+              end
             else
               puts "Error creating Model #{model.name} #{model.errors.full_messages}"
             end
@@ -170,7 +175,6 @@ end
 
 
 def set_forums(model)
-  binding.pry
   [
     {name: 'General Community', description: "The General Forum on Talking Cars is for general discussion about matters concerning the entire #{model.make.name} #{model.name} Community.", category: 'General', model_id: model.id},
     {name: 'Newbs & FAQ', description: 'The Newbie & FAQs forum on Talking Cars is a good place to get started if you are new to forum based websites. Post here to get started and ask questions...', category: 'General', model_id: model.id},
