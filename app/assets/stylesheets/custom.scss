@@ -155,7 +155,7 @@ hr {
 LINKS
 ==============================================*/
 
-a, a:visited, a:target, a:focus {
+a {
   text-decoration: none;
   color: $BLUE;
 }
@@ -401,7 +401,7 @@ BUTTONS
 ==============================================*/
 
 .btn, .btn:hover, .btn:active, .btn:target, .btn:focus {
-  color: $BLACK !important;
+  color: $BLACK;
   border: 1px solid $BLACK;
 }
 
