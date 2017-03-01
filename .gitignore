@@ -7,6 +7,11 @@
 # Ignore ENV
 .env
 
+# Ignore SSL Certs
+server.csr
+server.key
+server.pass.key
+
 # Ignore bundler config.
 /.bundle
 
