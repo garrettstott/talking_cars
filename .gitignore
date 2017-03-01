@@ -11,6 +11,7 @@
 server.csr
 server.key
 server.pass.key
+server.crt
 
 # Ignore bundler config.
 /.bundle
