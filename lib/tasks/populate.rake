@@ -98,18 +98,26 @@ namespace :populate do
 
   desc "Creates Makes, Models, Forums for Production"
   task production: :environment do
-    puts "Edmunds API"
+    puts "**************************************"
+    puts "SEEDING"
+    puts "**************************************"
 
     begin
+      puts "Edmunds API"
       edmunds = HTTParty.get("http://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key=#{ENV['EDMUNDS_KEY']}")
-    rescue
-      puts edmunds.errors.full_messages
+    rescue Execption => e
+      puts edmunds
+      puts e.message
+      puts e.backtrace.inspect
     end
-    if edmunds
+    if edmunds['makes']
       makes = edmunds['makes']
+    else
+      puts edmunds
     end
 
     if makes
+      puts "Creating Makes..."
       makes.each do |make_i|
         make = Make.new(name: make_i['name'].gsub(/-/, ' ').titleize)
         if make.save
