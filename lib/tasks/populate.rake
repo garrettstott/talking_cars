@@ -8,7 +8,7 @@ namespace :populate do
     puts "Creating Users"
 
     users = [ {username: 'garrettstott', email: 'garrettstott@gmail.com', password: 'password'},
-              {username: 'joe', email: 'joe@example.com', password: 'password'}
+              {username: 'joe', email: 'garrettstott+1@gmail.com', password: 'password'}
             ]
 
     users.each do |user|
