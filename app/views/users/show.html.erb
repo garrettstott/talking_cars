@@ -51,7 +51,7 @@
                   <%= f.text_field :exterior_color, placeholder: 'Exterior Color' %>
                   <%= f.text_field :interior_color ,placeholder: 'Interior Color' %>
                   <%= f.text_area :comments, placeholder: 'Comments' %>
-                  <%= f.submit 'Save', data: {disable_with: 'Saving...'} %>
+                  <%= f.button 'Save', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving"} %>
                   <span class='cancel-edit-vehicle button btn btn-danger'>Cancel</span>
                 <% end %>
               </div>
@@ -79,7 +79,7 @@
               <%= f.text_field :exterior_color, placeholder: 'Exterior Color' %>
               <%= f.text_field :interior_color ,placeholder: 'Interior Color' %>
               <%= f.text_area :comments, placeholder: 'Comments' %>
-              <%= f.submit 'Save Vehicle', data: {disable_with: 'Saving...'} %>
+              <%= f.button 'Save Vehicle', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving"} %>
               <span class='btn btn-danger button' id='cancel-new-vehicle'>Cancel</span>
             <% end %>
           </div>

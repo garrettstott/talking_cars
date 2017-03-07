@@ -28,11 +28,12 @@ gem 'will_paginate'
 group :development, :test do
   gem 'awesome_print'
   gem 'pry'
-  gem 'better_errors'
   gem 'dotenv-rails'
 end
 
 group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
   gem 'spring'

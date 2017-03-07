@@ -45,6 +45,8 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     builder (3.2.3)
     carrierwave (1.0.0)
       activemodel (>= 4.0.0)
@@ -204,6 +206,7 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   better_errors
+  binding_of_caller
   devise
   dotenv-rails
   font-awesome-rails
