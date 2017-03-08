@@ -71,7 +71,7 @@
     <%= form_for(@new_reply) do |f| %>
       <h3 class='center'>Reply</h3>
       <%= f.text_area :body, placeholder: 'Message', required: true %>
-      <%= f.button 'Submit', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving"} %>
+      <%= f.button 'Submit', class: 'btn', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving"} %>
       <span id='cancel-new-reply' class='btn button btn-danger'>Cancel</span>
     <% end %>
   </div>
