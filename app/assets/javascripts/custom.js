@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).on('turbolinks:load', function() {
 
   // SIDE MENU
   $('#nav-menu').click(function() {
@@ -20,6 +20,7 @@ $(document).ready(function(){
 
   // POSTS
   $('#new-post-btn').click(function() {
+    console.log('click')
     $('#new-post-btn').hide();
     $('#new_post').show();
   })
