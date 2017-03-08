@@ -42,5 +42,8 @@ Rails.application.routes.draw do
 
   # DELETE ROUTES
   delete '/users/vehicles/:id', to: 'vehicles#destroy', as: 'delete_vehicle'
+  delete '/:make_id/:model_id/:forum_id/:post_id', to: 'posts#destroy', as: 'delete_post'
+  delete '/:make_id/:model_id/:forum_id/:post_id/:reply_id', to: 'replies#destroy', as: 'delete_reply'
+
 
 end

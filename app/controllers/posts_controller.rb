@@ -19,8 +19,18 @@ class PostsController < ApplicationController
       redirect_to replies_path(@make.name, @model.name, @forum, @post)
     else
       flash[:error] = "There were errors saving your post. #{@post.errors.full_messages.to_sentence}"
-      redirect_back(fallback_location: replies_path(@make.name, @model.name, @forum, @post))
+      redirect_back(fallback_location: replies_path(@make, @model, @forum, @post))
     end
+  end
+
+  def destroy
+    @post = Post.friendly.find(params[:post_id])
+    if @post.update(body: "[DELETED]")
+      flash[:success] = "Post has been deleted"
+    else
+      flash[:error] = "Post not deleted #{@post.errors.full_messages}"
+    end
+    redirect_back(fallback_location: replies_path(@make, @model, @forum, @post))
   end
 
   private

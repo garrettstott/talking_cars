@@ -32,9 +32,17 @@
         <%= link_to @post.user.username, user_show_path(@post.user.username) %>
         <span class='right sans-serif'><%= friendly_time(@post.created_at) %></span>
         <div class='twelve columns'>
-          Posts: <%= link_to @post.user.posts.length, user_posts_path(@post.user.username) %>
-          <br>
-          Replies: <%= link_to @post.user.replies.count, user_replies_path(@post.user.username) %>
+          <span>
+            Posts: <%= link_to @post.user.posts.length, user_posts_path(@post.user.username) %>
+            <br>
+            Replies: <%= link_to @post.user.replies.count, user_replies_path(@post.user.username) %>
+          </span>
+          <span class='right'>
+            <i class='fa fa-edit'></i>
+            <%= link_to delete_post_path(@make, @model, @forum, @post), method: :delete do %>
+              <i class='fa fa-trash red-text'></i>
+            <% end %>
+          </span>
         </div>
         <div class='twelve columns'>
           <hr class='hr-fill-padding'>
@@ -48,9 +56,17 @@
         <%= link_to reply.user.username, user_show_path(reply.user.username) %>
         <span class='right sans-serif'><%= friendly_time(reply.created_at) %></span>
         <div class='twelve columns'>
-          Posts: <%= link_to reply.user.posts.length, user_posts_path(reply.user.username) %>
-          <br>
-          Replies: <%= link_to reply.user.replies.count, user_replies_path(reply.user.username) %>
+          <span>
+            Posts: <%= link_to reply.user.posts.length, user_posts_path(reply.user.username) %>
+            <br>
+            Replies: <%= link_to reply.user.replies.count, user_replies_path(reply.user.username) %>
+          </span>
+          <span class='right'>
+            <i class='fa fa-edit'></i>
+            <%= link_to delete_reply_path(@make, @model, @forum, @post, reply), method: :delete do %>
+              <i class='fa fa-trash red-text'></i>
+            <% end %>
+          </span>
         </div>
         <div class='twelve columns'>
           <hr class='hr-fill-padding'>
