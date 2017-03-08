@@ -9,6 +9,7 @@ class Post < ApplicationRecord
   has_many :replies
   has_many :favorites, as: :favoritable
 
+
   def last_reply
     self.replies.order(created_at: :asc).last
   end

@@ -1,7 +1,7 @@
 class Forum < ApplicationRecord
 
   extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :slugged_candidates, use: :slugged
 
   belongs_to :model
   has_many :posts
@@ -9,6 +9,13 @@ class Forum < ApplicationRecord
 
   validates_presence_of :category, in: ['General', 'Technical', 'Classifed']
   validates_presence_of :name
+
+  def slugged_candidates
+    [
+      [self.model.make.name, :name],
+      [self.model.make.name, self.model.name, :name]
+    ]
+  end
 
   def number_of_posts
     self.posts.count
