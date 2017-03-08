@@ -24,6 +24,7 @@ gem 'tinymce-rails'
 gem 'sweetalert-rails'
 gem 'sweet-alert-confirm'
 gem 'will_paginate'
+gem 'friendly_id'
 
 group :development, :test do
   gem 'awesome_print'

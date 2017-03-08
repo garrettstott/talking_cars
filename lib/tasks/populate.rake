@@ -1,6 +1,7 @@
 namespace :populate do
   desc "Creates Users, Makes, Models, Forums, Posts and Replies for Development"
   task development: :environment do
+
     puts "**************************************"
     puts "SEEDING"
     puts "**************************************"
@@ -16,7 +17,7 @@ namespace :populate do
       if user.save
         puts "Created User #{user.username}"
       else
-        puts "Error creating User #{user.username} #{user.errors.full_messages}"
+          puts "Error creating User #{user.username} #{user.errors.full_messages}"
       end
     end
 
@@ -29,7 +30,7 @@ namespace :populate do
       make = Make.new(name: make_i)
       if make.save
         puts "Created Make #{make.name}"
-        puts "Creating Modles for #{make.name}"
+        puts "Creating Models for #{make.name}"
         models.each do |model|
           model = Model.new(name: model, make_id: make.id)
           if model.save

@@ -5,6 +5,8 @@ class CreatePosts < ActiveRecord::Migration[5.0]
       t.belongs_to :user, foreign_key: true
       t.string :subject
       t.text :body
+      t.string :slug
+      t.index :slug
 
       t.timestamps
     end

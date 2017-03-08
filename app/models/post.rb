@@ -1,4 +1,8 @@
 class Post < ApplicationRecord
+
+  extend FriendlyId
+  friendly_id :subject, use: :slugged
+
   belongs_to :forum
   belongs_to :user
 

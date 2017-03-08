@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170224010003) do
+ActiveRecord::Schema.define(version: 20170308181009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,9 +29,23 @@ ActiveRecord::Schema.define(version: 20170224010003) do
     t.string   "name"
     t.string   "description"
     t.string   "category"
+    t.string   "slug"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["model_id"], name: "index_forums_on_model_id", using: :btree
+    t.index ["slug"], name: "index_forums_on_slug", using: :btree
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
   end
 
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|
@@ -89,16 +103,20 @@ ActiveRecord::Schema.define(version: 20170224010003) do
 
   create_table "makes", force: :cascade do |t|
     t.string   "name"
+    t.string   "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_makes_on_slug", using: :btree
   end
 
   create_table "models", force: :cascade do |t|
     t.string   "name"
     t.integer  "make_id"
+    t.string   "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["make_id"], name: "index_models_on_make_id", using: :btree
+    t.index ["slug"], name: "index_models_on_slug", using: :btree
   end
 
   create_table "posts", force: :cascade do |t|
@@ -106,9 +124,11 @@ ActiveRecord::Schema.define(version: 20170224010003) do
     t.integer  "user_id"
     t.string   "subject"
     t.text     "body"
+    t.string   "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["forum_id"], name: "index_posts_on_forum_id", using: :btree
+    t.index ["slug"], name: "index_posts_on_slug", using: :btree
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
 

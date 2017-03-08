@@ -30,19 +30,19 @@ class RepliesController < ApplicationController
   end
 
   def set_make
-    @make = Make.find_by_name(params[:make_name])
+    @make = Make.friendly.find(params[:make_id])
   end
 
   def set_model
-    @model = @make.models.find_by_name(params[:model_name])
+    @model = @make.models.friendly.find(params[:model_id])
   end
 
   def set_forum
-    @forum = @model.forums.find(params[:forum_id])
+    @forum = @model.forums.friendly.find(params[:forum_id])
   end
 
   def set_post
-    @post = Post.find(params[:post_id])
+    @post = Post.friendly.find(params[:post_id])
   end
 
   def set_title

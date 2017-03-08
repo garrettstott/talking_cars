@@ -5,6 +5,8 @@ class CreateForums < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :description
       t.string :category
+      t.string :slug
+      t.index :slug
 
       t.timestamps
     end

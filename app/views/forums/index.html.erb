@@ -1,6 +1,6 @@
 <div class='twelve columns'>
   <div class='center'>
-    <h1><%= link_to @make.name, models_path(@make.name), class: 'normalize-link' %></h1>
+    <h1><%= link_to @make.name, models_path(@make), class: 'normalize-link' %></h1>
     <h3>
       <%= @model.name %>
       <%= link_to favorite_model_path(@model), method: :post, title: "Favorite #{@model.name}" do %>
@@ -19,7 +19,7 @@
     <% @general.each do |forum| %>
       <div class='ten columns offset-by-one'>
         <div class='eight columns'>
-          <h5><%= link_to forum.name, posts_path(@make.name, @model.name, forum) %></h5>
+          <h5><%= link_to forum.name, posts_path(@make, @model, forum) %></h5>
           <h6><%= forum.description %></h6>
         </div>
         <div class='four columns'>
@@ -29,7 +29,7 @@
           <br>
           <% if last_post = forum.last_post %>
             <span>Last Post:
-              <%= link_to last_post.body.truncate(25), replies_path(last_post.forum.model.make.name, last_post.forum.model.name, last_post.forum.id, last_post.id) %>
+              <%= link_to last_post.body.truncate(25), replies_path(last_post.forum.model.make, last_post.forum.model, last_post.forum.id, last_post.id) %>
               <br>
               <%= time_ago_in_words(last_post.created_at) %> ago
               <br>
@@ -52,7 +52,7 @@
     <% @technical.each do |forum| %>
       <div class='ten columns offset-by-one'>
         <div class='eight columns'>
-          <h5><%= link_to forum.name, posts_path(@make.name, @model.name, forum) %></h5>
+          <h5><%= link_to forum.name, posts_path(@make, @model, forum) %></h5>
           <h6><%= forum.description %></h6>
         </div>
         <div class='four columns'>
@@ -62,7 +62,7 @@
           <br>
           <% if last_post = forum.last_post %>
             <span>Last Post:
-              <%= link_to last_post.body.truncate(25), replies_path(last_post.forum.model.make.name, last_post.forum.model.name, last_post.forum.id, last_post.id) %>
+              <%= link_to last_post.body.truncate(25), replies_path(last_post.forum.model.make, last_post.forum.model, last_post.forum.id, last_post.id) %>
               <br>
               <%= time_ago_in_words(last_post.created_at) %> ago
               <br>
@@ -85,7 +85,7 @@
     <% @classified.each do |forum| %>
       <div class='ten columns offset-by-one'>
         <div class='eight columns'>
-          <h5><%= link_to forum.name, posts_path(@make.name, @model.name, forum) %></h5>
+          <h5><%= link_to forum.name, posts_path(@make, @model, forum) %></h5>
           <h6><%= forum.description %></h6>
         </div>
         <div class='four columns'>
@@ -95,7 +95,7 @@
           <br>
           <% if last_post = forum.last_post %>
             <span>Last Post:
-              <%= link_to last_post.body.truncate(25), replies_path(last_post.forum.model.make.name, last_post.forum.model.name, last_post.forum.id, last_post.id) %>
+              <%= link_to last_post.body.truncate(25), replies_path(last_post.forum.model.make, last_post.forum.model, last_post.forum.id, last_post.id) %>
               <%= time_ago_in_words(last_post.created_at) %> ago
               <br>
               <%= link_to last_post.user.username, user_show_path(last_post.user.username) %></span>

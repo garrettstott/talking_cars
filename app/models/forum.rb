@@ -1,10 +1,14 @@
 class Forum < ApplicationRecord
+
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   belongs_to :model
   has_many :posts
   has_many :favorites, as: :favoritable
 
   validates_presence_of :category, in: ['General', 'Technical', 'Classifed']
-  validates_presence_of :name 
+  validates_presence_of :name
 
   def number_of_posts
     self.posts.count

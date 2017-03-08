@@ -13,7 +13,7 @@ class ModelsController < ApplicationController
   private
 
   def set_make
-    @make = Make.find_by_name(params[:make_name])
+    @make = Make.friendly.find(params[:make_id])
   end
 
   def set_title

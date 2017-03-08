@@ -1,8 +1,8 @@
 <div class='twelve columns'>
   <div class='center'>
     <h1>
-      <%= link_to @make.name, models_path(@make.name), class: 'normalize-link' %>
-      <%= link_to @model.name, forums_path(@make.name, @model.name), class: 'normalize-link' %>
+      <%= link_to @make.name, models_path(@make), class: 'normalize-link' %>
+      <%= link_to @model.name, forums_path(@make, @model), class: 'normalize-link' %>
     </h1>
     <h4>
       <%= @forum.name %>
@@ -42,7 +42,7 @@
     <% @posts.each do |post| %>
       <div class='ten columns offset-by-one'>
         <div class='eight columns'>
-          <h5><%= link_to post.subject, replies_path(@make.name, @model.name, @forum, post) %></h5>
+          <h5><%= link_to post.subject, replies_path(@make, @model, @forum, post) %></h5>
           <h6><%= post.body.truncate(50) %></h6>
           <%= link_to post.user.username, user_show_path(post.user.username) %>
         </div>
@@ -51,7 +51,7 @@
           <br>
           <% if last_reply = post.last_reply %>
             <span>Last Post:
-              <%= link_to last_reply.body.truncate(25), replies_path(last_reply.post.forum.model.make.name, last_reply.post.forum.model.name, last_reply.post.forum.id, last_reply.id) %>
+              <%= link_to last_reply.body.truncate(25), replies_path(last_reply.post.forum.model.make, last_reply.post.forum.model, last_reply.post.forum.id, last_reply.id) %>
               <br>
               <%= time_ago_in_words(last_reply.created_at) %> ago
               <br>

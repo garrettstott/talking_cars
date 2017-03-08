@@ -15,11 +15,11 @@ class ForumsController < ApplicationController
   private
 
   def set_make
-    @make = Make.find_by_name(params[:make_name])
+    @make = Make.friendly.find(params[:make_id])
   end
 
   def set_model
-    @model = @make.models.find_by_name(params[:model_name])
+    @model = @make.models.friendly.find(params[:model_id])
   end
 
   def set_title
