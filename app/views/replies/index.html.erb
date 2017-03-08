@@ -38,11 +38,19 @@
             Replies: <%= link_to @post.user.replies.count, user_replies_path(@post.user.username) %>
           </span>
           <span class='right'>
-            <i class='fa fa-edit'></i>
-            <%= link_to delete_post_path(@make, @model, @forum, @post), method: :delete do %>
+            <i class='fa fa-edit edit-post-btn'></i>
+            <%= link_to delete_post_path(@make, @model, @forum, @post), method: :delete, data: {confirm: "Are you sure you want to delete this post?"} do %>
               <i class='fa fa-trash red-text'></i>
             <% end %>
           </span>
+          <div id='edit-post' class='twelve columns margin-top-md'>
+            <%= form_tag(update_post_path(@make, @model, @forum, @post), method: :patch) do %> 
+              <%= text_field_tag :subject, @post.subject, readonly: true %>
+              <%= text_area_tag :body, @post.body %> 
+              <%= button_tag 'Save', class: 'btn', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving"} %>
+              <span class='button btn-danger right cancel-edit-post'>Cancel</span>
+            <% end %>
+          </div>
         </div>
         <div class='twelve columns'>
           <hr class='hr-fill-padding'>
@@ -62,11 +70,18 @@
             Replies: <%= link_to reply.user.replies.count, user_replies_path(reply.user.username) %>
           </span>
           <span class='right'>
-            <i class='fa fa-edit'></i>
+            <i class='fa fa-edit edit-reply-btn'></i>
             <%= link_to delete_reply_path(@make, @model, @forum, @post, reply), method: :delete do %>
               <i class='fa fa-trash red-text'></i>
             <% end %>
           </span>
+          <div class='edit-reply twelve columns margin-top-md'>
+            <%= form_tag(update_reply_path(@make, @model, @forum, @post, reply), method: :patch) do %> 
+              <%= text_area_tag :body, reply.body %> 
+              <%= button_tag 'Save', class: 'btn', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving"} %>
+              <span class='button btn-danger right cancel-edit-reply'>Cancel</span>
+            <% end %>
+          </div>
         </div>
         <div class='twelve columns'>
           <hr class='hr-fill-padding'>

@@ -25,12 +25,22 @@ class RepliesController < ApplicationController
     def destroy
     @reply = Reply.find(params[:reply_id])
     if @reply.update(body: "[DELETED]")
-      flash[:success] = "Post has been deleted"
+      flash[:success] = "Reply has been deleted"
     else
-      flash[:error] = "Post not deleted #{@reply.errors.full_messages}"
+      flash[:error] = "Reply not deleted #{@reply.errors.full_messages}"
     end
     redirect_back(fallback_location: replies_path(@make, @model, @forum, @post))
   end
+
+  def update 
+    @reply = Reply.find(params[:reply_id])
+    if @reply.update(body: params[:body])
+      flash[:success] = "Reply udpated"
+    else 
+      flash[:error] = "Reply not updated. #{@reply.errors.full_messages.to_sentence}"
+    end 
+    redirect_back(fallback_location: replies_path(@make, @model, @forum, @post))
+  end 
 
 
   private

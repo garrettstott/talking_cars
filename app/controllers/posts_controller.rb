@@ -28,10 +28,20 @@ class PostsController < ApplicationController
     if @post.update(body: "[DELETED]")
       flash[:success] = "Post has been deleted"
     else
-      flash[:error] = "Post not deleted #{@post.errors.full_messages}"
+      flash[:error] = "Post not deleted. #{@post.errors.full_messages.to_sentence}"
     end
     redirect_back(fallback_location: replies_path(@make, @model, @forum, @post))
   end
+
+  def update 
+    @post = Post.friendly.find(params[:post_id])
+    if @post.update(body: params[:body])
+      flash[:success] = "Post updated"
+    else 
+      flash[:error] = "Post not updated. #{@post.errors.full_messages.to_sentence}"
+    end
+    redirect_back(fallback_location: replies_path(@make, @model, @forum, @post))
+  end 
 
   private
 

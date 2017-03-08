@@ -37,8 +37,10 @@ Rails.application.routes.draw do
   post '/users/:username/replies', to: 'users#get_replies'
   post '/mailers/contact_us', to: 'mailers#contact_us', as: 'contact_us_mailer'
 
-  # PATCH ROUTES
+  # PUT & PATCH ROUTES
   patch '/users/vehicles/edit/:id', to: 'vehicles#update', as: 'vehicle'
+  patch '/:make_id/:model_id/:forum_id/:post_id', to: 'posts#update', as: 'update_post'
+  patch '/:make_id/:model_id/:forum_id/:post_id/:reply_id', to: 'replies#update', as: 'update_reply'
 
   # DELETE ROUTES
   delete '/users/vehicles/:id', to: 'vehicles#destroy', as: 'delete_vehicle'

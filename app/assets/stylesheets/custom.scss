@@ -366,7 +366,7 @@ input[type='checkbox'], label {
   margin: 40px 0;
 }
 
-#new_post textarea, #new_reply textarea, .large-textarea {
+textarea {
   height: 400px;
 }
 
@@ -374,8 +374,12 @@ input[type='checkbox'], label {
   height: 200px;
 }
 
-.edit_vehicle {
+.edit_vehicle, #edit-post, .edit-reply {
   display: none;
+}
+
+.fa-edit {
+  cursor: pointer;
 }
 
 /* Change Autocomplete styles in Chrome*/

@@ -136,4 +136,27 @@ $(document).ready(function(){
     });
   });
 
+  // EDIT POST 
+  $('.edit-post-btn').click(function() {
+    $('#edit-post').show();
+    $(this).hide();
+
+  })
+
+  $('.cancel-edit-post').click(function() {
+    $('#edit-post').hide();
+    $('.edit-post-btn').show();
+  })
+
+  // EDIT REPLY 
+  $('.edit-reply-btn').click(function() {
+    $(this).parent().parent().find('.edit-reply').show();
+    $(this).hide();
+  })
+
+  $('.cancel-edit-reply').click(function() {
+    $(this).parent().parent().hide();
+    $(this).parent().parent().parent().find('.edit-reply-btn').show();
+  })
+
 });
