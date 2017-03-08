@@ -21,32 +21,45 @@ namespace :populate do
       end
     end
 
-    makes = %w(Subaru)
-    models = %w(BRZ)
+    begin
+      puts "Edmunds API"
+      edmunds = HTTParty.get("http://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key=#{ENV['EDMUNDS_KEY']}")
+    rescue Execption => e
+      puts edmunds
+      puts e.message
+      puts e.backtrace.inspect
+    end
+    if edmunds['makes']
+      makes = []
+      makes << edmunds['makes'].first
+    else
+      puts edmunds
+    end
+
+    if makes
 
     puts "Creating Makes..."
 
-    makes.each do |make_i|
-      make = Make.new(name: make_i)
-      if make.save
-        puts "Created Make #{make.name}"
-        puts "Creating Models for #{make.name}"
-        models.each do |model|
-          model = Model.new(name: model, make_id: make.id)
-          if model.save
-            puts "Created Model #{model.name}"
-          else
-            puts "Error creating Model #{model.name} #{model.errors.full_messages}"
+      makes.each do |make_i|
+        make = Make.new(name: make_i['name'])
+        if make.save
+          models = make_i['models']
+          puts "Created Make #{make.name}"
+          puts "Creating Models for #{make.name}"
+          models.each do |model_i|
+            model = Model.new(name: model_i['name'], make_id: make.id)
+            if model.save
+              puts "Created Model #{model.name}"
+            else
+              puts "Error creating Model #{model.name} #{model.errors.full_messages}"
+            end
           end
+        else
+          puts "Error creating Make #{make.name} #{make.errors.full_messages}"
         end
-      else
-        puts "Error creating Make #{make.name} #{make.errors.full_messages}"
       end
     end
-
-    posts = [ {subject: 'Test subject 1', body: 'This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on posts. This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on posts. This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on posts.'},
-              {subject: 'Test subject 2', body: 'This is test subject 2 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on posts. This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on posts. This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on posts.'},
-              {subject: 'Test subject 3', body: 'This is test subject 3 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on posts. This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on posts. This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on posts.'}
+    posts = [ {subject: 'Test subject 1', body: 'This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on posts. This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on posts. This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on posts.'}
             ]
 
     replies = [ { body: 'This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on replies. This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on replies. This is test subject 1 body. This is going to be long so I can see if there is going to be an issue with long ass bodys on replies.' },
@@ -113,7 +126,7 @@ namespace :populate do
     end
     if edmunds['makes']
       makes = []
-      makes << edmunds['makes'][1]
+      makes << edmunds['makes'][55]
     else
       puts edmunds
     end
