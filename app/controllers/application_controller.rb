@@ -2,6 +2,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_title
 
+  if Rails.env.production?
+    flash[:notice] = "Currently Testing. Once this is complete, all makes and models will be available"
+  end
+
   private
 
   def after_sign_in_path_for(resource)
