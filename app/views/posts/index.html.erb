@@ -55,7 +55,7 @@
               <br>
               <%= time_ago_in_words(last_reply.created_at) %> ago
               <br>
-              <%= link_to last_reply.user.username, user_show_path(last_reply.user.username) %></span>
+              by: <%= link_to last_reply.user.username, user_show_path(last_reply.user.username) %></span>
           <% else %>
             <span>No Posts</span>
           <% end %>

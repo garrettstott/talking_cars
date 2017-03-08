@@ -3,7 +3,7 @@ class FavoritesController < ApplicationController
   before_action :authenticate_user!
 
   def make
-    make = Make.find(params[:id])
+    make = Make.friendly.find(params[:id])
     favorites = current_user.favorites
     if favorite = favorites.where(favoritable_type: 'Make', favoritable_id: make.id).last
       favorite.destroy
@@ -16,7 +16,7 @@ class FavoritesController < ApplicationController
   end
 
   def model
-    model = Model.find(params[:id])
+    model = Model.friendly.find(params[:id])
     favorites = current_user.favorites
     if favorite = favorites.where(favoritable_type: 'Model', favoritable_id: model.id).last
       favorite.destroy
@@ -29,7 +29,7 @@ class FavoritesController < ApplicationController
   end
 
   def forum
-    forum = Forum.find(params[:id])
+    forum = Forum.friendly.find(params[:id])
     favorites = current_user.favorites
     if favorite = favorites.where(favoritable_type: 'Forum', favoritable_id: forum.id).last
       favorite.destroy
@@ -42,7 +42,7 @@ class FavoritesController < ApplicationController
   end
 
   def post
-    post = Post.find(params[:id])
+    post = Post.friendly.find(params[:id])
     favorites = current_user.favorites
     if favorite = favorites.where(favoritable_type: 'Post', favoritable_id: post.id).last
       favorite.destroy
