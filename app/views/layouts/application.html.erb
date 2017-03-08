@@ -31,8 +31,8 @@
 
   <body>
     <%= render 'shared/navbar' %>
-    <%= render 'shared/flash_messages' %>
     <div class='wrapper'>
+    <%= render 'shared/flash_messages' %>
       <% if Rails.env.development? %>
         <div class='debugger'>
           <%= debug(params) %>
