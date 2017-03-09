@@ -32,15 +32,15 @@
   <body>
     <%= render 'shared/navbar' %>
     <div class='wrapper'>
-    <%= render 'shared/flash_messages' %>
       <% if Rails.env.development? %>
         <div class='debugger'>
           <%= debug(params) %>
         </div>
       <% end %>
+    <%= render 'shared/flash_messages' %>
       <%= render 'shared/side_menu' %>
       <% if Rails.env.production? %>
-        <div class='flash center six columns offset-by-three'>
+        <div class='admin-message center six columns offset-by-three'>
           <p>Currently Testing. Once this is complete, all makes and models will be available.</p>
           <p class='right margin-bottom-none'>-Garrett</p>
         </div>
