@@ -7,6 +7,7 @@ class CreateForums < ActiveRecord::Migration[5.0]
       t.string :category
       t.string :slug
       t.index :slug
+      t.integer :posts_count, default: 0
 
       t.timestamps
     end

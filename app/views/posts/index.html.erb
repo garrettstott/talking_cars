@@ -47,7 +47,7 @@
           <%= link_to post.user.username, user_show_path(post.user.username) %>
         </div>
         <div class='four columns'>
-          <span>Replies: <%= post.number_of_replies %></span>
+          <span>Replies: <%= post.replies_count %></span>
           <br>
           <% if last_reply = post.last_reply %>
             <span>Last Post:

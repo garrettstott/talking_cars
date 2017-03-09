@@ -7,6 +7,7 @@ class CreatePosts < ActiveRecord::Migration[5.0]
       t.text :body
       t.string :slug
       t.index :slug
+      t.integer :replies_count, default: 0
 
       t.timestamps
     end

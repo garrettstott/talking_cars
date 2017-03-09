@@ -30,8 +30,9 @@ ActiveRecord::Schema.define(version: 20170308181009) do
     t.string   "description"
     t.string   "category"
     t.string   "slug"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "posts_count", default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.index ["model_id"], name: "index_forums_on_model_id", using: :btree
     t.index ["slug"], name: "index_forums_on_slug", using: :btree
   end
@@ -125,8 +126,9 @@ ActiveRecord::Schema.define(version: 20170308181009) do
     t.string   "subject"
     t.text     "body"
     t.string   "slug"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "replies_count", default: 0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.index ["forum_id"], name: "index_posts_on_forum_id", using: :btree
     t.index ["slug"], name: "index_posts_on_slug", using: :btree
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
@@ -145,7 +147,6 @@ ActiveRecord::Schema.define(version: 20170308181009) do
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
-    t.string   "username",                            null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -161,6 +162,9 @@ ActiveRecord::Schema.define(version: 20170308181009) do
     t.integer  "failed_attempts",        default: 0,  null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
+    t.integer  "posts_count",            default: 0
+    t.integer  "replies_count",          default: 0
+    t.string   "username",                            null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree

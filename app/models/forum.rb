@@ -17,13 +17,9 @@ class Forum < ApplicationRecord
     ]
   end
 
-  def number_of_posts
-    self.posts.count
-  end
-
-  def number_of_replies
-    self.posts.joins("JOIN replies ON replies.post_id = posts.id").length
-  end
+  def forum_replies_count 
+    posts.pluck('replies_count').inject(&:+)
+  end 
 
   def last_post
     self.posts.order(created_at: :asc).last
