@@ -15,5 +15,4 @@
 //= require tinymce-jquery
 //= require sweetalert
 //= require sweet-alert-confirm
-//= require turbolinks
 //= require_tree .

@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function() {
+$(document).ready(function() {
 
   // SIDE MENU
   $('#nav-menu').click(function() {
