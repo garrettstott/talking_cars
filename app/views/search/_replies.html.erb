@@ -1,6 +1,9 @@
 <div class='eight columns offset-by-two'>
 	<h1 class='center'>Replies</h1>
 	<% if replies.any? %>
+		<div class='center'>
+			<%= will_paginate @replies, previous_label: "<i class='fa fa-arrow-left'></i>", next_label: "<i class='fa fa-arrow-right'></i>", param_name: "replies_page" %>
+		</div>
 		<div class='search-results'>
 			<% replies.each do |reply| %>
 				<span>
@@ -16,7 +19,4 @@
 	<% else %>
 		<h5 class='center'>No Results</h5>
 	<% end %>
-	<div class='center'>
-		<%= will_paginate @replies, previous_label: "<i class='fa fa-arrow-left'></i>", next_label: "<i class='fa fa-arrow-right'></i>", param_name: "replies_page" %>
-	</div>
 </div>

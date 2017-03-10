@@ -2,12 +2,10 @@ $(document).ready(function() {
 
   // SIDE MENU
   $('#nav-menu').click(function() {
-    console.log('side')
     $('.side-menu').fadeToggle('fast');
   })
 
   $(document).click(function(e) {
-    console.log('doc click')
     if($(".side-menu").is(":visible"))
     if(!$(".side-menu").is(e.target))
     if(!$(".side-menu").find('*').is(e.target))
@@ -170,7 +168,8 @@ $(document).ready(function() {
       if(type === 'replies') {
         $('#replies').html(data);
         var re = new RegExp(searchTerm, "ig");
-        $(".search-results").html($(".search-results").html().replace(re, "<strong>" + searchTerm + "</strong>"));
+        if($('.search-results').length > 0)
+          $(".search-results").html($(".search-results").html().replace(re, "<strong>" + searchTerm + "</strong>"));
       } else if(type === 'posts')
         $('#posts').html(data);
     })

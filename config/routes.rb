@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'search/all'
-
   # ROOT ROUTE
   root 'makes#index'
 
@@ -16,17 +14,16 @@ Rails.application.routes.draw do
       }
 
   # GET ROUTES
+  get '/contact_us', to: 'static#contact_us', as: 'contact_us'
   get '/search/:term', to: 'search#searched', as: 'searched'
   get '/users/:username', to: 'users#show', as: 'user_show'
   get '/users/:username/messages', to: 'messages#all', as: 'all_messages'
   get '/users/:username/posts', to: 'users#posts', as: 'user_posts'
   get '/users/:username/replies', to: 'users#replies', as: 'user_replies'
-  get '/makes', to: 'makes#index', as: 'makes'
   get '/:make_id/', to: 'models#index', as: 'models'
   get '/:make_id/:model_id/', to: 'forums#index', as: 'forums'
   get '/:make_id/:model_id/:forum_id/', to: 'posts#index', as: 'posts'
   get '/:make_id/:model_id/:forum_id/:post_id', to: 'replies#index', as: 'replies'
-  get '/contact_us', to: 'static#contact_us', as: 'contact_us'
 
 
   # POST ROUTES

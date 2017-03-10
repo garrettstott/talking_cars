@@ -10,7 +10,6 @@ class ContactMailer < ApplicationMailer
     @user = user
     @message = message
     @reason = reason
-    binding.pry
     mail(
       to: 'garrettstott@gmail.com',
       subject: "[TalkingCars] contact us. #{friendly_time(Time.now)}"
