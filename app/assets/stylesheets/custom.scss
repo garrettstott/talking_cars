@@ -29,6 +29,14 @@ body, html {
   box-sizing: inherit;
 }
 
+::selection {
+  background: #a8d1ff; /* WebKit/Blink Browsers */
+}
+
+::-moz-selection {
+  background: #a8d1ff; /* Gecko Browsers */
+}
+
 .center {
   text-align: center;
 }
