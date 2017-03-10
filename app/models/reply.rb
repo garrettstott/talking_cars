@@ -6,4 +6,8 @@ class Reply < ApplicationRecord
   after_save do
     post.update_attribute(:updated_at, Time.now)
   end
+
+  def self.search(term)
+  	where('lower(body) LIKE ? ', "%#{term}%")
+  end 
 end

@@ -8,4 +8,8 @@ class Make < ApplicationRecord
 
   has_many :favorites, as: :favoritable
   has_many :models
+
+  def self.search(term)
+  	where('lower(name) LIKE ?', "%#{term}%")
+  end 
 end

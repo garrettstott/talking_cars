@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'search/all'
+
   # ROOT ROUTE
   root 'makes#index'
 
@@ -7,13 +9,14 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
         confirmations: 'users/confirmations',
         # omniauth_callbacks: 'users/omniauth_callbacks',
-        passwords: 'users/passwords',
+      passwords: 'users/passwords',
         registrations: 'users/registrations',
         sessions: 'users/sessions',
         unlocks: 'users/unlocks'
       }
 
   # GET ROUTES
+  get '/search/:term', to: 'search#searched', as: 'searched'
   get '/users/:username', to: 'users#show', as: 'user_show'
   get '/users/:username/messages', to: 'messages#all', as: 'all_messages'
   get '/users/:username/posts', to: 'users#posts', as: 'user_posts'
@@ -25,9 +28,8 @@ Rails.application.routes.draw do
   get '/:make_id/:model_id/:forum_id/:post_id', to: 'replies#index', as: 'replies'
   get '/contact_us', to: 'static#contact_us', as: 'contact_us'
 
+
   # POST ROUTES
-  post '/:make_id/:model_id/:forum_id/posts', to: 'posts#create', as: 'post'
-  post '/:make_id/:model_id/:forum_id/:post_id', to: 'replies#create', as: 'reply'
   post '/make/favorite/:id', to: 'favorites#make', as: 'favorite_make'
   post '/model/favorite/:id', to: 'favorites#model', as: 'favorite_model'
   post '/forum/favorite/:id', to: 'favorites#forum', as: 'favorite_forum'
@@ -36,6 +38,11 @@ Rails.application.routes.draw do
   post '/users/:username/posts', to: 'users#get_posts'
   post '/users/:username/replies', to: 'users#get_replies'
   post '/mailers/contact_us', to: 'mailers#contact_us', as: 'contact_us_mailer'
+  post '/search/', to: 'search#term', as: 'search'
+  post '/search/:term/posts', to: 'search#posts'
+  post '/search/:term/replies', to: 'search#replies'
+  post '/:make_id/:model_id/:forum_id', to: 'posts#create', as: 'post'
+  post '/:make_id/:model_id/:forum_id/:post_id', to: 'replies#create', as: 'reply'
 
   # PUT & PATCH ROUTES
   patch '/users/vehicles/edit/:id', to: 'vehicles#update', as: 'vehicle'

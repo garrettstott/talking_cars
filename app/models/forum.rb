@@ -24,4 +24,5 @@ class Forum < ApplicationRecord
   def last_post
     self.posts.order(created_at: :asc).last
   end
+
 end

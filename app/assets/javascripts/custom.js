@@ -2,10 +2,12 @@ $(document).ready(function() {
 
   // SIDE MENU
   $('#nav-menu').click(function() {
+    console.log('side')
     $('.side-menu').fadeToggle('fast');
   })
 
   $(document).click(function(e) {
+    console.log('doc click')
     if($(".side-menu").is(":visible"))
     if(!$(".side-menu").is(e.target))
     if(!$(".side-menu").find('*').is(e.target))
@@ -81,7 +83,7 @@ $(document).ready(function() {
 
     $("#posts").on("click", ".pagination a", function(e){
       e.preventDefault();
-      url = $(e.target).parent().attr('href')
+      url = $(this).attr('href')
       setPosts(url)
       $('html, body').animate({ scrollTop: 0 }, 'slow');
     });
@@ -90,7 +92,6 @@ $(document).ready(function() {
   // USER REPLIES
 
   setReplies = function(url) {
-    console.log(url)
     $.ajax({
       url: url,
       type: 'POST'
@@ -101,14 +102,13 @@ $(document).ready(function() {
     });
   };
 
-  var href = window.location.href;
   if (href.match(/users/) && href.match(/replies/) && href.match(/(sign_in|sign_up|password)/) == null) {
     url = window.location.pathname + window.location.search
     setReplies(url)
 
     $('#replies').on("click", ".pagination a", function(e){
       e.preventDefault();
-      url = $(e.target).parent().attr('href')
+      url = $(this).attr('href')
       setReplies(url)
       $('html, body').animate({ scrollTop: 0 }, 'slow');
     });
@@ -159,5 +159,43 @@ $(document).ready(function() {
     $(this).parent().parent().hide();
     $(this).parent().parent().parent().find('.edit-reply-btn').show();
   })
+
+  // SEARCH
+
+  searchPagination = function(url, type) {
+    $.ajax({
+      url: url,
+      type: 'POST'
+    }).done(function(data) {
+      if(type === 'replies') {
+        $('#replies').html(data);
+        var re = new RegExp(searchTerm, "ig");
+        $(".search-results").html($(".search-results").html().replace(re, "<strong>" + searchTerm + "</strong>"));
+      } else if(type === 'posts')
+        $('#posts').html(data);
+    })
+  };
+
+
+
+  if (href.match(/search/) && searchTerm) {
+    postsUrl = window.location.pathname + '/posts/' + window.location.search
+    repliesUrl = window.location.pathname + '/replies/' + window.location.search
+    searchPagination(postsUrl, 'posts')
+    searchPagination(repliesUrl, 'replies')
+
+
+    $('#replies').on("click", ".pagination a", function(e){
+      e.preventDefault();
+      url = $(this).attr('href')
+      searchPagination(url, 'replies')
+    });
+
+    $('#posts').on("click", ".pagination a", function(e){
+      e.preventDefault();
+      url = $(this).attr('href')
+      searchPagination(url, 'posts')
+    });
+  };
 
 });

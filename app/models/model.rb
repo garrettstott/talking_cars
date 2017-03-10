@@ -7,4 +7,9 @@ class Model < ApplicationRecord
 
   has_many :forums
   has_many :favorites, as: :favoritable
+
+  def self.search(term) 
+    where('lower(name) LIKE ?', "%#{term}%")
+  end 
+
 end

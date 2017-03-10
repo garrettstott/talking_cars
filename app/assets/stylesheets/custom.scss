@@ -61,6 +61,10 @@ body, html {
   cursor: pointer;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 .right {
   float: right;
 }
@@ -242,6 +246,7 @@ SIDE MENU
   position: fixed;
   right: 0;
   top: 50px;
+  padding: 15px;
   display: none;
   @media(max-width: 550px) {
     width: 100vw;
@@ -249,7 +254,6 @@ SIDE MENU
 }
 
 .side-menu-links {
-  margin: 15px;
   color: $WHITE;
   list-style: none;
 }
@@ -261,6 +265,16 @@ SIDE MENU
 .side-menu-links a {
   color: $GOLD;
   font-size: 1.5em;
+}
+
+.side-menu .btn {
+  color: $LIGHTGREY;
+  border: 1px solid $LIGHTGREY;
+}
+
+.side-menu .btn:hover {
+  color: $WHITE;
+  border: 1px solid $WHITE;
 }
 
 /*==============================================
@@ -402,6 +416,15 @@ textarea {
 
 .fa-edit {
   cursor: pointer;
+}
+
+.side-menu input {
+  border: 1px solid $LIGHTGREY;
+  color: $WHITE;
+}
+
+.side-menu input:focus {
+  border: 1px solid $WHITE;
 }
 
 /* Change Autocomplete styles in Chrome*/

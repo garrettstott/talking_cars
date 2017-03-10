@@ -1,0 +1,4 @@
+  <%= form_tag(search_path) do %> 
+    <%= text_field_tag :term, nil, placeholder: 'Search', required: true %>
+    <%= button_tag 'Search', class: 'btn', data: {disable_with: "Searching"} %>
+  <% end %>

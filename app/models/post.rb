@@ -13,4 +13,8 @@ class Post < ApplicationRecord
     self.replies.order(created_at: :asc).last
   end
 
+  def self.search(term)
+  	where('lower(subject) LIKE ? OR lower(body) LIKE ?', "%#{term}%", "%#{term}%")
+  end 
+
 end
