@@ -2,9 +2,9 @@
   <div class='twelve columns margin-bottom-lg'>
     <div class='eight columns'>
       <h1><%= @user.username %></h1>
-      <span>Posts: <%= link_to @user.posts.length, user_posts_path(@user.username) %></span>
+      <span>Posts: <%= link_to @user.posts_count, user_posts_path(@user.username) %></span>
       <br>
-      <span>Replies: <%= link_to @user.replies.length, user_replies_path(@user.username) %></span>
+      <span>Replies: <%= link_to @user.replies_count, user_replies_path(@user.username) %></span>
     </div>
     <div class='four columns'>
       <% if signed_in? && @user.id == current_user.id %>

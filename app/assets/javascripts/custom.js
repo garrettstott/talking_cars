@@ -43,24 +43,6 @@ $(document).ready(function() {
     $('#new_reply').hide();
   });
 
-  // USERS
-
-  // URL PARAMS
-  var getUrlParameter = function getUrlParameter(sParam) {
-    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
-
-    for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
-
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
-        }
-    }
-  };
-
   // USER POSTS
   setPosts = function(url) {
     console.log(url)
@@ -167,19 +149,18 @@ $(document).ready(function() {
     }).done(function(data) {
       if(type === 'replies') {
         $('#replies').html(data);
-        var re = new RegExp(searchTerm, "ig");
-        if($('.search-results').length > 0)
-          $(".search-results").html($(".search-results").html().replace(re, "<strong>" + searchTerm + "</strong>"));
+        $('.search-results').each(function(){
+          var re = new RegExp(searchTerm, 'ig')
+          $(this).html($(this).html().replace(re, "<strong>" + searchTerm + "</strong>"));
+        });
       } else if(type === 'posts')
         $('#posts').html(data);
     })
   };
 
-
-
   if (href.match(/search/) && searchTerm) {
-    postsUrl = window.location.pathname + '/posts/' + window.location.search
-    repliesUrl = window.location.pathname + '/replies/' + window.location.search
+    postsUrl = window.location.pathname + '/posts/'
+    repliesUrl = window.location.pathname + '/replies/'
     searchPagination(postsUrl, 'posts')
     searchPagination(repliesUrl, 'replies')
 

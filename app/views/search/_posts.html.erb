@@ -4,18 +4,18 @@
 		<div class='center'>
 			<%= will_paginate @posts, previous_label: "<i class='fa fa-arrow-left'></i>", next_label: "<i class='fa fa-arrow-right'></i>", param_name: "posts_page" %>
 		</div>
-		<div class='search-results'>
-			<% posts.each do |post| %>
-				<span>
-					<%= post.forum.model.make.name %> | 
-					<%= post.forum.model.name %> | 
-					<%= post.forum.name %>
-				</span>
-				<h5 class='margin-top-sm'><%= link_to post.subject, replies_path(post.forum.model.make, post.forum.model, post.forum, post) %></h5>
-				<span><%= post.body %></span>
-				<hr>
+		<% posts.each do |post| %>
+			<span>
+				<%= post.forum.model.make.name %> | 
+				<%= post.forum.model.name %> | 
+				<%= post.forum.name %>
+			</span>
+			<%= link_to replies_path(post.forum.model.make, post.forum.model, post.forum, post) do %>
+				<h5 class='margin-top-sm search-results'><%= post.subject %></h5>
 			<% end %>
-		</div>
+			<span class='search-results'><%= post.body %></span>
+			<hr>
+		<% end %>
 	<% else %>
 		<h5 class='center'>No Results</h5>
 	<% end %>

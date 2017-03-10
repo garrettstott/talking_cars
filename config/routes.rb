@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   # GET ROUTES
   get '/contact_us', to: 'static#contact_us', as: 'contact_us'
+  get '/search', to: 'search#searched', as: 'show_search'
   get '/search/:term', to: 'search#searched', as: 'searched'
   get '/users/:username', to: 'users#show', as: 'user_show'
   get '/users/:username/messages', to: 'messages#all', as: 'all_messages'

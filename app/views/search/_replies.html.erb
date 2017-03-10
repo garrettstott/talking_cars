@@ -3,19 +3,18 @@
 	<% if replies.any? %>
 		<div class='center'>
 			<%= will_paginate @replies, previous_label: "<i class='fa fa-arrow-left'></i>", next_label: "<i class='fa fa-arrow-right'></i>", param_name: "replies_page" %>
-		</div>
-		<div class='search-results'>
-			<% replies.each do |reply| %>
-				<span>
-					<%= reply.post.forum.model.make.name %> | 
-					<%= reply.post.forum.model.name %> | 
-					<%= reply.post.forum.name %> | 
-					
-				</span>
-				<%= reply.post.subject %>
-				<h6 class='margin-top-sm'><%= link_to reply.body, replies_path(reply.post.forum.model.make, reply.post.forum.model, reply.post.forum, reply.post) %></h6>
+		</div>	
+		<% replies.each do |reply| %>
+			<span>
+				<%= reply.post.forum.model.make.name %> | 
+				<%= reply.post.forum.model.name %> | 
+				<%= reply.post.forum.name %> | 
+			</span>
+			<span class='search-results'><%= reply.post.subject %></span>
+			<%= link_to replies_path(reply.post.forum.model.make, reply.post.forum.model, reply.post.forum, reply.post) do %>
+				<h6 class='margin-top-sm search-results'><%= reply.body %></h6>
 			<% end %>
-		</div>
+		<% end %>
 	<% else %>
 		<h5 class='center'>No Results</h5>
 	<% end %>

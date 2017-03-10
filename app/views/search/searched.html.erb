@@ -1,6 +1,8 @@
 <div class='twelve columns'>
 	<h1 class='center'>Search</h1>
-	<h5 class='center'>Results for "<%= params[:term] %>"</h5>
+	<% if params[:term] %>
+		<h5 class='center'>Results for <%= params[:term] %></h5>
+	<% end %>
 	<div class='six columns offset-by-three'>
 		<%= render 'shared/search' %>
 	</div>
