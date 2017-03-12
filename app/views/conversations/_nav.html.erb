@@ -2,20 +2,20 @@
 	<br>
 
 	<%= link_to conversations_inbox_path do %>
-		inbox: <%= current_user.mailbox.inbox.unread(current_user).count %>
+		<% style = current_page?(:controller => 'conversations', :action => 'inbox') ? 'bold' : '' %>
+			<span class="<%= style %>">Inbox <%= "(#{current_user.mailbox.inbox.unread(current_user).count})" if current_user.mailbox.inbox.unread(current_user).count > 0 %></span> | 
 	<% end %>
-	<br>
 
-	<%= link_to conversations_path do %>
-		conversations: <%= current_user.mailbox.conversations.count %>
-	<% end %>
-	<br>
+	<%#= link_to conversations_path do %>
+		<!-- All Conversations: <%#= current_user.mailbox.conversations.count %> |  -->
+	<%# end %>
 
 	<%= link_to conversations_sent_path do %>
-		sent: <%= current_user.mailbox.sentbox.count %>
+	<% style = current_page?(:controller => 'conversations', :action => 'sent') ? 'bold' : '' %>
+		<span class="<%= style %>">Sent</span> | 
 	<% end %>
-	<br>
 
 	<%= link_to conversations_trash_path do %>
-		trash: <%= current_user.mailbox.trash.count %>
+	<% style = current_page?(:controller => 'conversations', :action => 'trash') ? 'bold' : '' %>
+		<span class="<%= style %>">Trash</span>
 	<% end %>

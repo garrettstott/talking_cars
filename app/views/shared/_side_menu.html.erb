@@ -3,7 +3,9 @@
     <% if signed_in? %>
       <li><h3 class='username'><%= link_to current_user.username, user_show_path(current_user.username) %></h3></li>
       <li><%= link_to 'My Profile', user_show_path(current_user.username) %></li>
-      <li><%= link_to 'My Messages', conversations_path %></li>
+      <li><%= link_to conversations_inbox_path do %>
+        Inbox <%= "(#{current_user.mailbox.inbox.unread(current_user).count})" if current_user.mailbox.inbox.unread(current_user).count > 0 %></li>
+        <% end %>
       <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
     <% else %>
       <h3>Welcome, Guest!</h3>

@@ -3,20 +3,21 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   Rails.application.routes.default_url_options[:host] = 'localhost:3000'
 
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.perform_deliveries = true
+  # config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :letter_opener
+
 
   # SMTP settings for gmail
 
-  config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 587,
-    domain:               'gmail.com',
-    user_name:            ENV['gmail_username'],
-    password:             ENV['gmail_password'],
-    authentication:       :plain,
-    enable_starttls_auto: true
-  }
+  # config.action_mailer.smtp_settings = {
+  #   address:              'smtp.gmail.com',
+  #   port:                 587,
+  #   domain:               'gmail.com',
+  #   user_name:            ENV['gmail_username'],
+  #   password:             ENV['gmail_password'],
+  #   authentication:       :plain,
+  #   enable_starttls_auto: true
+  # }
 
 
   # Settings specified here will take precedence over those in config/application.rb.
