@@ -1,0 +1,8 @@
+<div class='six columns offset-by-three new-conversation'>
+	<%= form_tag (create_conversation_path), method: :post do %>
+		<%= select_tag :usernames, options_from_collection_for_select(@recipients, :username, :username), multiple: true %>
+		<%= text_field_tag :subject, nil, placeholder: 'Subject' %>
+		<%= text_area_tag :body, nil, placeholder: 'Message' %>
+		<%= button_tag 'Send', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Sending"} %>
+	<% end %>
+</div>

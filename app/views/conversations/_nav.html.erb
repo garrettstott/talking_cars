@@ -1,0 +1,21 @@
+	<%= link_to 'Compose', new_conversation_path, class: 'button btn' %>
+	<br>
+
+	<%= link_to conversations_inbox_path do %>
+		inbox: <%= current_user.mailbox.inbox.unread(current_user).count %>
+	<% end %>
+	<br>
+
+	<%= link_to conversations_path do %>
+		conversations: <%= current_user.mailbox.conversations.count %>
+	<% end %>
+	<br>
+
+	<%= link_to conversations_sent_path do %>
+		sent: <%= current_user.mailbox.sentbox.count %>
+	<% end %>
+	<br>
+
+	<%= link_to conversations_trash_path do %>
+		trash: <%= current_user.mailbox.trash.count %>
+	<% end %>

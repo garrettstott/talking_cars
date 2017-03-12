@@ -1,6 +1,6 @@
 Rails.application.configure do
 
-  config.action_mailer.default_url_options = { :host => 'www.talkingcars.io' }
+  config.action_mailer.default_url_options = { :host => 'https://www.talkingcars.io' }
 
   config.action_mailer.delivery_method = :smtp
   # SMTP settings for gmail

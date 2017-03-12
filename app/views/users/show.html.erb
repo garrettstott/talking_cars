@@ -9,7 +9,7 @@
     <div class='four columns'>
       <% if signed_in? && @user.id == current_user.id %>
           <h3>My Messages</h3>
-          <%= link_to 'Messages', all_messages_path(current_user.username), class: 'btn button' %>
+          <%= link_to 'Messages', conversations_path(current_user.username), class: 'btn button' %>
       <% else %>
         <span class='btn button'>Send Message</span>
       <% end %>

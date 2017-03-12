@@ -5,20 +5,25 @@ Rails.application.routes.draw do
 
   #DEVISE ROUTES
   devise_for :users, controllers: {
-        confirmations: 'users/confirmations',
-        # omniauth_callbacks: 'users/omniauth_callbacks',
-      passwords: 'users/passwords',
-        registrations: 'users/registrations',
-        sessions: 'users/sessions',
-        unlocks: 'users/unlocks'
-      }
+    confirmations: 'users/confirmations',
+    # omniauth_callbacks: 'users/omniauth_callbacks',
+    passwords: 'users/passwords',
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    unlocks: 'users/unlocks'
+  }
 
   # GET ROUTES
   get '/contact_us', to: 'static#contact_us', as: 'contact_us'
   get '/search', to: 'search#searched', as: 'show_search'
   get '/search/:term', to: 'search#searched', as: 'searched'
   get '/users/:username', to: 'users#show', as: 'user_show'
-  get '/users/:username/messages', to: 'messages#all', as: 'all_messages'
+  get '/conversations', to: 'conversations#index', as: 'conversations'
+  get '/conversations/new', to: 'conversations#new', as: 'new_conversation'
+  get '/conversatons/inbox', to: 'conversations#inbox', as: 'conversations_inbox'
+  get '/conversations/sent', to: 'conversations#sent', as: 'conversations_sent'
+  get '/conversations/trash', to: 'conversations#trash', as: 'conversations_trash'
+  get '/conversations/:id', to: 'conversations#show', as: 'conversation'
   get '/users/:username/posts', to: 'users#posts', as: 'user_posts'
   get '/users/:username/replies', to: 'users#replies', as: 'user_replies'
   get '/:make_id/', to: 'models#index', as: 'models'
@@ -33,6 +38,8 @@ Rails.application.routes.draw do
   post '/forum/favorite/:id', to: 'favorites#forum', as: 'favorite_forum'
   post '/post/favotite/:id', to: 'favorites#post', as: 'favorite_post'
   post '/users/vehicles', to: 'vehicles#create', as: 'vehicles'
+  post '/conversations/new', to: 'conversations#create', as: 'create_conversation'
+  post '/conversations/:id/messages', to: 'messages#create', as: 'conversation_messages'
   post '/users/:username/posts', to: 'users#get_posts'
   post '/users/:username/replies', to: 'users#get_replies'
   post '/mailers/contact_us', to: 'mailers#contact_us', as: 'contact_us_mailer'

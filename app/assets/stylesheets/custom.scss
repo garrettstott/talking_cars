@@ -379,7 +379,7 @@ ADMIN MESSAGE
 FORMS & INPUTS
 ==============================================*/
 
-input[type='text'], input[type='email'], input[type='password'], textarea {
+input[type='text'], input[type='email'], input[type='password'], select, textarea {
   width: 100%;
   color: $BLACK;
   line-height: 20px;
@@ -433,6 +433,10 @@ textarea {
 
 .side-menu input:focus {
   border: 1px solid $WHITE;
+}
+
+.new-conversation select {
+  height: 100px;
 }
 
 /* Change Autocomplete styles in Chrome*/

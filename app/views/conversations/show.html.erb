@@ -1,0 +1,24 @@
+<h1><%= @conversation.subject %></h1>
+
+<h4>Participants:
+<% @conversation.participants.each do |participant| %>
+	<%= participant.name %>
+<% end %>
+</h4>
+<br>
+
+<div class='eight columns offset-by-two'>
+	<% @conversation.receipts_for(current_user).each do |receipt| %>
+		From: <%= receipt.message.sender.name %> 
+		<span class='right'><%= friendly_time(receipt.created_at) %> (<%= time_ago_in_words(receipt.created_at) %> ago)</span>
+		<%= simple_format receipt.message.body %>
+		<hr>
+	<% end %>
+</div>
+
+<div class='six columns offset-by-three'>
+	<%= form_tag conversation_messages_path(@conversation), method: :post do %>
+		<%= text_area_tag :body, nil, placeholder: 'Message' %>
+		<%= button_tag 'Send', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Sending"} %>
+	<% end %>
+</div>

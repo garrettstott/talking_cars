@@ -16,10 +16,10 @@ class User < ApplicationRecord
   has_many :vehicles
 
   def name
-    self.username
+    username
   end
 
   def mailboxer_email(object)
-    self.email
+    email
   end
 end

@@ -4,8 +4,6 @@ class ContactMailer < ApplicationMailer
     time.strftime("%m/%d/%y, %I:%M %p")
   end
 
-  default from: 'contact@talkingcars.io'
-
   def contact_us(user, reason, message)
     @user = user
     @message = message
