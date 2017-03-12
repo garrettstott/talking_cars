@@ -1,11 +1,10 @@
 <div class='twelve columns'>
-	<%= render 'nav' %>
+	<div class='eight columns offset-by-two'>
+		<%= render 'nav' %>
 
-	<h1 class='center'><%= current_user.username %>'s Conversations</h1>
+		<h1 class='center'><%= current_user.username %>'s Conversations</h1>
+		<h6 class='center'>Total: <%= @conversations.count %></h6>
 
-	<hr>
-	Total: <%= @conversations.count %>
-	<hr>
-
-	<%= render 'conversations' %>
+		<%= render 'conversations' %>
+	</div>
 </div>
