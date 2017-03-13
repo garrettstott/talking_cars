@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
 			true, # sanitize_text
 			params[:attachment]
 		)
-		redirect_to conversation_path(receipt.conversation)
+		redirect_to conversation_path(@conversation)
 	end 
 
 	private 

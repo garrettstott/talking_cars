@@ -36,7 +36,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
 
       # Custom
       t.string :username, null: false
-
+      t.string :avatar
 
       t.timestamps null: false
     end

@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :favorites
   has_many :vehicles
 
+  mount_uploader :avatar, AvatarUploader
+
   def name
     username
   end

@@ -165,6 +165,7 @@ ActiveRecord::Schema.define(version: 20170308181009) do
     t.integer  "posts_count",            default: 0
     t.integer  "replies_count",          default: 0
     t.string   "username",                            null: false
+    t.string   "avatar"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
