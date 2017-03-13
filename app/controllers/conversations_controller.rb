@@ -2,19 +2,19 @@ class ConversationsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-  	@conversations = current_user.mailbox.conversations.order
+  	@conversations = current_user.mailbox.conversations
   end
 
   def inbox 
-  	@conversations = current_user.mailbox.inbox.order
+  	@conversations = current_user.mailbox.inbox
   end 
 
   def sent 
-  	@conversations = current_user.mailbox.sentbox.order
+  	@conversations = current_user.mailbox.sentbox
   end 
 
   def trash
-  	@conversations = current_user.mailbox.trash.order
+  	@conversations = current_user.mailbox.trash
   end 
 
   def show 
