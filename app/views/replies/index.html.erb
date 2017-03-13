@@ -28,9 +28,20 @@
     <div class='ten columns offset-by-one'>
       <div class='ten columns offset-by-one padding-sm'>
         <h3><%= @post.subject %></h4>
-        <p><%= @post.body %></p>
+        <p>
+          <%= @post.body %>
+          <span class='right sans-serif'><%= friendly_time(@post.created_at) %></span>
+        </p>
+        <br>
+        <% if @post.post_images.any? %>
+          <% @post.post_images.each do |post_image| %>
+            <%= link_to post_image.image.url, target: :blank do %>
+              <%= image_tag(post_image.image.thumb) %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <br>
         <%= link_to @post.user.username, user_show_path(@post.user.username) %>
-        <span class='right sans-serif'><%= friendly_time(@post.created_at) %></span>
         <div class='twelve columns'>
           <span>
             Posts: <%= link_to @post.user.posts.length, user_posts_path(@post.user.username) %>
@@ -45,9 +56,21 @@
               <% end %>
             </span>
             <div id='edit-post' class='twelve columns margin-top-md'>
-              <%= form_tag(update_post_path(@make, @model, @forum, @post), method: :patch) do %> 
-                <%= text_field_tag :subject, @post.subject, readonly: true %>
-                <%= text_area_tag :body, @post.body %> 
+              <%= form_for(@post, url: {controller: 'posts', action: 'update', multipart: true, method: :patch}) do |f| %>
+                <%= f.text_area :body, placeholder: 'Message' %>
+                <%= f.file_field :post_image, multiple: true, name: 'post_images[]' %>
+                <br>
+                <div class='twelve columns'>
+                  <%= f.fields_for :post_images do |ff| %>
+                    <div class='twelve columns'>
+                      <%= image_tag ff.object.image.thumb %>
+                      <br>
+                      <%= ff.check_box '_destroy' %>
+                      <%= ff.label :delete %>
+                    </div>
+                  <% end %>
+                </div>
+                <br>
                 <%= button_tag 'Save', class: 'btn', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving"} %>
                 <span class='button btn-danger right cancel-edit-post'>Cancel</span>
               <% end %>

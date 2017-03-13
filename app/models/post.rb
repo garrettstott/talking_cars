@@ -8,6 +8,8 @@ class Post < ApplicationRecord
 
   has_many :replies
   has_many :favorites, as: :favoritable
+  has_many :post_images, dependent: :destroy
+  accepts_nested_attributes_for :post_images, allow_destroy: true
 
   def last_reply
     self.replies.order(created_at: :asc).last

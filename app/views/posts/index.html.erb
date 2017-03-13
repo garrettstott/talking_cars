@@ -17,20 +17,26 @@
     <span><%= @forum.category %> Forums</span>
   </div>
 
-  <div class='twelve columns center margin-top-lg'>
+  <div class='twelve columns margin-top-lg'>
     <% if signed_in? %>
-      <button id='new-post-btn' class='btn'>New Post</button>
+      <div class='center'>
+        <button id='new-post-btn' class='btn'>New Post</button>
+      </div>
       <div class='six columns offset-by-three'>
-        <%= form_for(@new_post) do |f| %>
+        <%= form_tag(post_path(@make, @model, @forum), id: 'new_post', multipart: true) do %>
           <h3 class='center'>Post</h3>
-          <%= f.text_field :subject, placeholder: 'Subject' %>
-          <%= f.text_area :body, placeholder: 'Message' %>
-          <%= f.button 'Submit', class: 'left btn', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving"} %>
+          <%= text_field_tag :subject, nil, placeholder: 'Subject', required: true %>
+          <%= text_area_tag :body, nil, placeholder: 'Message', required: true %>
+          <%= file_field_tag 'images[]', multiple: true %>
+          <br>
+          <%= button_tag 'Submit', class: 'left btn', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving"} %>
           <span id='cancel-new-post' class='btn button btn-danger'>Cancel</span>
         <% end %>
       </div>
     <% else %>
-      <%= link_to 'Log In To Post', new_user_session_path(return_url: request.path), class: 'btn button' %>
+      <div class='center'>
+        <%= link_to 'Log In To Post', new_user_session_path(return_url: request.path), class: 'btn button' %>
+      </div>
     <% end %>
   </div>
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308181009) do
+ActiveRecord::Schema.define(version: 20170313175349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,6 +120,16 @@ ActiveRecord::Schema.define(version: 20170308181009) do
     t.index ["slug"], name: "index_models_on_slug", using: :btree
   end
 
+  create_table "post_images", force: :cascade do |t|
+    t.integer  "post_id"
+    t.integer  "reply_id"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_images_on_post_id", using: :btree
+    t.index ["reply_id"], name: "index_post_images_on_reply_id", using: :btree
+  end
+
   create_table "posts", force: :cascade do |t|
     t.integer  "forum_id"
     t.integer  "user_id"
@@ -194,6 +204,8 @@ ActiveRecord::Schema.define(version: 20170308181009) do
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
   add_foreign_key "mailboxer_receipts", "mailboxer_notifications", column: "notification_id", name: "receipts_on_notification_id"
   add_foreign_key "models", "makes"
+  add_foreign_key "post_images", "posts"
+  add_foreign_key "post_images", "replies"
   add_foreign_key "posts", "forums"
   add_foreign_key "posts", "users"
   add_foreign_key "replies", "posts"
