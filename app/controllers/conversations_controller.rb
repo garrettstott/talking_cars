@@ -30,7 +30,13 @@ class ConversationsController < ApplicationController
 
   def create 
   	recipients = User.where(username: params[:usernames])
-  	receipt = current_user.send_message(recipients, params[:body], params[:subject])
+  	receipt = current_user.send_message(
+      recipients,
+      params[:body],
+      params[:subject],
+      true, # sanitize_text
+      params[:attachment]
+    )
   	redirect_to conversation_path(receipt.conversation)
   end 
 end
