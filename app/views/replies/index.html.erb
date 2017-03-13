@@ -28,11 +28,7 @@
     <div class='ten columns offset-by-one'>
       <div class='ten columns offset-by-one padding-sm'>
         <h3><%= @post.subject %></h4>
-        <p>
-          <%= @post.body %>
-          <span class='right sans-serif'><%= friendly_time(@post.created_at) %></span>
-        </p>
-        <br>
+        <p><%= @post.body %></p>
         <% if @post.post_images.any? %>
           <% @post.post_images.each do |post_image| %>
             <%= link_to post_image.image.url, target: :blank do %>
@@ -42,6 +38,7 @@
         <% end %>
         <br>
         <%= link_to @post.user.username, user_show_path(@post.user.username) %>
+        <span class='right sans-serif'><%= friendly_time(@post.created_at) %></span>
         <div class='twelve columns'>
           <span>
             Posts: <%= link_to @post.user.posts.length, user_posts_path(@post.user.username) %>
@@ -86,6 +83,14 @@
     <% @replies.each do |reply| %>
       <div class='eight columns offset-by-two padding-sm'>
         <p><%= reply.body %></p>
+        <% if reply.post_images.any? %>
+          <% reply.post_images.each do |post_image| %>
+            <%= link_to post_image.image.url, target: :blank do %>
+              <%= image_tag(post_image.image.thumb) %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <br>
         <%= link_to reply.user.username, user_show_path(reply.user.username) %>
         <span class='right sans-serif'><%= friendly_time(reply.created_at) %></span>
         <div class='twelve columns'>
@@ -96,15 +101,27 @@
           </span>
           <% if signed_in? && reply.user_id == current_user.id %>
             <span class='right'>
-              <i class='fa fa-edit edit-reply-btn'></i>
+              <i class='fa fa-edit edit-reply-btn' id="<%= reply.id %>"></i>
               <%= link_to delete_reply_path(@make, @model, @forum, @post, reply), method: :delete, data: {confirm: "Are you sure you want to delete this reply?"} do %>
                 <i class='fa fa-trash red-text'></i>
               <% end %>
             </span>
             <div class='edit-reply twelve columns margin-top-md'>
-              <%= form_tag(update_reply_path(@make, @model, @forum, @post, reply), method: :patch) do %> 
-                <%= text_area_tag :body, reply.body %> 
-                <%= button_tag 'Save', class: 'btn', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving"} %>
+              <%= form_for(reply, url: {reply_id: reply.id, controller: 'replies', action: 'update'}, multipart: true, method: :put) do |f| %> 
+                <%= f.text_area :body %> 
+                <%= f.file_field :post_image, multiple: true, name: 'post_images[]' %>
+                <br>
+                <div class='twelve columns'>
+                  <%= f.fields_for :post_images do |ff| %>
+                    <div class='twelve columns'>
+                      <%= image_tag ff.object.image.thumb %>
+                      <br>
+                      <%= ff.check_box '_destroy' %>
+                      <%= ff.label :delete %>
+                    </div>
+                  <% end %>
+                </div>
+                <%= f.button 'Save', class: 'btn', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving"} %>
                 <span class='button btn-danger right cancel-edit-reply'>Cancel</span>
               <% end %>
             </div>
@@ -126,9 +143,11 @@
   </div>
 
   <div class='six columns offset-by-three new-post-container'>
-    <%= form_for(@new_reply) do |f| %>
+    <%= form_for(@new_reply, multipart: true) do |f| %>
       <h3 class='center'>Reply</h3>
       <%= f.text_area :body, placeholder: 'Message', required: true %>
+      <%= f.file_field :post_images, multiple: true %>
+      <br>
       <%= f.button 'Submit', class: 'btn', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving"} %>
       <span id='cancel-new-reply' class='btn button btn-danger'>Cancel</span>
     <% end %>

@@ -1,11 +1,8 @@
 class Users::SessionsController < Devise::SessionsController
 # before_action :configure_sign_in_params, only: [:create]
-
+  
   # GET /resource/sign_in
   def new
-    if params[:return_url]
-      session[:return_url] = params[:return_url]
-    end 
     super
   end
 
@@ -19,7 +16,17 @@ class Users::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  # protected
+  protected
+
+  def after_sign_in_path_for(resource)
+    url = session[:return_url] || stored_location_for(resource) || root_path
+    session[:return_url] = nil
+    return url
+  end
+
+  def after_sign_out_path_for(resource)
+    request.referrer
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params

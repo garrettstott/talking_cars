@@ -6,9 +6,10 @@ class Post < ApplicationRecord
   belongs_to :forum, counter_cache: true
   belongs_to :user, counter_cache: true
 
-  has_many :replies
+  has_many :replies, dependent: :destroy
   has_many :favorites, as: :favoritable
   has_many :post_images, dependent: :destroy
+
   accepts_nested_attributes_for :post_images, allow_destroy: true
 
   def last_reply

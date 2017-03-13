@@ -49,10 +49,13 @@ Rails.application.routes.draw do
   post '/:make_id/:model_id/:forum_id', to: 'posts#create', as: 'post'
   post '/:make_id/:model_id/:forum_id/:post_id', to: 'replies#create', as: 'reply'
 
-  # PUT & PATCH ROUTES
+  # PUT ROUTES 
+  put '/:make_id/:model_id/:forum_id/:post_id', to: 'replies#update', as: 'update_reply'
+
+  
+  # PATCH ROUTES
   patch '/users/vehicles/edit/:id', to: 'vehicles#update', as: 'vehicle'
   patch '/:make_id/:model_id/:forum_id/:post_id', to: 'posts#update', as: 'update_post'
-  patch '/:make_id/:model_id/:forum_id/:post_id/:reply_id', to: 'replies#update', as: 'update_reply'
 
   # DELETE ROUTES
   delete '/users/vehicles/:id', to: 'vehicles#destroy', as: 'delete_vehicle'

@@ -14,6 +14,11 @@ class RepliesController < ApplicationController
     @reply = current_user.replies.new(reply_params)
     @reply.post_id = @post.id
     if @reply.save
+      if params[:reply][:post_images]
+        params[:reply][:post_images].each do |image|
+          @reply.post_images.create(image: image)
+        end 
+      end 
       flash[:success] = "Your Reply was submitted successfully!"
       redirect_back(fallback_location: replies_path(@make, @model, @forum, @post))
     else
@@ -34,7 +39,12 @@ class RepliesController < ApplicationController
 
   def update 
     @reply = Reply.find(params[:reply_id])
-    if @reply.update(body: params[:body])
+    if @reply.update(reply_params)
+      if params[:post_images]
+        params[:post_images].each do |image|
+          @reply.post_images.create(image: image)
+        end 
+      end 
       flash[:success] = "Reply udpated"
     else 
       flash[:error] = "Reply not updated. #{@reply.errors.full_messages.to_sentence}"
@@ -46,7 +56,7 @@ class RepliesController < ApplicationController
   private
 
   def reply_params
-    params.require(:reply).permit(:body)
+    params.require(:reply).permit(:body, post_images_attributes: [:id, '_destroy'])
   end
 
   def set_make
